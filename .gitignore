@@ -45,3 +45,5 @@ yarn-error.log*
 !/.claude/skills/blog-voice/
 !/.claude/skills/write-bilingual-blog/
 !/.claude/skills/make-portfolio-blog-cover/
+
+unofficial_docs
