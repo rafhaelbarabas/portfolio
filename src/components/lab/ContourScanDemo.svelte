@@ -21,7 +21,7 @@
 
   let host: HTMLDivElement | null = null;
 
-  const GREEN = "0, 255, 65";
+  const BLUE = "45, 107, 255";
 
   onMount(() => {
     if (!host) return;
@@ -111,18 +111,18 @@
           if (sd < 46) a += (1 - sd / 46) * 0.5;
           if (a < 0.05) continue;
 
-          ctx.fillStyle = `rgba(${GREEN}, ${Math.min(1, a).toFixed(3)})`;
+          ctx.fillStyle = `rgba(${BLUE}, ${Math.min(1, a).toFixed(3)})`;
           ctx.fillRect(x * dpr, y * dpr, dot, dot);
         }
       }
 
       // The scanline itself — a hairline with a soft tail
       const grad = ctx.createLinearGradient((scanX - 46) * dpr, 0, scanX * dpr, 0);
-      grad.addColorStop(0, `rgba(${GREEN}, 0)`);
-      grad.addColorStop(1, `rgba(${GREEN}, 0.16)`);
+      grad.addColorStop(0, `rgba(${BLUE}, 0)`);
+      grad.addColorStop(1, `rgba(${BLUE}, 0.16)`);
       ctx.fillStyle = grad;
       ctx.fillRect((scanX - 46) * dpr, 0, 46 * dpr, h * dpr);
-      ctx.fillStyle = `rgba(${GREEN}, 0.35)`;
+      ctx.fillStyle = `rgba(${BLUE}, 0.35)`;
       ctx.fillRect(scanX * dpr, 0, Math.max(1, dpr), h * dpr);
     }
 
@@ -187,7 +187,7 @@
     inset: 0;
     overflow: hidden;
     background:
-      radial-gradient(circle at 50% 40%, rgba(0, 255, 65, 0.05), transparent 62%),
+      radial-gradient(circle at 50% 40%, rgba(45, 107, 255, 0.05), transparent 62%),
       #020503;
     cursor: crosshair;
   }

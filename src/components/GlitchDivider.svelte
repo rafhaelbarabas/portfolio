@@ -138,7 +138,7 @@
     background: linear-gradient(
       180deg,
       transparent calc(50% - 1px),
-      rgba(0, 255, 65, 0.14) 50%,
+      rgba(45, 107, 255, 0.14) 50%,
       transparent calc(50% + 1px)
     );
   }
@@ -160,7 +160,7 @@
     font-size: 0.68rem;
     letter-spacing: 0.14em;
     text-transform: uppercase;
-    color: rgba(74, 222, 128, 0.3);
+    color: rgba(110, 155, 255, 0.3);
     pointer-events: none;
   }
 </style>

@@ -105,10 +105,10 @@
     transition: color 0.18s ease;
   }
   .like-button:hover {
-    color: var(--accent-soft, #4ade80);
+    color: var(--accent-soft, #6E9BFF);
   }
   .like-button.liked {
-    color: var(--accent-soft, #4ade80);
-    text-shadow: 0 0 12px rgba(0, 255, 65, 0.35);
+    color: var(--accent-soft, #6E9BFF);
+    text-shadow: 0 0 12px rgba(45, 107, 255, 0.35);
   }
 </style>

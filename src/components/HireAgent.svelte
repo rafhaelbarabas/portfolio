@@ -131,8 +131,8 @@ LinkedIn and Telegram.`;
       box-shadow var(--duration-hover) var(--ease-default);
   }
   .agent-hire__code:hover {
-    border-color: rgba(0, 255, 65, 0.35);
-    box-shadow: 0 0 30px rgba(0, 255, 65, 0.07);
+    border-color: rgba(45, 107, 255, 0.35);
+    box-shadow: 0 0 30px rgba(45, 107, 255, 0.07);
   }
 
   .agent-hire__bar {
@@ -166,7 +166,7 @@ LinkedIn and Telegram.`;
   }
   .agent-hire__copy:hover {
     color: var(--accent);
-    border-color: rgba(0, 255, 65, 0.4);
+    border-color: rgba(45, 107, 255, 0.4);
   }
 
   .agent-hire__pre {

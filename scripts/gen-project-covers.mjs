@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 /**
- * Generate green-wireframe cover art for highlighted portfolio projects
+ * Generate blue-wireframe cover art for highlighted portfolio projects
  * via OpenRouter (gemini-2.5-flash-image). Same visual language as the
- * tool clips: pure black void, phosphor green (#00ff41) wireframe forms.
+ * tool clips: pure black void, phosphor blue (#2D6BFF) wireframe forms.
  *
  * Usage: node scripts/gen-project-covers.mjs [slug|all]
  * Output: public/art/covers/<slug>.png
@@ -28,7 +28,7 @@ if (!KEY) {
   process.exit(1);
 }
 
-const STYLE = `A dense luminous swarm of tiny phosphor-green (#00ff41) particles, sparks and hairline light-trails on a 100% pure black background, forming the motif below. Organic depth and parallax, soft phosphor bloom, subtle dot-matrix grain, cinematic contrast, wide composition with generous black margins. STRICTLY no text, no letters, no logos, no people, no solid fills, no other colors. Dark analog occult-techno mood.`;
+const STYLE = `A dense luminous swarm of tiny phosphor-blue (#2D6BFF) particles, sparks and hairline light-trails on a 100% pure black background, forming the motif below. Organic depth and parallax, soft phosphor bloom, subtle dot-matrix grain, cinematic contrast, wide composition with generous black margins. STRICTLY no text, no letters, no logos, no people, no solid fills, no other colors. Dark analog occult-techno mood.`;
 
 const COVERS = {
   "ralph-starter": "a glowing swarm flowing through a closed conveyor loop, bright commit nodes orbiting and merging into one pulsing core",

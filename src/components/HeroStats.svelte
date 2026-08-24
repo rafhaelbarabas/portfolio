@@ -215,7 +215,7 @@
     width: 100%;
     max-width: 100%;
     border-bottom: 1px solid var(--line);
-    /* Deep green-black lift — stays inside the site's single-accent language
+    /* deep blue-black lift — stays inside the site's single-accent language
        (no blue/slate anywhere outside the vortex moment). */
     background: linear-gradient(
       180deg,
@@ -337,7 +337,7 @@
   .tools__card:hover {
     border-color: var(--line-bright);
     transform: translateY(-4px);
-    box-shadow: 0 20px 52px rgba(0, 0, 0, 0.55), 0 0 0 1px rgba(0, 255, 65, 0.12);
+    box-shadow: 0 20px 52px rgba(0, 0, 0, 0.55), 0 0 0 1px rgba(45, 107, 255, 0.12);
   }
   .tools__card:hover .tools__video {
     filter: brightness(1.05) saturate(1);
@@ -389,7 +389,7 @@
     pointer-events: none;
     background:
       radial-gradient(circle, rgba(187, 247, 208, 0.55) 1px, transparent 1px) 0 0 / 11px 11px,
-      linear-gradient(135deg, rgba(74, 222, 128, 0.62) 0%, rgba(21, 128, 61, 0.56) 100%);
+      linear-gradient(135deg, rgba(110, 155, 255, 0.62) 0%, rgba(1, 37, 125, 0.56) 100%);
     mix-blend-mode: color;
     z-index: 1;
   }
@@ -461,7 +461,7 @@
   }
   .tools__link:hover {
     color: var(--accent-soft);
-    text-shadow: 0 0 12px rgba(0, 255, 65, 0.45);
+    text-shadow: 0 0 12px rgba(45, 107, 255, 0.45);
   }
 
   .tools__status {
@@ -474,8 +474,8 @@
     border: 1px solid currentColor;
   }
   .tools__status--shipping { color: rgba(96, 220, 140, 0.8); }
-  .tools__status--beta     { color: rgba(0, 255, 65, 0.8); }
-  .tools__status--research { color: rgba(163, 230, 53, 0.8); }
+  .tools__status--beta     { color: rgba(45, 107, 255, 0.8); }
+  .tools__status--research { color: rgba(91, 130, 230, 0.8); }
 
   @keyframes tools-rise {
     to { opacity: 1; transform: translateY(0); }

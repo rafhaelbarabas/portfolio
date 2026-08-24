@@ -48,7 +48,7 @@
       return v;
     }
 
-    // Very dark palette — near-black with subtle deep-green variance
+    // Very dark palette — near-black with subtle deep-blue variance
     vec3 paletteDrift(float t) {
       vec3 base = vec3(0.008, 0.016, 0.011);
       vec3 mid  = vec3(0.028, 0.082, 0.05);
@@ -226,7 +226,7 @@
           tDiffuse: { value: null },
           uResolution: { value: new THREE.Vector2(w, h) },
           uCellSize: { value: effCell },
-          uColor: { value: new THREE.Color("#2e7d4f") },
+          uColor: { value: new THREE.Color("#244DAD") },
           uBackgroundColor: { value: new THREE.Color("#000000") },
           uTime: { value: 0 },
           uMouse: { value: new THREE.Vector2(w * 0.5, h * 0.5) },

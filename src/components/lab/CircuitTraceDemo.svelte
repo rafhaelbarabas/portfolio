@@ -23,9 +23,9 @@
 
   let host: HTMLDivElement | null = null;
 
-  const BG = "2, 5, 3";
-  const GREEN = "0, 255, 65";
-  const BRIGHT = "164, 255, 190";
+  const BG = "2, 5, 16";
+  const BLUE = "45, 107, 255";
+  const BRIGHT = "164, 190, 255";
 
   onMount(() => {
     if (!host) return;
@@ -220,7 +220,7 @@
         const pts = mx >= 0 ? displace(tr.pts) : tr.pts;
 
         // The copper: one stroked path per trace.
-        ctx.strokeStyle = `rgba(${GREEN}, 0.34)`;
+        ctx.strokeStyle = `rgba(${BLUE}, 0.34)`;
         ctx.lineWidth = 1.2;
         ctx.beginPath();
         ctx.moveTo(pts[0].x, pts[0].y);
@@ -228,7 +228,7 @@
         ctx.stroke();
 
         // Vias at each bend, pads at the endpoints.
-        ctx.fillStyle = `rgba(${GREEN}, 0.5)`;
+        ctx.fillStyle = `rgba(${BLUE}, 0.5)`;
         for (let i = 1; i < pts.length - 1; i++) {
           ctx.fillRect(pts[i].x - 1, pts[i].y - 1, 2, 2);
         }
@@ -244,7 +244,7 @@
           const head = at(pts, tr.s);
           const tail = at(pts, Math.max(0, tr.s - 26));
           const grad = ctx.createLinearGradient(tail.x, tail.y, head.x, head.y);
-          grad.addColorStop(0, `rgba(${GREEN}, 0)`);
+          grad.addColorStop(0, `rgba(${BLUE}, 0)`);
           grad.addColorStop(1, `rgba(${BRIGHT}, 0.85)`);
           ctx.strokeStyle = grad;
           ctx.lineWidth = 1.6;
@@ -265,7 +265,7 @@
       ctx.fillStyle = `rgb(${BG})`;
       ctx.fillRect(0, 0, w, h);
       for (const tr of traces) {
-        ctx.strokeStyle = `rgba(${GREEN}, 0.34)`;
+        ctx.strokeStyle = `rgba(${BLUE}, 0.34)`;
         ctx.lineWidth = 1.2;
         ctx.beginPath();
         ctx.moveTo(tr.pts[0].x, tr.pts[0].y);
@@ -368,7 +368,7 @@
     inset: 0;
     overflow: hidden;
     background:
-      radial-gradient(circle at 50% 50%, rgba(0, 255, 65, 0.04), transparent 68%),
+      radial-gradient(circle at 50% 50%, rgba(45, 107, 255, 0.04), transparent 68%),
       #020503;
     cursor: crosshair;
   }

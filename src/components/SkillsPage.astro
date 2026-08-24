@@ -196,15 +196,15 @@ const csAuthoredTotal = agentSkills.filter((skill) => skill.scope === "cs-brasil
     gap: 1.25rem;
     margin-top: 3.5rem;
     padding: clamp(1.2rem, 3vw, 2rem);
-    border: 1px solid rgba(0, 255, 65, 0.28);
+    border: 1px solid rgba(45, 107, 255, 0.28);
     border-radius: clamp(1rem, 2vw, 1.5rem);
-    background: linear-gradient(110deg, rgba(0, 255, 65, 0.075), rgba(3, 6, 5, 0.82) 45%);
+    background: linear-gradient(110deg, rgba(45, 107, 255, 0.075), rgba(3, 6, 16, 0.82) 45%);
     color: var(--text);
     transition: border-color var(--duration-hover) var(--ease-default), background var(--duration-hover) var(--ease-default);
   }
   .agent-ready-proof:hover {
-    border-color: rgba(0, 255, 65, 0.52);
-    background: linear-gradient(110deg, rgba(0, 255, 65, 0.11), rgba(3, 6, 5, 0.9) 45%);
+    border-color: rgba(45, 107, 255, 0.52);
+    background: linear-gradient(110deg, rgba(45, 107, 255, 0.11), rgba(3, 6, 16, 0.9) 45%);
   }
   @media (min-width: 880px) {
     .agent-ready-proof { grid-template-columns: minmax(0, 1fr) auto; align-items: end; }
@@ -223,7 +223,7 @@ const csAuthoredTotal = agentSkills.filter((skill) => skill.scope === "cs-brasil
     height: 7px;
     border-radius: 50%;
     background: var(--accent);
-    box-shadow: 0 0 10px rgba(0, 255, 65, 0.85);
+    box-shadow: 0 0 10px rgba(45, 107, 255, 0.85);
   }
   .agent-ready-proof h2 {
     max-width: 24ch;
@@ -270,7 +270,7 @@ const csAuthoredTotal = agentSkills.filter((skill) => skill.scope === "cs-brasil
     padding: 1rem;
     border: 1px solid var(--line);
     border-radius: 1rem;
-    background: rgba(3, 6, 5, 0.74);
+    background: rgba(3, 6, 16, 0.74);
   }
   .skills-stat strong {
     color: var(--accent-soft);
@@ -290,7 +290,7 @@ const csAuthoredTotal = agentSkills.filter((skill) => skill.scope === "cs-brasil
     padding: 0.55rem 0.75rem;
     border: 1px solid var(--line-strong);
     border-radius: var(--radius-pill);
-    background: rgba(3, 6, 5, 0.72);
+    background: rgba(3, 6, 16, 0.72);
     color: var(--muted);
     font-family: var(--font-mono);
     font-size: 0.7rem;
@@ -298,12 +298,12 @@ const csAuthoredTotal = agentSkills.filter((skill) => skill.scope === "cs-brasil
     transition: color var(--duration-hover) var(--ease-default), border-color var(--duration-hover) var(--ease-default), background var(--duration-hover) var(--ease-default);
   }
   .skill-filter strong { color: var(--muted-soft); font-weight: 500; }
-  .skill-filter[aria-pressed="true"] { border-color: rgba(0, 255, 65, 0.55); background: rgba(0, 255, 65, 0.09); color: var(--accent-soft); }
+  .skill-filter[aria-pressed="true"] { border-color: rgba(45, 107, 255, 0.55); background: rgba(45, 107, 255, 0.09); color: var(--accent-soft); }
   .skill-filter[aria-pressed="true"] strong { color: var(--accent); }
   .skill-filter-status { margin: 1rem 0; color: var(--muted-soft); font-family: var(--font-mono); font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.08em; }
   .skill-list { display: flex; flex-direction: column; gap: 1rem; margin: 0; padding: 0; list-style: none; }
   .skill-item[hidden] { display: none; }
-  :global(.skill-card) { padding: 0; border-radius: clamp(1rem, 2vw, 1.5rem); background: rgba(3, 6, 5, 0.84); }
+  :global(.skill-card) { padding: 0; border-radius: clamp(1rem, 2vw, 1.5rem); background: rgba(3, 6, 16, 0.84); }
   .skill-inner { display: grid; grid-template-columns: 1fr; min-width: 0; }
   @media (min-width: 760px) { .skill-inner { grid-template-columns: minmax(230px, 30%) 1fr; } }
   :global(.skill-cover) { min-height: 220px; aspect-ratio: 16 / 8; border-radius: 0; }
@@ -320,7 +320,7 @@ const csAuthoredTotal = agentSkills.filter((skill) => skill.scope === "cs-brasil
   .skill-body dl { display: grid; gap: 1rem; margin-top: 1.25rem; }
   @media (min-width: 1040px) { .skill-body dl { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
   .skill-body dl div { display: grid; align-content: start; gap: 0.35rem; }
-  .skill-body dt { color: rgba(0, 255, 65, 0.62); }
+  .skill-body dt { color: rgba(45, 107, 255, 0.62); }
   .skill-body dd { color: var(--muted); font-size: 0.86rem; line-height: 1.55; }
   .skill-body footer { display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 1.3rem; }
   .skill-body footer a { color: var(--accent-soft); font-family: var(--font-mono); font-size: 0.72rem; }

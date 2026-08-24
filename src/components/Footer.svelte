@@ -283,8 +283,8 @@
   }
   .footer__social:hover {
     color: var(--accent-soft);
-    border-color: rgba(0, 255, 65, 0.32);
-    background: rgba(0, 255, 65, 0.06);
+    border-color: rgba(45, 107, 255, 0.32);
+    background: rgba(45, 107, 255, 0.06);
   }
 
   .footer__telemetry {

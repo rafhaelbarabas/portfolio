@@ -83,7 +83,7 @@ const demos = [
   {
     slug: "maze-solver",
     title: "maze-solver-12",
-    description: "A recursive-backtracker maze flooded by a BFS wavefront that leaves a dim phosphor wash, then the solution path traced back in bright green. Click for a fresh maze.",
+    description: "A recursive-backtracker maze flooded by a BFS wavefront that leaves a dim phosphor wash, then the solution path traced back in bright blue. Click for a fresh maze.",
     date: "2026-08-07",
   },
   {
@@ -107,7 +107,7 @@ const demos = [
   {
     slug: "phosphor-fire",
     title: "phosphor-fire-16",
-    description: "The classic Doom fire algorithm in phosphor green — a low-res heat grid stoked from below, rendered chunky with baked-in scanlines. Move the pointer to stir the embers.",
+    description: "The classic Doom fire algorithm in phosphor blue — a low-res heat grid stoked from below, rendered chunky with baked-in scanlines. Move the pointer to stir the embers.",
     date: "2026-08-07",
   },
 ];
@@ -179,8 +179,8 @@ const demos = [
       box-shadow var(--duration-hover) var(--ease-default);
   }
   .drop-card:hover {
-    border-color: rgba(0, 255, 65, 0.4);
-    box-shadow: 0 0 0 1px rgba(0, 255, 65, 0.18), 0 10px 36px rgba(0, 255, 65, 0.08);
+    border-color: rgba(45, 107, 255, 0.4);
+    box-shadow: 0 0 0 1px rgba(45, 107, 255, 0.18), 0 10px 36px rgba(45, 107, 255, 0.08);
   }
 
   .drop-card__stage {
@@ -190,8 +190,8 @@ const demos = [
     /* Poster fallback — the stage must never read as a dead black box while
        the canvas boots (or when motion is reduced). */
     background:
-      radial-gradient(ellipse at 50% 45%, rgba(0, 255, 65, 0.09), transparent 68%),
-      repeating-linear-gradient(0deg, rgba(0, 255, 65, 0.05) 0 1px, transparent 1px 7px),
+      radial-gradient(ellipse at 50% 45%, rgba(45, 107, 255, 0.09), transparent 68%),
+      repeating-linear-gradient(0deg, rgba(45, 107, 255, 0.05) 0 1px, transparent 1px 7px),
       #030805;
   }
 

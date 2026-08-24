@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /**
  * Generate the About-page portrait — the reference face photo re-rendered in
- * the site's cover language: dense phosphor-green particles on pure black.
+ * the site's cover language: dense phosphor-blue particles on pure black.
  * The page crossfades particle portrait → real photo on hover.
  *
  * Usage: node scripts/gen-about-portrait.mjs
@@ -30,7 +30,7 @@ if (!KEY) {
 
 const ref = readFileSync(join(root, "public/rubenmarcus.jpeg")).toString("base64");
 
-const prompt = `Recreate the man in the reference photo as a portrait made of a dense luminous swarm of tiny phosphor-green (#00ff41) particles, sparks and hairline light-trails on a 100% pure black background. Keep his exact likeness, face structure, glasses, beard and hair recognizable — the face formed by the particle density itself, brighter where the photo is brighter. Soft phosphor bloom, subtle dot-matrix grain, cinematic contrast, square composition with generous black margins, same framing as the reference. STRICTLY no text, no letters, no solid fills, no other colors. Dark analog occult-techno mood, same style as a CRT oscilloscope render.`;
+const prompt = `Recreate the man in the reference photo as a portrait made of a dense luminous swarm of tiny phosphor-blue (#2D6BFF) particles, sparks and hairline light-trails on a 100% pure black background. Keep his exact likeness, face structure, glasses, beard and hair recognizable — the face formed by the particle density itself, brighter where the photo is brighter. Soft phosphor bloom, subtle dot-matrix grain, cinematic contrast, square composition with generous black margins, same framing as the reference. STRICTLY no text, no letters, no solid fills, no other colors. Dark analog occult-techno mood, same style as a CRT oscilloscope render.`;
 
 console.log("about-portrait: generating…");
 const res = await fetch("https://openrouter.ai/api/v1/chat/completions", {

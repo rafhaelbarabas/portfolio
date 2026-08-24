@@ -158,8 +158,8 @@
     width: 7px;
     height: 7px;
     border-radius: 50%;
-    background: var(--accent, #00ff41);
-    box-shadow: 0 0 10px rgba(0, 255, 65, 0.6);
+    background: var(--accent, #2D6BFF);
+    box-shadow: 0 0 10px rgba(45, 107, 255, 0.6);
     animation: stats-pulse 1.6s ease-in-out infinite;
   }
   .stats__live {
@@ -187,8 +187,8 @@
   .stats__cell dd {
     margin: 0.15rem 0 0;
     font-size: 1.35rem;
-    color: var(--accent-soft, #4ade80);
-    text-shadow: 0 0 14px rgba(0, 255, 65, 0.25);
+    color: var(--accent-soft, #6E9BFF);
+    text-shadow: 0 0 14px rgba(45, 107, 255, 0.25);
   }
 
   .stats__tools {
@@ -202,6 +202,6 @@
     color: var(--muted-soft);
     margin-right: 0.4rem;
   }
-  .stats__tools code { color: var(--accent-soft, #4ade80); }
+  .stats__tools code { color: var(--accent-soft, #6E9BFF); }
   .stats__count { color: var(--muted); }
 </style>

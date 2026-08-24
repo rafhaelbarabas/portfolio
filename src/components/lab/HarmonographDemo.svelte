@@ -24,9 +24,9 @@
 
   let host: HTMLDivElement | null = null;
 
-  const BG = "2, 5, 3";
-  const GREEN = "0, 255, 65";
-  const BRIGHT = "164, 255, 190";
+  const BG = "2, 5, 16";
+  const BLUE = "45, 107, 255";
+  const BRIGHT = "164, 190, 255";
 
   onMount(() => {
     if (!host) return;
@@ -108,7 +108,7 @@
       const cx = w * 0.5;
       const cy = h * 0.5;
       ctx.lineWidth = 1;
-      ctx.strokeStyle = `rgba(${GREEN}, 0.5)`;
+      ctx.strokeStyle = `rgba(${BLUE}, 0.5)`;
       ctx.beginPath();
       let first = true;
       const dt = 0.03;
@@ -244,7 +244,7 @@
     inset: 0;
     overflow: hidden;
     background:
-      radial-gradient(circle at 50% 50%, rgba(0, 255, 65, 0.04), transparent 65%),
+      radial-gradient(circle at 50% 50%, rgba(45, 107, 255, 0.04), transparent 65%),
       #020503;
     cursor: crosshair;
   }

@@ -2,8 +2,8 @@
   /**
    * Gradient-grid backdrop — a full-bleed GLSL quad behind the hero content.
    *
-   * Near-black base with slowly drifting deep-green/teal FBM blooms and a
-   * faint green perspective floor grid scrolling toward the viewer, all faded
+   * Near-black base with slowly drifting deep-blue/teal FBM blooms and a
+   * faint blue perspective floor grid scrolling toward the viewer, all faded
    * to black at the edges by a radial mask. Rendered with
    * `mix-blend-mode: screen` so the dark base never obscures the layers
    * underneath.
@@ -64,15 +64,15 @@
       // pointer offset in the same centred space, subtle amplitude
       vec2 ptr = (uPointer - 0.5) * ar;
 
-      // Drifting blooms — deep green upper field, forest-teal lower right.
+      // Drifting blooms — deep blue upper field, forest-teal lower right.
       // Each bloom field slides a touch toward the cursor.
       float b1 = fbm(p * 1.6 + vec2(t * 0.030, -t * 0.017) + vec2(2.0, 5.0) - ptr * 0.22);
       b1 = smoothstep(0.42, 0.9, b1);
       float b2 = fbm(p * 1.3 + vec2(-t * 0.021, t * 0.026) + vec2(7.3, 1.1) - ptr * 0.14);
       b2 = smoothstep(0.5, 0.95, b2);
 
-      col += vec3(0.078, 0.325, 0.176) * b1 * 0.16; // deep green #14532d
-      col += vec3(0.020, 0.180, 0.086) * b2 * 0.14; // forest    #052e16
+      col += vec3(0.004, 0.145, 0.490) * b1 * 0.16; // deep navy #01257D
+      col += vec3(0.012, 0.070, 0.260) * b2 * 0.14; // secondary navy
 
       // Faint perspective floor grid scrolling toward the viewer — the
       // horizon and vanishing point shift subtly with the cursor
@@ -84,7 +84,7 @@
         vec2 gf = abs(fract(g - 0.5) - 0.5) / fw;
         float line = 1.0 - min(min(gf.x, gf.y), 1.0);
         float fade = exp(-z * 0.35);
-        col += vec3(0.0, 1.0, 0.255) * line * fade * 0.07; // terminal #00ff41
+        col += vec3(0.176, 0.420, 1.0) * line * fade * 0.07; // terminal #2D6BFF
       }
 
       // Radial mask — edges fade to black

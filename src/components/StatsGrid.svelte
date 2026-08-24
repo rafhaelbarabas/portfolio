@@ -233,7 +233,7 @@
     background: #000;
     transition: background-color var(--duration-hover) var(--ease-default);
   }
-  .stats__cell:hover { background: rgba(0, 255, 65, 0.03); }
+  .stats__cell:hover { background: rgba(45, 107, 255, 0.03); }
 
   .stats__value {
     font-family: var(--font-display);
@@ -243,7 +243,7 @@
     letter-spacing: -0.02em;
     color: var(--text);
     font-variant-numeric: tabular-nums;
-    text-shadow: 0 0 18px rgba(0, 255, 65, 0.18);
+    text-shadow: 0 0 18px rgba(45, 107, 255, 0.18);
   }
 
   .stats__labelRow {

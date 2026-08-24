@@ -422,14 +422,14 @@
       box-shadow var(--duration-hover) var(--ease-default);
   }
   .pg__f:hover {
-    border-color: rgba(0, 255, 65, 0.5);
+    border-color: rgba(45, 107, 255, 0.5);
     color: var(--text);
   }
   .pg__f--on {
-    border-color: rgba(0, 255, 65, 0.65);
-    background: linear-gradient(180deg, rgba(0, 255, 65, 0.12), rgba(0, 255, 65, 0.04));
+    border-color: rgba(45, 107, 255, 0.65);
+    background: linear-gradient(180deg, rgba(45, 107, 255, 0.12), rgba(45, 107, 255, 0.04));
     color: var(--accent-soft);
-    box-shadow: 0 0 0 1px rgba(0, 255, 65, 0.18), 0 4px 18px rgba(0, 255, 65, 0.1);
+    box-shadow: 0 0 0 1px rgba(45, 107, 255, 0.18), 0 4px 18px rgba(45, 107, 255, 0.1);
   }
   .pg__n {
     color: var(--muted-soft);
@@ -490,7 +490,7 @@
       box-shadow var(--duration-hover) var(--ease-default);
   }
   .pg__card--static { cursor: default; }
-  .pg__card--hl { border-color: rgba(0, 255, 65, 0.32); }
+  .pg__card--hl { border-color: rgba(45, 107, 255, 0.32); }
 
   .pg--in .pg__card {
     animation: pg-rise 700ms var(--ease-emphasis) forwards;
@@ -508,7 +508,7 @@
     z-index: -1;
     background: radial-gradient(
       220px circle at var(--mx) var(--my),
-      rgba(0, 255, 65, 0.09),
+      rgba(45, 107, 255, 0.09),
       transparent 70%
     );
     opacity: 0;
@@ -519,9 +519,9 @@
   .pg__card:hover {
     border-color: var(--line-bright);
     transform: translateY(-4px);
-    box-shadow: 0 20px 52px rgba(0, 0, 0, 0.55), 0 0 0 1px rgba(0, 255, 65, 0.12);
+    box-shadow: 0 20px 52px rgba(0, 0, 0, 0.55), 0 0 0 1px rgba(45, 107, 255, 0.12);
   }
-  .pg__card--hl:hover { border-color: rgba(0, 255, 65, 0.55); }
+  .pg__card--hl:hover { border-color: rgba(45, 107, 255, 0.55); }
 
   /* scanline sweep — one phosphor line scans top→bottom on hover */
   .pg__sweep {
@@ -531,7 +531,7 @@
     top: -2px;
     height: 2px;
     z-index: 2;
-    background: linear-gradient(90deg, transparent, rgba(0, 255, 65, 0.75), transparent);
+    background: linear-gradient(90deg, transparent, rgba(45, 107, 255, 0.75), transparent);
     opacity: 0;
     pointer-events: none;
   }
@@ -610,9 +610,9 @@
     background: linear-gradient(
       180deg,
       transparent 0%,
-      rgba(0, 255, 65, 0.05) 55%,
-      rgba(0, 255, 65, 0.28) 82%,
-      rgba(0, 255, 65, 0.75) 96%,
+      rgba(45, 107, 255, 0.05) 55%,
+      rgba(45, 107, 255, 0.28) 82%,
+      rgba(45, 107, 255, 0.75) 96%,
       transparent 100%
     );
     mix-blend-mode: screen;
@@ -633,7 +633,7 @@
     position: absolute;
     inset: 0;
     z-index: 1;
-    background-image: radial-gradient(rgba(0, 255, 65, 0.55) 1px, transparent 1.4px);
+    background-image: radial-gradient(rgba(45, 107, 255, 0.55) 1px, transparent 1.4px);
     background-size: 6px 6px;
     mix-blend-mode: screen;
     opacity: 0;
@@ -656,7 +656,7 @@
     font-size: 0.66rem;
     letter-spacing: 0.05em;
     color: var(--accent);
-    text-shadow: 0 0 10px rgba(0, 255, 65, 0.6);
+    text-shadow: 0 0 10px rgba(45, 107, 255, 0.6);
   }
 
   /* ── body ───────────────────────────────────────────────────────── */
@@ -722,7 +722,7 @@
   }
   .pg__card:hover .pg__cta {
     opacity: 1;
-    text-shadow: 0 0 12px rgba(0, 255, 65, 0.45);
+    text-shadow: 0 0 12px rgba(45, 107, 255, 0.45);
   }
   .pg__arrow {
     display: inline-block;
@@ -741,7 +741,7 @@
   }
   .pg__case:hover {
     opacity: 1;
-    text-shadow: 0 0 12px rgba(0, 255, 65, 0.45);
+    text-shadow: 0 0 12px rgba(45, 107, 255, 0.45);
   }
   .pg__actions {
     margin-top: auto;

@@ -27,7 +27,7 @@ const COVERS = new Set([
   "bitte-ai-runtime",
 ]);
 
-/** Brand cards get the green wireframe logo renders at /art/logos/<brand>.png */
+/** Brand cards get the blue wireframe logo renders at /art/logos/<brand>.png */
 const LOGO_COVERS: Record<string, string> = {
   "quantum-website": "/art/logos/quantum.png",
   "quantum-scan": "/art/logos/quantum.png",
@@ -72,7 +72,7 @@ const items = ordered.map((p) => ({
   image="/og/portfolio.png"
 >
   <DitherBg client:load opacity={0.55} />
-  <!-- Wireframe atmosphere — thin green perspective grid, the page's identity -->
+  <!-- Wireframe atmosphere — thin blue perspective grid, the page's identity -->
   <div class="wire-bg" aria-hidden="true">
     <div class="wire-bg__field"></div>
     <div class="wire-bg__floor"></div>
@@ -115,7 +115,7 @@ const items = ordered.map((p) => ({
   .see-also a:hover { color: var(--accent); }
 
   /* Wireframe atmosphere — a faint flat grid over the whole viewport plus a
-     perspective "floor" grid scrolling toward the viewer. Terminal-green
+     perspective "floor" grid scrolling toward the viewer. Terminal-blue
      hairlines only, masked so content stays readable. */
   .wire-bg {
     position: fixed;
@@ -132,8 +132,8 @@ const items = ordered.map((p) => ({
     position: absolute;
     inset: 0;
     background-image:
-      linear-gradient(rgba(0, 255, 65, 0.045) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(0, 255, 65, 0.045) 1px, transparent 1px);
+      linear-gradient(rgba(45, 107, 255, 0.045) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(45, 107, 255, 0.045) 1px, transparent 1px);
     background-size: 72px 72px;
     mask-image: radial-gradient(ellipse at 50% 30%, #000 0%, transparent 62%);
     -webkit-mask-image: radial-gradient(ellipse at 50% 30%, #000 0%, transparent 62%);
@@ -149,8 +149,8 @@ const items = ordered.map((p) => ({
     transform: rotateX(63deg);
     transform-origin: bottom center;
     background-image:
-      linear-gradient(rgba(0, 255, 65, 0.16) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(0, 255, 65, 0.16) 1px, transparent 1px);
+      linear-gradient(rgba(45, 107, 255, 0.16) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(45, 107, 255, 0.16) 1px, transparent 1px);
     background-size: 72px 72px;
     mask-image: linear-gradient(to top, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.25) 45%, transparent 78%);
     -webkit-mask-image: linear-gradient(to top, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.25) 45%, transparent 78%);

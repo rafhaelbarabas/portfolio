@@ -33,7 +33,7 @@ const BASE = "https://generativelanguage.googleapis.com/v1beta";
 
 const image = readFileSync(join(root, "public/art/ruben-hero-scan.png")).toString("base64");
 
-const PROMPT = `The man types continuously on the laptop keyboard: fingers articulate and press keys with natural weight and rhythm, hands stay on the keyboard, subtle head movement as he reads the screen, faint breathing motion in the shoulders. Everything else stays still. The green phosphor scanline render style, the black background, the framing and the color tone remain EXACTLY as in the source image — no camera movement, no cuts, no new elements. The motion should loop seamlessly: end in a pose close to the start.`;
+const PROMPT = `The man types continuously on the laptop keyboard: fingers articulate and press keys with natural weight and rhythm, hands stay on the keyboard, subtle head movement as he reads the screen, faint breathing motion in the shoulders. Everything else stays still. The blue phosphor scanline render style, the black background, the framing and the color tone remain EXACTLY as in the source image — no camera movement, no cuts, no new elements. The motion should loop seamlessly: end in a pose close to the start.`;
 
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 

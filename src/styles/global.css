@@ -11,22 +11,23 @@
   /* Pure-black anchor — the live ice-flow Three.js shader provides all
      the colour atmosphere, so the static body bg can stay pitch-black. */
   --bg-0: #000000;
-  --bg-1: rgba(134, 239, 172, 0.035);
-  --bg-2: rgba(134, 239, 172, 0.055);
-  --line: rgba(134, 239, 172, 0.1);
-  --line-strong: rgba(134, 239, 172, 0.18);
-  --line-bright: rgba(134, 239, 172, 0.32);
+  --bg-1: rgba(143, 178, 255, 0.035);
+  --bg-2: rgba(143, 178, 255, 0.055);
+  --line: rgba(143, 178, 255, 0.1);
+  --line-strong: rgba(143, 178, 255, 0.18);
+  --line-bright: rgba(143, 178, 255, 0.32);
 
   --text: #f5f1ea;
   --cream: #f5f1ea;
   --muted: rgba(245, 241, 234, 0.82);
   --muted-soft: rgba(245, 241, 234, 0.55);
 
-  /* Primary accent — terminal green (single accent, no cyberpunk pink) */
-  --accent: #00ff41;
-  --accent-soft: #4ade80;
-  --accent-deep: #15803d;
-  --focus: rgba(0, 255, 65, 0.72);
+  /* Primary accent — navy base with a readable blue signal layer. */
+  --accent-base: #01257d;
+  --accent: #2d6bff;
+  --accent-soft: #6e9bff;
+  --accent-deep: #01257d;
+  --focus: rgba(45, 107, 255, 0.78);
 
   /* Vertical rhythm — 8pt-grid aligned. Generous but never empty: two
      adjacent sections share ~320px of air on desktop, not 640px. Every
@@ -59,18 +60,18 @@
   --z-nav: 1000;
 
   /* Shiki css-variables theme (Astro renames it to --astro-code-*) —
-     gray base on a gray block, highlights in green shades */
+     gray base on a gray block, highlights in blue shades */
   --astro-code-foreground: #b8c2cc;
   --astro-code-background: #15181d;
-  --astro-code-token-constant: #a3e635;
-  --astro-code-token-string: #86efac;
+  --astro-code-token-constant: #5b82e6;
+  --astro-code-token-string: #8fb2ff;
   --astro-code-token-comment: rgba(184, 194, 204, 0.5);
-  --astro-code-token-keyword: #00ff41;
+  --astro-code-token-keyword: #2d6bff;
   --astro-code-token-parameter: #d3dbe4;
-  --astro-code-token-function: #4ade80;
-  --astro-code-token-string-expression: #86efac;
+  --astro-code-token-function: #6e9bff;
+  --astro-code-token-string-expression: #8fb2ff;
   --astro-code-token-punctuation: rgba(184, 194, 204, 0.65);
-  --astro-code-token-link: #4ade80;
+  --astro-code-token-link: #6e9bff;
 }
 
 /* Markdown tables — terminal data panel, shared by EN and PT articles. */
@@ -79,16 +80,16 @@
   width: 100%;
   table-layout: fixed;
   border-spacing: 0;
-  border: 1px solid rgba(74, 222, 128, 0.28);
+  border: 1px solid rgba(110, 155, 255, 0.28);
   border-radius: var(--radius-card);
   overflow: hidden;
-  background: rgba(5, 12, 8, 0.76);
-  box-shadow: inset 0 1px 0 rgba(0, 255, 65, 0.06);
+  background: rgba(3, 8, 20, 0.76);
+  box-shadow: inset 0 1px 0 rgba(45, 107, 255, 0.06);
   font-size: 0.94rem;
 }
 
 .prose thead {
-  background: rgba(0, 255, 65, 0.08);
+  background: rgba(45, 107, 255, 0.08);
 }
 
 .prose th,
@@ -106,7 +107,7 @@
   font-weight: 500;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  border-bottom: 1px solid rgba(74, 222, 128, 0.3);
+  border-bottom: 1px solid rgba(110, 155, 255, 0.3);
 }
 
 .prose td {
@@ -127,7 +128,7 @@
 }
 
 .prose tbody tr:hover {
-  background: rgba(0, 255, 65, 0.035);
+  background: rgba(45, 107, 255, 0.035);
 }
 
 @media (max-width: 560px) {
@@ -243,7 +244,7 @@
     pointer-events: none;
     z-index: 1;
     mix-blend-mode: screen;
-    background-image: radial-gradient(circle, rgba(74, 222, 128, 0.16) 1px, transparent 1px);
+    background-image: radial-gradient(circle, rgba(110, 155, 255, 0.16) 1px, transparent 1px);
     background-size: 26px 26px;
     animation: dot-cascade 32s linear infinite;
   }
@@ -313,7 +314,7 @@
   }
 
   ::selection {
-    background: rgba(0, 255, 65, 0.35);
+    background: rgba(45, 107, 255, 0.35);
     color: #ffffff;
   }
 
@@ -327,12 +328,12 @@
   }
 
   ::-webkit-scrollbar-thumb {
-    background: rgba(134, 239, 172, 0.14);
+    background: rgba(143, 178, 255, 0.14);
     border-radius: 999px;
   }
 
   ::-webkit-scrollbar-thumb:hover {
-    background: rgba(134, 239, 172, 0.26);
+    background: rgba(143, 178, 255, 0.26);
   }
 
   /* Hide reveal targets until JS hydrates */
@@ -423,7 +424,7 @@
   .btn-primary:hover {
     background: #ffffff;
     border-color: var(--accent-soft);
-    box-shadow: 0 0 0 1px var(--accent-soft), 0 0 24px rgba(0, 255, 65, 0.3);
+    box-shadow: 0 0 0 1px var(--accent-soft), 0 0 24px rgba(45, 107, 255, 0.3);
     transform: translateY(-1px);
   }
 
@@ -473,7 +474,7 @@
     background: var(--bg-2);
     border-color: var(--line-bright);
     transform: translateY(-3px);
-    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.48), 0 0 0 1px rgba(0, 255, 65, 0.1);
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.48), 0 0 0 1px rgba(45, 107, 255, 0.1);
   }
 
   /* Halo — reusable glow-lift hover for any bordered element */
@@ -486,7 +487,7 @@
   .halo:hover {
     border-color: var(--line-bright);
     transform: translateY(-3px);
-    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.48), 0 0 0 1px rgba(0, 255, 65, 0.1);
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.48), 0 0 0 1px rgba(45, 107, 255, 0.1);
   }
 
   /* Borderless card — Nillion-style, just a hairline at top */
@@ -549,9 +550,9 @@
     background: linear-gradient(
       115deg,
       transparent 32%,
-      rgba(0, 255, 65, 0.05) 46%,
-      rgba(0, 255, 65, 0.14) 50%,
-      rgba(0, 255, 65, 0.05) 54%,
+      rgba(45, 107, 255, 0.05) 46%,
+      rgba(45, 107, 255, 0.14) 50%,
+      rgba(45, 107, 255, 0.05) 54%,
       transparent 68%
     );
     background-size: 260% 100%;

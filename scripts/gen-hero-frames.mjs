@@ -39,7 +39,7 @@ const POSES = [
   "BOTH hands stay flat on the laptop keyboard in a typing position — only the FINGERS change: left hand reaching upper keys, right hand fingers on home row. No hand is raised, no hand leaves the keyboard",
 ];
 
-const prompt = (pose) => `Edit this exact image. Keep EVERYTHING identical — same man, same face, same tattoos, same headphones, same laptop, same framing, same black background, same green phosphor scanline/dither render style, same color tone. Change ONLY the hands: ${pose}. The head may tilt down a barely-perceptible amount, nothing else moves. The result must look like the next frame of the same scene, not a new image.`;
+const prompt = (pose) => `Edit this exact image. Keep EVERYTHING identical — same man, same face, same tattoos, same headphones, same laptop, same framing, same black background, same blue phosphor scanline/dither render style, same color tone. Change ONLY the hands: ${pose}. The head may tilt down a barely-perceptible amount, nothing else moves. The result must look like the next frame of the same scene, not a new image.`;
 
 for (let i = 0; i < count; i++) {
   const out = join(root, `public/art/ruben-hero-scan-frame-${i + 1 + OFFSET}.png`);

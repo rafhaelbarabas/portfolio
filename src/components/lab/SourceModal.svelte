@@ -160,9 +160,9 @@
     border: 1px solid var(--line-strong);
     border-radius: var(--radius-card);
     box-shadow:
-      0 0 0 1px rgba(0, 255, 65, 0.08),
+      0 0 0 1px rgba(45, 107, 255, 0.08),
       0 24px 80px rgba(0, 0, 0, 0.6),
-      0 0 120px rgba(0, 255, 65, 0.05);
+      0 0 120px rgba(45, 107, 255, 0.05);
     overflow: hidden;
     outline: none;
     animation: sm-pop var(--duration-default) var(--ease-emphasis);
@@ -175,8 +175,8 @@
     padding: 0.7rem 0.9rem;
     border-bottom: 1px solid var(--line);
     background:
-      repeating-linear-gradient(0deg, rgba(0, 255, 65, 0.04) 0 1px, transparent 1px 5px),
-      rgba(0, 255, 65, 0.02);
+      repeating-linear-gradient(0deg, rgba(45, 107, 255, 0.04) 0 1px, transparent 1px 5px),
+      rgba(45, 107, 255, 0.02);
   }
 
   .sm__file {
@@ -221,12 +221,12 @@
   }
   .sm__btn:hover {
     color: var(--accent);
-    border-color: rgba(0, 255, 65, 0.45);
-    background: rgba(0, 255, 65, 0.06);
+    border-color: rgba(45, 107, 255, 0.45);
+    background: rgba(45, 107, 255, 0.06);
   }
   .sm__btn--done {
     color: var(--accent);
-    border-color: rgba(0, 255, 65, 0.45);
+    border-color: rgba(45, 107, 255, 0.45);
   }
   .sm__btn--close {
     padding: 0.32rem 0.55rem;
@@ -249,9 +249,9 @@
   .sm__code code {
     font-family: inherit;
   }
-  /* Green-tinted selection, matching the site's selection styling. */
+  /* Blue-tinted selection, matching the site's selection styling. */
   .sm__code ::selection {
-    background: rgba(0, 255, 65, 0.22);
+    background: rgba(45, 107, 255, 0.22);
   }
 
   @keyframes sm-fade {

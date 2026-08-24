@@ -1,10 +1,10 @@
 <script lang="ts">
   /**
    * PhosphorFireDemo — lab drop 016. The classic Doom fire algorithm in
-   * phosphor green: a fixed low-res heat grid whose bottom row is stoked
+   * phosphor blue: a fixed low-res heat grid whose bottom row is stoked
    * every frame; each step a cell inherits the heat of a jittered cell below
    * minus a random decay, so flames rise, wobble, and cool. Rendered through
-   * a black → green → bright ramp with baked-in scanline darkening, upscaled
+   * a black → blue → bright ramp with baked-in scanline darkening, upscaled
    * chunky (no smoothing). The pointer stirs the embers — moving it injects
    * heat blobs that flare into new tongues of fire.
    *
@@ -41,21 +41,21 @@
     let rafId = 0;
     let visible = true;
 
-    // ── Phosphor palette: black → deep green → #00ff41 → bright → white ──
+    // ── Phosphor palette: black → deep blue → #2D6BFF → bright → white ──
     const PAL = new Uint8ClampedArray(256 * 3);
     for (let i = 0; i < 256; i++) {
       const t = i / 255;
       let r: number, g: number, b: number;
       if (t < 0.45) {
         const k = t / 0.45;
-        r = 2 + (0 - 2) * k;
-        g = 5 + (255 - 5) * k;
-        b = 3 + (65 - 3) * k;
+        r = 2 + (45 - 2) * k;
+        g = 5 + (107 - 5) * k;
+        b = 3 + (255 - 3) * k;
       } else if (t < 0.8) {
         const k = (t - 0.45) / 0.35;
-        r = 0 + (164 - 0) * k;
-        g = 255;
-        b = 65 + (190 - 65) * k;
+        r = 45 + (110 - 45) * k;
+        g = 107 + (155 - 107) * k;
+        b = 255;
       } else {
         const k = (t - 0.8) / 0.2;
         r = 164 + (235 - 164) * k;

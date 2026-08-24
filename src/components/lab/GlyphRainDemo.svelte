@@ -1,9 +1,9 @@
 <script lang="ts">
   /**
-   * GlyphRainDemo — lab drop 005 ("glyph-rain-05"). Phosphor-green glyph
+   * GlyphRainDemo — lab drop 005 ("glyph-rain-05"). phosphor-blue glyph
    * rain in the spirit of the classic matrix cascade, kept sparse and quiet:
    * one column of mono glyphs per cell width, each column a head glowing
-   * BRIGHT with a tail of K glyphs fading toward transparent green. The
+   * BRIGHT with a tail of K glyphs fading toward transparent blue. The
    * soft phosphor decay comes from alpha-fading the previous frame, not
    * from per-glyph history.
    *
@@ -26,9 +26,9 @@
 
   let host: HTMLDivElement | null = null;
 
-  const BG = "2, 5, 3";
-  const GREEN = "0, 255, 65";
-  const BRIGHT = "164, 255, 190";
+  const BG = "2, 5, 16";
+  const BLUE = "45, 107, 255";
+  const BRIGHT = "164, 190, 255";
 
   // Mono glyph cell. 18px is comfortably inside the 16–18px band and never
   // drops below the 14px floor, so columns stay readable on small cards.
@@ -144,7 +144,7 @@
               : `rgba(${BRIGHT}, 0.9)`;
           } else {
             const a = (1 - k / K) * 0.72;
-            ctx.fillStyle = `rgba(${GREEN}, ${a})`;
+            ctx.fillStyle = `rgba(${BLUE}, ${a})`;
           }
           ctx.fillText(g, x, gy);
         }
@@ -237,7 +237,7 @@
     inset: 0;
     overflow: hidden;
     background:
-      radial-gradient(circle at 50% 0%, rgba(0, 255, 65, 0.05), transparent 60%),
+      radial-gradient(circle at 50% 0%, rgba(45, 107, 255, 0.05), transparent 60%),
       #020503;
     cursor: crosshair;
   }

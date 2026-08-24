@@ -253,7 +253,7 @@
     opacity: 1;
   }
 
-  /* Active-page indicator — a green underline that slides in; hover previews
+  /* Active-page indicator — a blue underline that slides in; hover previews
      it at lower contrast for non-active links. */
   .header__link::after {
     content: "";
@@ -263,7 +263,7 @@
     bottom: -7px;
     height: 1.5px;
     background: var(--accent-soft);
-    box-shadow: 0 0 8px rgba(0, 255, 65, 0.5);
+    box-shadow: 0 0 8px rgba(45, 107, 255, 0.5);
     transform: scaleX(0);
     transform-origin: left center;
     transition: transform 320ms var(--ease-default), opacity 320ms var(--ease-default);

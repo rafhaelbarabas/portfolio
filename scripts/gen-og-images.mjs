@@ -31,11 +31,11 @@ const env = Object.fromEntries(
 const KEY = env.OPENROUTER_API_KEY;
 const FORCE_GEN = process.argv.includes("--force-gen");
 
-const GREEN = "#00ff41";
+const BLUE = "#2D6BFF";
 const INK = "#f5f1ea";
 const MUTED = "#8a9488";
 
-const GEN_STYLE = `A dense luminous swarm of tiny phosphor-green (#00ff41) particles, sparks and hairline light-trails on a 100% pure black background, forming the motif below. Organic depth, soft phosphor bloom, subtle dot-matrix grain, cinematic contrast, wide 16:9 composition with generous black margins, darker toward the left half so overlaid text stays readable. STRICTLY no text, no letters, no logos, no people, no solid fills, no other colors. Dark analog occult-techno mood.`;
+const GEN_STYLE = `A dense luminous swarm of tiny phosphor-blue (#2D6BFF) particles, sparks and hairline light-trails on a 100% pure black background, forming the motif below. Organic depth, soft phosphor bloom, subtle dot-matrix grain, cinematic contrast, wide 16:9 composition with generous black margins, darker toward the left half so overlaid text stays readable. STRICTLY no text, no letters, no logos, no people, no solid fills, no other colors. Dark analog occult-techno mood.`;
 
 // ── Page OG definitions ────────────────────────────────────────────────
 // bg: absolute-ish path under public/, or { gen: "<motif>" } to create one.
@@ -153,7 +153,7 @@ function wrap(text, maxChars) {
   return lines;
 }
 
-/** Terminal-styled OG text overlay: green kicker, wrapped Menlo title, rule. */
+/** Terminal-styled OG text overlay: blue kicker, wrapped Menlo title, rule. */
 function ogSvg({ w, h, kicker, title }) {
   const m = 64;
   let size = 46;
@@ -180,8 +180,8 @@ function ogSvg({ w, h, kicker, title }) {
       <stop offset="1" stop-color="black" stop-opacity="0"/>
     </linearGradient>
   </defs>
-  <rect x="${m}" y="${titleTop - size - 34}" width="72" height="4" fill="${GREEN}"/>
-  <text x="${m}" y="${m}" font-family="Menlo, monospace" font-size="22" letter-spacing="3" fill="${GREEN}">${esc(kicker)}</text>
+  <rect x="${m}" y="${titleTop - size - 34}" width="72" height="4" fill="${BLUE}"/>
+  <text x="${m}" y="${m}" font-family="Menlo, monospace" font-size="22" letter-spacing="3" fill="${BLUE}">${esc(kicker)}</text>
   ${texts}
   <text x="${w - m}" y="${h - m + 8}" text-anchor="end" font-family="Menlo, monospace" font-size="18" fill="${MUTED}">rubenmarcus.dev</text>
 </svg>`;
@@ -203,9 +203,9 @@ function socialSvg({ w, h, slogan, sub }) {
   const subY = sloganY + Math.round(subSize * 2);
   return `<svg width="${w}" height="${h}" xmlns="http://www.w3.org/2000/svg">
   <rect width="${w}" height="${h}" fill="black" opacity="0.5"/>
-  <rect x="${m}" y="${ruleY}" width="88" height="5" fill="${GREEN}"/>
+  <rect x="${m}" y="${ruleY}" width="88" height="5" fill="${BLUE}"/>
   <text x="${m}" y="${sloganY}" font-family="Menlo, monospace" font-weight="bold" font-size="${size}" fill="${INK}">${esc(slogan)}</text>
-  <text x="${m}" y="${subY}" font-family="Menlo, monospace" font-size="${subSize}" fill="${GREEN}">${esc(sub)}</text>
+  <text x="${m}" y="${subY}" font-family="Menlo, monospace" font-size="${subSize}" fill="${BLUE}">${esc(sub)}</text>
 </svg>`;
 }
 

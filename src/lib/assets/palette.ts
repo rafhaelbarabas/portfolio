@@ -5,10 +5,10 @@
  */
 
 /** Voxel top face — brightest. */
-export const ACCENT = "#00ff41";
+export const ACCENT = "#2D6BFF";
 /** Voxel front face. */
-export const ACCENT_SOFT = "#4ade80";
+export const ACCENT_SOFT = "#6E9BFF";
 /** Voxel side face — darkest; graphic use only, never text. */
-export const ACCENT_DEEP = "#15803d";
+export const ACCENT_DEEP = "#01257D";
 /** Default glyph color for flat ASCII renders. */
-export const GLYPH_COLOR = "rgba(74, 222, 128, 0.85)";
+export const GLYPH_COLOR = "rgba(110, 155, 255, 0.85)";

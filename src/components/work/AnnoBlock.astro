@@ -1,7 +1,7 @@
 ---
 /**
  * AnnoBlock — a "technical specimen" figure: a JetBrains Mono annotation
- * label with a thin green leader line feeding into a framed visual block.
+ * label with a thin blue leader line feeding into a framed visual block.
  * The leader terminates in a tick that drops into the panel's corner,
  * like a callout on a botanical plate.
  */
@@ -59,7 +59,7 @@ const { label, index, note } = Astro.props;
     flex: 1;
     height: 1px;
     min-width: 2rem;
-    background: linear-gradient(90deg, rgba(0, 255, 65, 0.45), rgba(0, 255, 65, 0.08));
+    background: linear-gradient(90deg, rgba(45, 107, 255, 0.45), rgba(45, 107, 255, 0.08));
   }
   .anno__leader::before {
     content: "";
@@ -70,7 +70,7 @@ const { label, index, note } = Astro.props;
     height: 5px;
     border-radius: 50%;
     background: var(--accent-soft);
-    box-shadow: 0 0 8px rgba(0, 255, 65, 0.6);
+    box-shadow: 0 0 8px rgba(45, 107, 255, 0.6);
   }
   .anno__leader::after {
     content: "";
@@ -79,7 +79,7 @@ const { label, index, note } = Astro.props;
     top: 0;
     width: 1px;
     height: 9px;
-    background: rgba(0, 255, 65, 0.45);
+    background: rgba(45, 107, 255, 0.45);
   }
 
   .anno__note {
@@ -94,10 +94,10 @@ const { label, index, note } = Astro.props;
     margin-top: 0.55rem;
     padding: 1.3rem 1.5rem;
     border: 1px solid var(--line);
-    border-top-color: rgba(0, 255, 65, 0.28);
+    border-top-color: rgba(45, 107, 255, 0.28);
     border-radius: 4px;
     background:
-      radial-gradient(ellipse at 12% 0%, rgba(0, 255, 65, 0.04), transparent 55%),
+      radial-gradient(ellipse at 12% 0%, rgba(45, 107, 255, 0.04), transparent 55%),
       rgba(3, 6, 4, 0.55);
     overflow-x: auto;
   }

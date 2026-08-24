@@ -108,14 +108,14 @@
     justify-content: space-between;
     gap: 1rem;
     padding-bottom: 0.55rem;
-    border-bottom: 1px solid rgba(0, 255, 65, 0.2);
+    border-bottom: 1px solid rgba(45, 107, 255, 0.2);
   }
 
   .github-stats__title {
     display: inline-flex;
     align-items: center;
     gap: 0.45rem;
-    color: rgba(0, 255, 65, 0.72);
+    color: rgba(45, 107, 255, 0.72);
     font-size: 0.65rem;
     letter-spacing: 0.1em;
     text-transform: uppercase;
@@ -126,7 +126,7 @@
     height: 6px;
     border-radius: 50%;
     background: var(--accent);
-    box-shadow: 0 0 7px rgba(0, 255, 65, 0.8);
+    box-shadow: 0 0 7px rgba(45, 107, 255, 0.8);
   }
   .github-stats__live--off {
     background: var(--muted-soft);
@@ -137,7 +137,7 @@
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
     margin: 0;
-    border-bottom: 1px solid rgba(0, 255, 65, 0.15);
+    border-bottom: 1px solid rgba(45, 107, 255, 0.15);
   }
 
   .github-stats__metric {
@@ -146,7 +146,7 @@
   }
   .github-stats__metric + .github-stats__metric {
     padding-left: 0.65rem;
-    border-left: 1px solid rgba(0, 255, 65, 0.12);
+    border-left: 1px solid rgba(45, 107, 255, 0.12);
   }
   .github-stats__metric dt {
     color: var(--muted-soft);
@@ -170,7 +170,7 @@
   }
   .github-stats__commit:hover .github-stats__commitMessage { color: var(--accent-soft); }
   .github-stats__commitLabel {
-    color: rgba(0, 255, 65, 0.52);
+    color: rgba(45, 107, 255, 0.52);
     font-size: 0.56rem;
     letter-spacing: 0.08em;
     text-transform: uppercase;
@@ -196,7 +196,7 @@
     display: block;
     width: 100%;
     height: 0.45rem;
-    background: rgba(0, 255, 65, 0.08);
+    background: rgba(45, 107, 255, 0.08);
   }
   .github-stats__commit--loading span:nth-child(2) { width: 82%; }
   .github-stats__commit--loading span:nth-child(3) { width: 58%; }
@@ -217,7 +217,7 @@
       grid-column: 1 / -1;
     }
     .github-stats__grid {
-      border-right: 1px solid rgba(0, 255, 65, 0.15);
+      border-right: 1px solid rgba(45, 107, 255, 0.15);
       border-bottom: 0;
     }
     .github-stats__commit,

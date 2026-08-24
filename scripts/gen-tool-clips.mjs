@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 /**
- * Generate abstract green-wireframe clips for the Open Source tool cards
+ * Generate abstract blue-wireframe clips for the Open Source tool cards
  * via OpenRouter text-to-video (Veo). Style target: ref/2 — pure black
- * void, phosphor green (#00ff41) wireframe forms, hypnotic drift.
+ * void, phosphor blue (#2D6BFF) wireframe forms, hypnotic drift.
  *
  * Usage: node scripts/gen-tool-clips.mjs [slug|all]
  * Output: public/art/clips/<slug>.mp4
@@ -30,17 +30,17 @@ if (!KEY) {
 
 const MODEL = "google/veo-3.1-fast";
 
-const STYLE = `Cinematic abstract wireframe animation on a 100% pure black background. Every form is drawn ONLY in thin glowing phosphor-green (#00ff41) wireframe lines, dot grids and scanline textures — CRT oscilloscope / terminal aesthetic with subtle phosphor bloom. STRICTLY NO text, NO letters, NO numbers, NO logos, NO people, NO faces, NO solid surfaces, NO colors other than green on black. Where there is no form the frame stays absolutely black. Slow, hypnotic, seamless-feeling camera drift. Dark analog occult-techno mood.`;
+const STYLE = `Cinematic abstract wireframe animation on a 100% pure black background. Every form is drawn ONLY in thin glowing phosphor-blue (#2D6BFF) wireframe lines, dot grids and scanline textures — CRT oscilloscope / terminal aesthetic with subtle phosphor bloom. STRICTLY NO text, NO letters, NO numbers, NO logos, NO people, NO faces, NO solid surfaces, NO colors other than blue on black. Where there is no form the frame stays absolutely black. Slow, hypnotic, seamless-feeling camera drift. Dark analog occult-techno mood.`;
 
 const CLIPS = {
   "ralph-starter": `${STYLE}
-MOTIF: an endless looping pipeline of glowing wireframe machinery — code brackets, gear-like rotors and git-commit nodes flowing left to right through a conduit of green mesh, merging into a single pulsing node, then the cycle restarts. Mechanical, precise, rhythmic.`,
+MOTIF: an endless looping pipeline of glowing wireframe machinery — code brackets, gear-like rotors and git-commit nodes flowing left to right through a conduit of blue mesh, merging into a single pulsing node, then the cycle restarts. Mechanical, precise, rhythmic.`,
   autoresearcher: `${STYLE}
-MOTIF: a swarm of glowing wireframe particles exploring dark space like a star field with intent — divergent trajectories that slowly converge onto a rising frontier curve made of green dots; the curve sharpens, holds, dissolves back into the swarm. Organic, searching, hypnotic.`,
+MOTIF: a swarm of glowing wireframe particles exploring dark space like a star field with intent — divergent trajectories that slowly converge onto a rising frontier curve made of blue dots; the curve sharpens, holds, dissolves back into the swarm. Organic, searching, hypnotic.`,
   "aeojs": `${STYLE}
 MOTIF: a radar scanline sweeping repeatedly across a tilted wireframe grid of document-like rectangles; wherever the beam passes, nodes and connection edges light up and stay glowing, mapping a network of citations. Precise, measured, scanning.`,
   "corosolto": `${STYLE}
-MOTIF: a fast first-person flythrough of a glowing green wireframe arena — corridor walls of mesh rushing past, a pulsing crosshair reticle at center frame, muzzle-flash-like line bursts in the distance. Energetic but clean, video-game wireframe test-map aesthetic.`,
+MOTIF: a fast first-person flythrough of a glowing blue wireframe arena — corridor walls of mesh rushing past, a pulsing crosshair reticle at center frame, muzzle-flash-like line bursts in the distance. Energetic but clean, video-game wireframe test-map aesthetic.`,
 };
 
 const which = process.argv[2] ?? "all";

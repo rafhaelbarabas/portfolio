@@ -24,9 +24,9 @@
 
   let host: HTMLDivElement | null = null;
 
-  const BG = "2, 5, 3";
-  const GREEN = "0, 255, 65";
-  const BRIGHT = "164, 255, 190";
+  const BG = "2, 5, 16";
+  const BLUE = "45, 107, 255";
+  const BRIGHT = "164, 190, 255";
 
   onMount(() => {
     if (!host) return;
@@ -118,7 +118,7 @@
         let b = BASE + cur[i] * GAIN;
         if (b < 0) b = 0;
         else if (b > 1) b = 1;
-        // Phosphor ramp: BG → GREEN → BRIGHT.
+        // Phosphor ramp: BG → BLUE → BRIGHT.
         let r: number, g: number, bl: number;
         if (b < 0.5) {
           const t = b * 2;
@@ -244,7 +244,7 @@
     inset: 0;
     overflow: hidden;
     background:
-      radial-gradient(circle at 50% 50%, rgba(0, 255, 65, 0.03), transparent 70%),
+      radial-gradient(circle at 50% 50%, rgba(45, 107, 255, 0.03), transparent 70%),
       #020503;
     cursor: crosshair;
   }

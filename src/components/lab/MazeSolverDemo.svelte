@@ -3,7 +3,7 @@
    * MazeSolverDemo — lab drop 012. A perfect maze carved by the recursive
    * backtracker, then solved by a BFS wavefront that floods outward from the
    * entrance leaving a dim phosphor wash; once the flood reaches the exit,
-   * the shortest path is traced back in bright green. After a short hold the
+   * the shortest path is traced back in bright blue. After a short hold the
    * cycle restarts with a fresh maze. Walls are prerendered to an offscreen
    * canvas once per maze.
    *
@@ -23,9 +23,9 @@
 
   let host: HTMLDivElement | null = null;
 
-  const BG = "2, 5, 3";
-  const GREEN = "0, 255, 65";
-  const BRIGHT = "164, 255, 190";
+  const BG = "2, 5, 16";
+  const BLUE = "45, 107, 255";
+  const BRIGHT = "164, 190, 255";
 
   onMount(() => {
     if (!host) return;
@@ -171,7 +171,7 @@
       const wctx = wallCanvas.getContext("2d");
       if (!wctx) return;
       wctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-      wctx.strokeStyle = `rgba(${GREEN}, 0.3)`;
+      wctx.strokeStyle = `rgba(${BLUE}, 0.3)`;
       wctx.lineWidth = 1;
       wctx.beginPath();
       for (let cy = 0; cy < rows; cy++) {
@@ -241,7 +241,7 @@
         const recent = k > wash - 40;
         cellDot(
           order[k],
-          recent ? `rgba(${BRIGHT}, 0.65)` : `rgba(${GREEN}, 0.13)`,
+          recent ? `rgba(${BRIGHT}, 0.65)` : `rgba(${BLUE}, 0.13)`,
           recent ? cell * 0.5 : cell * 0.42,
         );
       }
@@ -333,7 +333,7 @@
     inset: 0;
     overflow: hidden;
     background:
-      radial-gradient(circle at 50% 50%, rgba(0, 255, 65, 0.03), transparent 70%),
+      radial-gradient(circle at 50% 50%, rgba(45, 107, 255, 0.03), transparent 70%),
       #020503;
     cursor: crosshair;
   }

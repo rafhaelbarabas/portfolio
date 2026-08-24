@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /**
  * Generate crisp ref-style first frames for the tool clips — flat 2D,
- * dot-matrix, hairline green on pure black (see ref/2). These frames are
+ * dot-matrix, hairline blue on pure black (see ref/2). These frames are
  * the first/last frame input for gen-tool-clips2.mjs (image-to-video).
  *
  * Usage: node scripts/gen-tool-frames.mjs [slug|all]
@@ -28,7 +28,7 @@ if (!KEY) {
   process.exit(1);
 }
 
-const STYLE = `Flat 2D technical-graphic illustration. Ultra-crisp hairline phosphor green (#00ff41) linework on a 100% pure black background, over a faint dense dot-matrix grid. Sharp vector-precision geometry: fine 1px lines, crosshair ticks, dashed measurement marks, small square registration marks, subtle CRT scanline texture. STRICTLY flat — NO 3D, NO perspective, NO glow haze, NO fog, NO bloom wash, NO gradients, NO text, NO letters, NO numbers, NO people. High contrast, poster-like composition with generous pure-black margins, y2k terminal-aesthetic.`;
+const STYLE = `Flat 2D technical-graphic illustration. Ultra-crisp hairline phosphor blue (#2D6BFF) linework on a 100% pure black background, over a faint dense dot-matrix grid. Sharp vector-precision geometry: fine 1px lines, crosshair ticks, dashed measurement marks, small square registration marks, subtle CRT scanline texture. STRICTLY flat — NO 3D, NO perspective, NO glow haze, NO fog, NO bloom wash, NO gradients, NO text, NO letters, NO numbers, NO people. High contrast, poster-like composition with generous pure-black margins, y2k terminal-aesthetic.`;
 
 const FRAMES = {
   "ralph-starter": `${STYLE}

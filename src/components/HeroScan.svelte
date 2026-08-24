@@ -1,7 +1,7 @@
 <script lang="ts">
   /**
    * HeroScan — the hero's living portrait: a generated video loop of Ruben
-   * typing at the laptop (/art/ruben-hero-loop.mp4, green phosphor scanline
+   * typing at the laptop (/art/ruben-hero-loop.mp4, blue phosphor scanline
    * render; /art/ruben-hero-scan.png as poster until it loads) drawn on a
    * fullscreen quad with a custom fragment shader that makes it react:
    *

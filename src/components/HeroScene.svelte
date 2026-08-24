@@ -269,12 +269,12 @@
     font-size: clamp(2.36rem, 4.45vw, 4rem);
   }
 
-  /* Green glow lives on the rotating verb */
+  /* Blue glow lives on the rotating verb */
   :global(.hero__verb) {
     color: var(--accent-soft);
     text-shadow:
-      0 0 24px rgba(0, 255, 65, 0.4),
-      0 0 48px rgba(0, 255, 65, 0.2);
+      0 0 24px rgba(45, 107, 255, 0.4),
+      0 0 48px rgba(45, 107, 255, 0.2);
   }
 
   /* Positioning subheadline — the "what I do for you" line under the verb */
@@ -305,9 +305,9 @@
     font-size: 0.68rem;
     letter-spacing: 0.06em;
     color: var(--accent-soft);
-    border: 1px solid rgba(0, 255, 65, 0.25);
+    border: 1px solid rgba(45, 107, 255, 0.25);
     border-radius: var(--radius-pill);
-    background: rgba(0, 12, 5, 0.58);
+    background: rgba(2, 8, 25, 0.58);
     padding: 0.52rem 0.78rem;
     opacity: 0.88;
     transition: opacity var(--duration-hover) var(--ease-default),
@@ -322,13 +322,13 @@
     flex: 0 0 auto;
     border-radius: 50%;
     background: var(--accent);
-    box-shadow: 0 0 9px rgba(0, 255, 65, 0.8);
+    box-shadow: 0 0 9px rgba(45, 107, 255, 0.8);
   }
   .hero__agentCta:hover {
     opacity: 1;
-    border-color: rgba(0, 255, 65, 0.52);
-    background: rgba(0, 255, 65, 0.08);
-    text-shadow: 0 0 12px rgba(0, 255, 65, 0.45);
+    border-color: rgba(45, 107, 255, 0.52);
+    background: rgba(45, 107, 255, 0.08);
+    text-shadow: 0 0 12px rgba(45, 107, 255, 0.45);
   }
   /* Four CTAs stay a clean wrapped row on small screens */
   @media (max-width: 560px) {

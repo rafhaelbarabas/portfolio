@@ -1,8 +1,8 @@
 <script lang="ts">
   /**
    * Availability marquee — slim terminal strip directly under the hero.
-   * Infinite CSS-scroll loop, monospace terminal green on near-black with
-   * 1px green hairlines. Pauses on hover or focus; static when the user
+   * Infinite CSS-scroll loop, monospace terminal blue on near-black with
+   * 1px blue hairlines. Pauses on hover or focus; static when the user
    * prefers reduced motion. The track is duplicated so translateX(-50%)
    * loops seamlessly.
    */
@@ -71,7 +71,7 @@
     z-index: calc(var(--z-nav, 50) + 1);
     overflow: hidden;
     background: #010603;
-    border-bottom: 1px solid rgba(0, 255, 65, 0.35);
+    border-bottom: 1px solid rgba(45, 107, 255, 0.35);
     padding-block: 0;
     /* Fade both edges so items enter/exit softly — and so the frozen
        reduced-motion frame never ends on a hard mid-word cut. */
@@ -112,7 +112,7 @@
     letter-spacing: 0.16em;
     text-transform: uppercase;
     color: var(--accent);
-    text-shadow: 0 0 12px rgba(0, 255, 65, 0.35);
+    text-shadow: 0 0 12px rgba(45, 107, 255, 0.35);
     white-space: nowrap;
   }
 
@@ -128,7 +128,7 @@
     height: 7px;
     border-radius: 50%;
     background: var(--accent);
-    box-shadow: 0 0 8px rgba(0, 255, 65, 0.8);
+    box-shadow: 0 0 8px rgba(45, 107, 255, 0.8);
     animation: marquee-band-pulse 1.8s ease-in-out infinite;
   }
 

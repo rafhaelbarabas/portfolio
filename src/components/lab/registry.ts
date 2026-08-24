@@ -63,7 +63,7 @@ export const labRegistry: Record<string, LabDemoEntry> = {
     filename: "ContourScanDemo.svelte",
     prompt:
       PROMPT_PREFIX +
-      "Draw dotted isolines of a time-drifting implicit scalar field swept by a vertical scanline. Moving the pointer over the canvas adds a Gaussian blob to the field that warps the contours. Phosphor-green palette (#00ff41) on near-black. Cap DPR at 1.5, pause offscreen via IntersectionObserver, and render a single static frame under prefers-reduced-motion.",
+      "Draw dotted isolines of a time-drifting implicit scalar field swept by a vertical scanline. Moving the pointer over the canvas adds a Gaussian blob to the field that warps the contours. phosphor-blue palette (#2D6BFF) on near-black. Cap DPR at 1.5, pause offscreen via IntersectionObserver, and render a single static frame under prefers-reduced-motion.",
   },
   "flow-field": {
     component: FlowFieldDemo,
@@ -79,7 +79,7 @@ export const labRegistry: Record<string, LabDemoEntry> = {
     filename: "GlyphRainDemo.svelte",
     prompt:
       PROMPT_PREFIX +
-      "Phosphor falling-glyph rain: columns of monospace glyphs (hex/symbols/katakana), each with a bright leading head and a fading tail, using per-frame alpha-fade (fillRect with low alpha) for soft decay. The pointer's column speeds up and flares brighter, with a small neighborhood boost. Phosphor-green on near-black, DPR cap 1.5, pause offscreen, static frame under reduced-motion.",
+      "Phosphor falling-glyph rain: columns of monospace glyphs (hex/symbols/katakana), each with a bright leading head and a fading tail, using per-frame alpha-fade (fillRect with low alpha) for soft decay. The pointer's column speeds up and flares brighter, with a small neighborhood boost. phosphor-blue on near-black, DPR cap 1.5, pause offscreen, static frame under reduced-motion.",
   },
   "boids": {
     component: BoidsDemo,
@@ -87,7 +87,7 @@ export const labRegistry: Record<string, LabDemoEntry> = {
     filename: "BoidsDemo.svelte",
     prompt:
       PROMPT_PREFIX +
-      "Reynolds flocking of 120–180 boids with separation, alignment, and cohesion, toroidal edge wrap, speed clamped. Draw short streaks in phosphor green with brighter heads; trails via alpha-fade. When the pointer is inside, boids within ~160px are gently attracted toward it. Cap DPR 1.5, pause offscreen, static frame under reduced-motion.",
+      "Reynolds flocking of 120–180 boids with separation, alignment, and cohesion, toroidal edge wrap, speed clamped. Draw short streaks in phosphor blue with brighter heads; trails via alpha-fade. When the pointer is inside, boids within ~160px are gently attracted toward it. Cap DPR 1.5, pause offscreen, static frame under reduced-motion.",
   },
   "harmonograph": {
     component: HarmonographDemo,
@@ -135,7 +135,7 @@ export const labRegistry: Record<string, LabDemoEntry> = {
     filename: "VoronoiDriftDemo.svelte",
     prompt:
       PROMPT_PREFIX +
-      "A drifting Voronoi diagram drawn as dotted cell borders on a 4px dot grid: at each grid point compare the two nearest seed distances and light a dot where they are nearly equal (two brightness buckets, batched Path2D fills). 18–36 seeds (area-scaled) wander slowly with toroidal wrap; while the pointer is inside, the nearest seed eases toward it, dragging its cell along. Seeds render as brighter dots. Phosphor-green on near-black, DPR cap 1.5, pause offscreen, single static frame under reduced-motion.",
+      "A drifting Voronoi diagram drawn as dotted cell borders on a 4px dot grid: at each grid point compare the two nearest seed distances and light a dot where they are nearly equal (two brightness buckets, batched Path2D fills). 18–36 seeds (area-scaled) wander slowly with toroidal wrap; while the pointer is inside, the nearest seed eases toward it, dragging its cell along. Seeds render as brighter dots. phosphor-blue on near-black, DPR cap 1.5, pause offscreen, single static frame under reduced-motion.",
   },
   "l-system": {
     component: LSystemDemo,
@@ -151,7 +151,7 @@ export const labRegistry: Record<string, LabDemoEntry> = {
     filename: "MazeSolverDemo.svelte",
     prompt:
       PROMPT_PREFIX +
-      "A perfect maze carved by the iterative recursive backtracker (wall bitflags per cell, ~26 cells across the short axis), then solved by BFS from the top-left: the visitation order replays as a flood wavefront of dim phosphor cell-dots with a brighter frontier band; once the flood completes, the parent-chain solution path is traced entrance→exit in bright green. Walls are prerendered once per maze to an offscreen canvas. Hold, then regenerate and repeat; clicking restarts with a fresh maze. DPR cap 1.5, pause offscreen, fully solved static maze under reduced-motion.",
+      "A perfect maze carved by the iterative recursive backtracker (wall bitflags per cell, ~26 cells across the short axis), then solved by BFS from the top-left: the visitation order replays as a flood wavefront of dim phosphor cell-dots with a brighter frontier band; once the flood completes, the parent-chain solution path is traced entrance→exit in bright blue. Walls are prerendered once per maze to an offscreen canvas. Hold, then regenerate and repeat; clicking restarts with a fresh maze. DPR cap 1.5, pause offscreen, fully solved static maze under reduced-motion.",
   },
   "warp-field": {
     component: WarpFieldDemo,
@@ -175,7 +175,7 @@ export const labRegistry: Record<string, LabDemoEntry> = {
     filename: "WaveInterferenceDemo.svelte",
     prompt:
       PROMPT_PREFIX +
-      "Overlapping circular wave sources rendered as an interference moiré of dotted crest lines: on a 4px dot grid each point sums cos(k·r − ωt + φ) over all sources and lights a dot where the normalized sum passes a crest threshold (two brightness buckets, batched Path2D fills). Three ambient sources at fixed positions with distinct k/ω/φ; clicking drops a new source with randomized parameters (cap 7, oldest non-ambient recycled). Sources render as bright marker dots. Phosphor-green on near-black, DPR cap 1.5, pause offscreen, one static frame under reduced-motion.",
+      "Overlapping circular wave sources rendered as an interference moiré of dotted crest lines: on a 4px dot grid each point sums cos(k·r − ωt + φ) over all sources and lights a dot where the normalized sum passes a crest threshold (two brightness buckets, batched Path2D fills). Three ambient sources at fixed positions with distinct k/ω/φ; clicking drops a new source with randomized parameters (cap 7, oldest non-ambient recycled). Sources render as bright marker dots. phosphor-blue on near-black, DPR cap 1.5, pause offscreen, one static frame under reduced-motion.",
   },
   "phosphor-fire": {
     component: PhosphorFireDemo,
@@ -183,6 +183,6 @@ export const labRegistry: Record<string, LabDemoEntry> = {
     filename: "PhosphorFireDemo.svelte",
     prompt:
       PROMPT_PREFIX +
-      "The classic Doom fire algorithm in phosphor green: a fixed low-res heat grid (~150 columns, height from card aspect) whose bottom row is stoked to ~180–255 each step; every other cell inherits the heat of a randomly jittered cell below minus 0–2 decay, so flames rise and wobble. Render heat through a black → #00ff41 → bright → near-white 256-entry palette into an ImageData with every other row darkened ~18% for baked scanlines, upscaled with smoothing disabled for chunky pixels. Pointermove stirs Gaussian heat blobs into the grid. DPR cap 1.5, pause offscreen, ~90 synchronous steps then a static frame under reduced-motion.",
+      "The classic Doom fire algorithm in phosphor blue: a fixed low-res heat grid (~150 columns, height from card aspect) whose bottom row is stoked to ~180–255 each step; every other cell inherits the heat of a randomly jittered cell below minus 0–2 decay, so flames rise and wobble. Render heat through a black → #2D6BFF → bright → near-white 256-entry palette into an ImageData with every other row darkened ~18% for baked scanlines, upscaled with smoothing disabled for chunky pixels. Pointermove stirs Gaussian heat blobs into the grid. DPR cap 1.5, pause offscreen, ~90 synchronous steps then a static frame under reduced-motion.",
   },
 };

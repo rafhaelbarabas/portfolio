@@ -20,6 +20,7 @@ export default {
         muted: "var(--muted)",
         "muted-soft": "var(--muted-soft)",
         accent: "var(--accent)",
+        "accent-base": "var(--accent-base)",
         "accent-soft": "var(--accent-soft)",
         cream: "var(--cream)",
       },

@@ -2,7 +2,7 @@
   /**
    * HeroTerminal — real code typed live across the hero's BACKGROUND (no
    * card): the ralph swarm loop the portrait is "writing", with syntax
-   * highlighting in layered phosphor greens. Human typing rhythm (variable
+   * highlighting in layered phosphor blues. Human typing rhythm (variable
    * keystroke delay with occasional hesitations), blinking block cursor.
    * The snippet loops forever; old lines scroll off the top so the layer
    * never shifts layout.
@@ -19,7 +19,7 @@
   }
   let { class: className = "" }: Props = $props();
 
-  // Token classes — layered greens, dim enough to stay a background layer.
+  // Token classes — layered blues, dim enough to stay a background layer.
   type Tok = { cls: "kw" | "str" | "com" | "fn" | "num" | "txt"; text: string };
   type CodeLine = Tok[];
 
@@ -169,7 +169,7 @@
     font-family: var(--font-mono);
     font-size: clamp(12px, 1.05vw, 15px);
     line-height: 1.9;
-    color: rgba(74, 222, 128, 0.34);
+    color: rgba(110, 155, 255, 0.34);
     text-align: left;
     pointer-events: none;
     /* Vertical fade (clear of nav + lede) × horizontal fade (clear of the
@@ -205,13 +205,13 @@
     text-overflow: ellipsis;
   }
 
-  /* Syntax palette — layered phosphor greens, dim on purpose. */
-  .tk-txt { color: rgba(74, 222, 128, 0.34); }
-  .tk-kw  { color: rgba(0, 255, 65, 0.5); text-shadow: 0 0 8px rgba(0, 255, 65, 0.25); }
+  /* Syntax palette — layered phosphor blues, dim on purpose. */
+  .tk-txt { color: rgba(110, 155, 255, 0.34); }
+  .tk-kw  { color: rgba(45, 107, 255, 0.5); text-shadow: 0 0 8px rgba(45, 107, 255, 0.25); }
   .tk-str { color: rgba(187, 247, 208, 0.38); }
-  .tk-com { color: rgba(74, 222, 128, 0.24); font-style: italic; }
-  .tk-fn  { color: rgba(134, 239, 172, 0.48); }
-  .tk-num { color: rgba(163, 230, 53, 0.42); }
+  .tk-com { color: rgba(110, 155, 255, 0.24); font-style: italic; }
+  .tk-fn  { color: rgba(143, 178, 255, 0.48); }
+  .tk-num { color: rgba(91, 130, 230, 0.42); }
 
   .hero-terminal__cursor {
     display: inline-block;
@@ -219,8 +219,8 @@
     height: 1.05em;
     margin-left: 1px;
     vertical-align: text-bottom;
-    background: rgba(0, 255, 65, 0.55);
-    box-shadow: 0 0 10px rgba(0, 255, 65, 0.45);
+    background: rgba(45, 107, 255, 0.55);
+    box-shadow: 0 0 10px rgba(45, 107, 255, 0.45);
     animation: ht-blink 1.05s steps(1) infinite;
   }
   @keyframes ht-blink {

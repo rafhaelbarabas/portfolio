@@ -4,7 +4,7 @@
  *
  * Inputs:
  *   - public/reference/ruben-face.jpeg  (identity reference — Ruben's face)
- *   - ref/f3ba3e90a7b313cf5ff460ddfa825cd8.jpg (style reference — green phosphor contours)
+ *   - ref/f3ba3e90a7b313cf5ff460ddfa825cd8.jpg (style reference — blue phosphor contours)
  *
  * Usage:
  *   node scripts/gen-hero-image.mjs [variant]
@@ -56,13 +56,13 @@ const style = readFileSync(join(root, "ref/f3ba3e90a7b313cf5ff460ddfa825cd8.jpg"
 const STYLE_DESC = `
 RENDER STYLE (follow the second reference image exactly):
 - Black background, deep and empty.
-- The entire scene is drawn as glowing phosphor-green (#00ff41) contour lines —
+- The entire scene is drawn as glowing phosphor-blue (#2D6BFF) contour lines —
   dense horizontal scanlines that bend and flow over the surfaces of the subject,
   like a CRT topographic scan / 1980s wireframe oscilloscope portrait.
 - Lines are continuous, thin, evenly spaced, with subtle waviness; denser where
   surfaces curve toward the viewer, sparse in shadowed areas.
 - No solid fills, no gradients, no realistic shading, no color other than the
-  green lines on black. Slight phosphor glow / bloom around the lines.
+  blue lines on black. Slight phosphor glow / bloom around the lines.
 `.trim();
 
 const IDENTITY = `
@@ -78,7 +78,7 @@ const STYLE_DESC_V2 = `
 RENDER STYLE (follow the second reference image with absolute fidelity):
 - Pure black background, deep and empty, faint film grain.
 - The subject is drawn ONLY with dense, thin HORIZONTAL scanlines in phosphor
-  green (#00ff41) — like a CRT oscilloscope scan or analog video feedback.
+  blue (#2D6BFF) — like a CRT oscilloscope scan or analog video feedback.
 - The scanlines are continuous and flow left-to-right across the whole frame;
   they bend, warp and ripple where they pass over the subject's surfaces,
   mapping the 3D form purely through their waviness (topographic video-scan look).
@@ -112,7 +112,7 @@ in the lower third.`,
   2: `${IDENTITY}\n${STYLE_DESC}\n
 SCENE: Wide cinematic shot of him seated at a desk in profile, facing right,
 typing on an open laptop. The desk, the chair back, the laptop and a coffee mug
-are all drawn in the same green contour style. His body occupies the left half;
+are all drawn in the same blue contour style. His body occupies the left half;
 the right half is empty black space (room for website headline text).`,
   3: `${IDENTITY}\n${STYLE_DESC}\n
 SCENE: Close-up of his head and hands over the laptop keyboard, seen from a low

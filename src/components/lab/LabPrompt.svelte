@@ -77,9 +77,9 @@
   }
   .lab-prompt:hover {
     color: var(--accent);
-    border-color: rgba(0, 255, 65, 0.45);
-    background: rgba(0, 255, 65, 0.07);
-    box-shadow: 0 0 18px rgba(0, 255, 65, 0.12);
+    border-color: rgba(45, 107, 255, 0.45);
+    background: rgba(45, 107, 255, 0.07);
+    box-shadow: 0 0 18px rgba(45, 107, 255, 0.12);
   }
   .lab-prompt__glyph {
     font-size: 0.66rem;

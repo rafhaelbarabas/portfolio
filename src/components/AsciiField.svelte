@@ -26,7 +26,7 @@
     glitch = false,
     glitchSides,
     excludeEllipse,
-    color = "rgba(0, 255, 65, 1)",
+    color = "rgba(45, 107, 255, 1)",
     class: className = "",
   }: Props = $props();
 

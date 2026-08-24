@@ -1,7 +1,7 @@
 ---
 /**
  * WireCard — the site's shared crafted container: a near-black panel with a
- * 1px terminal-green hairline border, corner-bracket accents (same language
+ * 1px terminal-blue hairline border, corner-bracket accents (same language
  * as the portfolio rows), a faint dot-grid + ASCII-glyph watermark in the
  * corner, and a hover state (border brightens, sheen sweep from global.css).
  *
@@ -32,9 +32,9 @@ const Tag = href ? "a" : "div";
     overflow: hidden;
     display: block;
     padding: 1.6rem;
-    border: 1px solid rgba(0, 255, 65, 0.14);
+    border: 1px solid rgba(45, 107, 255, 0.14);
     border-radius: var(--radius-card);
-    background-color: rgba(3, 6, 5, 0.62);
+    background-color: rgba(3, 6, 16, 0.62);
     color: var(--text);
     transition:
       border-color var(--duration-hover) var(--ease-default),
@@ -42,7 +42,7 @@ const Tag = href ? "a" : "div";
       transform var(--duration-hover) var(--ease-default);
   }
 
-  /* Corner brackets — four green L-corners framing the panel */
+  /* Corner brackets — four blue L-corners framing the panel */
   .wire-card::before {
     content: "";
     position: absolute;
@@ -81,23 +81,23 @@ const Tag = href ? "a" : "div";
     font-family: var(--font-mono);
     font-size: 1.5rem;
     line-height: 1;
-    color: rgba(0, 255, 65, 0.22);
+    color: rgba(45, 107, 255, 0.22);
     pointer-events: none;
-    background-image: radial-gradient(circle, rgba(74, 222, 128, 0.12) 1px, transparent 1px);
+    background-image: radial-gradient(circle, rgba(110, 155, 255, 0.12) 1px, transparent 1px);
     background-size: 9px 9px;
     mask-image: radial-gradient(ellipse at 100% 100%, #000 30%, transparent 75%);
     -webkit-mask-image: radial-gradient(ellipse at 100% 100%, #000 30%, transparent 75%);
   }
 
   .wire-card:hover {
-    border-color: rgba(0, 255, 65, 0.42);
+    border-color: rgba(45, 107, 255, 0.42);
     box-shadow:
-      0 0 0 1px rgba(0, 255, 65, 0.1),
+      0 0 0 1px rgba(45, 107, 255, 0.1),
       0 14px 40px rgba(0, 0, 0, 0.5);
   }
   .wire-card:hover::before {
     opacity: 0.95;
-    filter: drop-shadow(0 0 6px rgba(0, 255, 65, 0.4));
+    filter: drop-shadow(0 0 6px rgba(45, 107, 255, 0.4));
   }
 
   @media (prefers-reduced-motion: reduce) {

@@ -23,9 +23,9 @@
 
   let host: HTMLDivElement | null = null;
 
-  const BG = "2, 5, 3";
-  const GREEN = "0, 255, 65";
-  const BRIGHT = "164, 255, 190";
+  const BG = "2, 5, 16";
+  const BLUE = "45, 107, 255";
+  const BRIGHT = "164, 190, 255";
 
   onMount(() => {
     if (!host) return;
@@ -151,7 +151,7 @@
     function drawSeg(sg: Seg, bright: boolean) {
       ctx.strokeStyle = bright
         ? `rgba(${BRIGHT}, 0.9)`
-        : `rgba(${GREEN}, 0.42)`;
+        : `rgba(${BLUE}, 0.42)`;
       ctx.lineWidth = Math.max(0.6, 1.6 - sg.depth * 0.22);
       ctx.beginPath();
       ctx.moveTo(sg.x0, sg.y0);
@@ -272,7 +272,7 @@
     inset: 0;
     overflow: hidden;
     background:
-      radial-gradient(circle at 50% 85%, rgba(0, 255, 65, 0.04), transparent 70%),
+      radial-gradient(circle at 50% 85%, rgba(45, 107, 255, 0.04), transparent 70%),
       #020503;
   }
   .l-system :global(canvas) {

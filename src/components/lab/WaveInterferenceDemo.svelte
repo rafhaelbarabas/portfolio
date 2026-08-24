@@ -23,9 +23,9 @@
 
   let host: HTMLDivElement | null = null;
 
-  const BG = "2, 5, 3";
-  const GREEN = "0, 255, 65";
-  const BRIGHT = "164, 255, 190";
+  const BG = "2, 5, 16";
+  const BLUE = "45, 107, 255";
+  const BRIGHT = "164, 190, 255";
 
   onMount(() => {
     if (!host) return;
@@ -90,7 +90,7 @@
           }
         }
       }
-      ctx.fillStyle = `rgba(${GREEN}, 0.28)`;
+      ctx.fillStyle = `rgba(${BLUE}, 0.28)`;
       ctx.fill(soft);
       ctx.fillStyle = `rgba(${BRIGHT}, 0.6)`;
       ctx.fill(hard);
@@ -179,7 +179,7 @@
     inset: 0;
     overflow: hidden;
     background:
-      radial-gradient(circle at 50% 50%, rgba(0, 255, 65, 0.03), transparent 70%),
+      radial-gradient(circle at 50% 50%, rgba(45, 107, 255, 0.03), transparent 70%),
       #020503;
     cursor: crosshair;
   }

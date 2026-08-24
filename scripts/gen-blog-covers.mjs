@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /**
  * Generate blog post covers — same visual language as the product art:
- * dense luminous green particle forms on pure black, one specific motif
+ * dense luminous blue particle forms on pure black, one specific motif
  * per post. Output: public/art/blog/<slug>.png
  *
  * Usage: node scripts/gen-blog-covers.mjs [slug|all]
@@ -26,7 +26,7 @@ if (!KEY) {
   process.exit(1);
 }
 
-const STYLE = `A dense luminous swarm of tiny phosphor-green (#00ff41) particles, sparks and hairline light-trails on a 100% pure black background, forming the motif below. Organic depth and parallax, soft phosphor bloom, subtle dot-matrix grain, cinematic contrast, wide 16:9 composition with generous black margins. STRICTLY no text, no letters, no logos, no people, no solid fills, no other colors. Dark analog occult-techno mood.`;
+const STYLE = `A dense luminous swarm of tiny phosphor-blue (#2D6BFF) particles, sparks and hairline light-trails on a 100% pure black background, forming the motif below. Organic depth and parallax, soft phosphor bloom, subtle dot-matrix grain, cinematic contrast, wide 16:9 composition with generous black margins. STRICTLY no text, no letters, no logos, no people, no solid fills, no other colors. Dark analog occult-techno mood.`;
 
 const COVERS = {
   "from-prompt-to-product-five-ways-to-build-with-ai":

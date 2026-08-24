@@ -28,7 +28,7 @@
   let host: HTMLDivElement | null = null;
 
   const BG = "4, 8, 5";
-  const BRIGHT = "164, 255, 190";
+  const BRIGHT = "164, 190, 255";
 
   onMount(() => {
     if (!host) return;

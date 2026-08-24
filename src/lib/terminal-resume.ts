@@ -6,7 +6,7 @@
  */
 import { AEO_TOTAL_SCANS, CAREER_YEARS, formatFact } from "./site-facts";
 
-const G = "\x1b[32m"; // green
+const G = "\x1b[34m"; // blue
 const B = "\x1b[1m";  // bold
 const D = "\x1b[2m";  // dim
 const R = "\x1b[0m";  // reset

@@ -23,9 +23,9 @@
 
   let host: HTMLDivElement | null = null;
 
-  const BG = "2, 5, 3";
-  const GREEN = "0, 255, 65";
-  const BRIGHT = "164, 255, 190";
+  const BG = "2, 5, 16";
+  const BLUE = "45, 107, 255";
+  const BRIGHT = "164, 190, 255";
 
   onMount(() => {
     if (!host) return;
@@ -145,14 +145,14 @@
         path.moveTo(px, py);
         path.lineTo(b.x, b.y);
       }
-      ctx.strokeStyle = `rgba(${GREEN}, 0.5)`;
+      ctx.strokeStyle = `rgba(${BLUE}, 0.5)`;
       ctx.stroke(path);
 
       // Central mass, redrawn bright each frame (it survives the fade).
       const glow = ctx.createRadialGradient(cx, cy, 0, cx, cy, 14);
       glow.addColorStop(0, `rgba(${BRIGHT}, 0.95)`);
-      glow.addColorStop(0.35, `rgba(${GREEN}, 0.5)`);
-      glow.addColorStop(1, `rgba(${GREEN}, 0)`);
+      glow.addColorStop(0.35, `rgba(${BLUE}, 0.5)`);
+      glow.addColorStop(1, `rgba(${BLUE}, 0)`);
       ctx.fillStyle = glow;
       ctx.beginPath();
       ctx.arc(cx, cy, 14, 0, Math.PI * 2);
@@ -242,7 +242,7 @@
     inset: 0;
     overflow: hidden;
     background:
-      radial-gradient(circle at 50% 50%, rgba(0, 255, 65, 0.05), transparent 62%),
+      radial-gradient(circle at 50% 50%, rgba(45, 107, 255, 0.05), transparent 62%),
       #020503;
     cursor: crosshair;
   }

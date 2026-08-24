@@ -123,8 +123,8 @@ export default defineConfig({
         theme: {
           background: "rgba(5, 7, 12, 0.94)",
           text: "#f5f1ea",
-          accent: "#00ff41",
-          badge: "#4ade80",
+          accent: "#2D6BFF",
+          badge: "#6E9BFF",
         },
       },
     }),

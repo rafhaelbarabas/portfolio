@@ -331,7 +331,7 @@
     cursor: pointer;
     position: relative;
     overflow: hidden;
-    background: rgba(134, 239, 172, 0.04);
+    background: rgba(143, 178, 255, 0.04);
   }
   .deck__fill {
     position: absolute;
@@ -371,8 +371,8 @@
   }
   .deck__btn:hover {
     color: var(--accent-soft);
-    border-color: rgba(0, 255, 65, 0.32);
-    background: rgba(0, 255, 65, 0.06);
+    border-color: rgba(45, 107, 255, 0.32);
+    background: rgba(45, 107, 255, 0.06);
   }
   .deck__btn--play {
     color: var(--accent);
@@ -412,7 +412,7 @@
     width: 40px;
     height: 40px;
     border-radius: 50%;
-    border: 1px solid rgba(0, 255, 65, 0.32);
+    border: 1px solid rgba(45, 107, 255, 0.32);
     background: rgba(0, 0, 0, 0.88);
     color: var(--accent);
     font-family: var(--font-mono);
@@ -424,7 +424,7 @@
   }
   .deck-fab:hover {
     border-color: var(--accent);
-    background: rgba(0, 255, 65, 0.08);
+    background: rgba(45, 107, 255, 0.08);
   }
   .deck-fab__glyph.pulse {
     display: inline-block;

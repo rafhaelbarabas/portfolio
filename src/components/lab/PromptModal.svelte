@@ -158,9 +158,9 @@
     border: 1px solid var(--line-strong);
     border-radius: var(--radius-card);
     box-shadow:
-      0 0 0 1px rgba(0, 255, 65, 0.1),
+      0 0 0 1px rgba(45, 107, 255, 0.1),
       0 24px 80px rgba(0, 0, 0, 0.7),
-      0 0 140px rgba(0, 255, 65, 0.07);
+      0 0 140px rgba(45, 107, 255, 0.07);
     overflow: hidden;
     outline: none;
     animation: pm-pop var(--duration-default) var(--ease-emphasis);
@@ -173,8 +173,8 @@
     padding: 0.7rem 0.9rem;
     border-bottom: 1px solid var(--line);
     background:
-      repeating-linear-gradient(0deg, rgba(0, 255, 65, 0.04) 0 1px, transparent 1px 5px),
-      rgba(0, 255, 65, 0.02);
+      repeating-linear-gradient(0deg, rgba(45, 107, 255, 0.04) 0 1px, transparent 1px 5px),
+      rgba(45, 107, 255, 0.02);
   }
 
   .pm__glyph {
@@ -225,12 +225,12 @@
   }
   .pm__btn:hover {
     color: var(--accent);
-    border-color: rgba(0, 255, 65, 0.45);
-    background: rgba(0, 255, 65, 0.06);
+    border-color: rgba(45, 107, 255, 0.45);
+    background: rgba(45, 107, 255, 0.06);
   }
   .pm__btn--done {
     color: var(--accent);
-    border-color: rgba(0, 255, 65, 0.45);
+    border-color: rgba(45, 107, 255, 0.45);
   }
   .pm__btn--close {
     padding: 0.32rem 0.55rem;
@@ -254,7 +254,7 @@
     word-break: break-word;
   }
   .pm__code ::selection {
-    background: rgba(0, 255, 65, 0.22);
+    background: rgba(45, 107, 255, 0.22);
   }
 
   @keyframes pm-fade {

@@ -13,8 +13,8 @@ const candidates = [
   {
     id: "dither",
     file: "/art/hero-dither.png",
-    title: "B · Dither (green halftone)",
-    desc: "Ordered-dither halftone portrait, terminal green on black. Breathing threshold pulse.",
+    title: "B · Dither (blue halftone)",
+    desc: "Ordered-dither halftone portrait, terminal blue on black. Breathing threshold pulse.",
     treatment: "dither",
     landscape: false,
   },
@@ -30,7 +30,7 @@ const candidates = [
     id: "wireframe",
     file: "/art/hero-wireframe.png",
     title: "D · Wireframe (Tron lines)",
-    desc: "Glowing green wireframe, side profile at laptop, vaporwave grid. Glow pulse + slow vertical pan.",
+    desc: "Glowing blue wireframe, side profile at laptop, vaporwave grid. Glow pulse + slow vertical pan.",
     treatment: "wireframe",
     landscape: true,
   },
@@ -49,7 +49,7 @@ const candidates = [
         --bg: #0a0a0a;
         --panel: #111;
         --line: #222;
-        --green: #00ff41;
+        --blue: #2D6BFF;
         --dim: #888;
         --text: #e8e8e8;
       }
@@ -76,7 +76,7 @@ const candidates = [
         overflow: hidden;
       }
       .card__head { padding: 16px 20px 0; }
-      .card__head h2 { font-size: 15px; color: var(--green); font-weight: 600; }
+      .card__head h2 { font-size: 15px; color: var(--blue); font-weight: 600; }
       .card__head p { color: var(--dim); font-size: 12px; margin-top: 6px; line-height: 1.5; }
       .pair {
         display: grid;
@@ -97,7 +97,7 @@ const candidates = [
         letter-spacing: 0.12em;
         text-transform: uppercase;
         color: #000;
-        background: var(--green);
+        background: var(--blue);
         padding: 2px 6px;
         border-radius: 3px;
       }
@@ -179,9 +179,9 @@ const candidates = [
         background: linear-gradient(
           to bottom,
           transparent,
-          rgba(0, 255, 65, 0.08) 45%,
-          rgba(0, 255, 65, 0.22) 50%,
-          rgba(0, 255, 65, 0.08) 55%,
+          rgba(45, 107, 255, 0.08) 45%,
+          rgba(45, 107, 255, 0.22) 50%,
+          rgba(45, 107, 255, 0.08) 55%,
           transparent
         );
         animation: scan 4.5s linear infinite;
@@ -195,8 +195,8 @@ const candidates = [
         animation: glowpan 12s ease-in-out infinite alternate;
       }
       @keyframes glowpan {
-        from { filter: brightness(1) drop-shadow(0 0 6px rgba(0, 255, 65, 0.25)); transform: translateY(0); }
-        to { filter: brightness(1.25) drop-shadow(0 0 16px rgba(0, 255, 65, 0.55)); transform: translateY(-13%); }
+        from { filter: brightness(1) drop-shadow(0 0 6px rgba(45, 107, 255, 0.25)); transform: translateY(0); }
+        to { filter: brightness(1.25) drop-shadow(0 0 16px rgba(45, 107, 255, 0.55)); transform: translateY(-13%); }
       }
 
       @media (prefers-reduced-motion: reduce) {

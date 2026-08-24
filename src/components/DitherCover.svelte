@@ -1,7 +1,7 @@
 <script lang="ts">
   /**
    * DitherCover — blog post covers rendered through an ordered-dither
-   * (Bayer 8×8) canvas filter, tinted terminal green. The dithered layer sits
+   * (Bayer 8×8) canvas filter, tinted terminal blue. The dithered layer sits
    * on top of the full-color source; on hover it fades away to reveal color.
    *
    * If the post has no cover (or the remote image can't be sampled — CORS),
@@ -57,7 +57,7 @@
     const rand = seededRand(seed);
     ctx.fillStyle = "#040805";
     ctx.fillRect(0, 0, w, h);
-    const palette = ["#00ff41", "#4ade80", "#f5f1ea", "#15803d"];
+    const palette = ["#2D6BFF", "#6E9BFF", "#f5f1ea", "#01257D"];
     const shapes = 7 + Math.floor(rand() * 5);
     for (let i = 0; i < shapes; i++) {
       const kind = rand();
@@ -88,7 +88,7 @@
     }
     // A few horizontal "code lines" for texture
     ctx.globalAlpha = 0.5;
-    ctx.fillStyle = "#4ade80";
+    ctx.fillStyle = "#6E9BFF";
     const lines = 3 + Math.floor(rand() * 3);
     for (let i = 0; i < lines; i++) {
       const y = h * (0.15 + rand() * 0.7);
@@ -181,7 +181,7 @@
           const l = (0.299 * data[i] + 0.587 * data[i + 1] + 0.114 * data[i + 2]) / 255;
           const t = BAYER[(y % 8) * 8 + (x % 8)];
           if (l <= t) continue;
-          dctx.fillStyle = `rgba(0, 255, 65, ${(0.35 + l * 0.6).toFixed(3)})`;
+          dctx.fillStyle = `rgba(45, 107, 255, ${(0.35 + l * 0.6).toFixed(3)})`;
           dctx.fillRect(x * CELL, y * CELL, dot, dot);
         }
       }

@@ -5,7 +5,7 @@
    * language:
    *
    *   - stagger rise on first scroll-into-view (IntersectionObserver, once)
-   *   - cursor spotlight — a radial green glow tracks the pointer inside
+   *   - cursor spotlight — a radial blue glow tracks the pointer inside
    *     each card via --mx/--my CSS vars
    *   - scanline sweep — a thin phosphor line scans down the card on hover
    *   - whole card is the CTA → /services/<slug>
@@ -212,9 +212,9 @@
 
   .hire__availability li {
     padding: 0.38rem 0.62rem;
-    border: 1px solid rgba(134, 239, 172, 0.2);
+    border: 1px solid rgba(143, 178, 255, 0.2);
     border-radius: var(--radius-pill);
-    background: rgba(134, 239, 172, 0.055);
+    background: rgba(143, 178, 255, 0.055);
     color: var(--accent-soft);
     font-family: var(--font-mono);
     font-size: 0.7rem;
@@ -268,7 +268,7 @@
     z-index: -1;
     background: radial-gradient(
       220px circle at var(--mx) var(--my),
-      rgba(0, 255, 65, 0.09),
+      rgba(45, 107, 255, 0.09),
       transparent 70%
     );
     opacity: 0;
@@ -279,7 +279,7 @@
   .hire__card:hover {
     border-color: var(--line-bright);
     transform: translateY(-4px);
-    box-shadow: 0 20px 52px rgba(0, 0, 0, 0.55), 0 0 0 1px rgba(0, 255, 65, 0.12);
+    box-shadow: 0 20px 52px rgba(0, 0, 0, 0.55), 0 0 0 1px rgba(45, 107, 255, 0.12);
   }
 
   /* scanline sweep — one phosphor line scans top→bottom on hover */
@@ -289,7 +289,7 @@
     right: 0;
     top: -2px;
     height: 2px;
-    background: linear-gradient(90deg, transparent, rgba(0, 255, 65, 0.75), transparent);
+    background: linear-gradient(90deg, transparent, rgba(45, 107, 255, 0.75), transparent);
     opacity: 0;
     pointer-events: none;
   }
@@ -365,7 +365,7 @@
   }
   .hire__card:hover .hire__cta {
     opacity: 1;
-    text-shadow: 0 0 12px rgba(0, 255, 65, 0.45);
+    text-shadow: 0 0 12px rgba(45, 107, 255, 0.45);
   }
 
   .hire__arrow {

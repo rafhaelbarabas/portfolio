@@ -3,7 +3,7 @@
    * Ordered-dither background — the blog page's generative identity.
    *
    * Renders a static Bayer-matrix (8×8) ordered dither of a coarse value-noise
-   * field: terminal-green dots whose density follows the noise, on near-black.
+   * field: terminal-blue dots whose density follows the noise, on near-black.
    * Drawn once per resize (no animation loop), so it's effectively free and
    * inherently reduced-motion safe.
    */
@@ -21,7 +21,7 @@
   }
 
   let {
-    color = "0, 255, 65",
+    color = "45, 107, 255",
     cell = 5,
     opacity = 0.5,
     class: className = "",

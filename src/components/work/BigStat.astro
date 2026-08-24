@@ -1,7 +1,7 @@
 ---
 /**
  * BigStat — one oversized figure with a mono caption, for the case-study
- * stat bands. Space Grotesk numeral, terminal-green glow, generous air.
+ * stat bands. Space Grotesk numeral, terminal-blue glow, generous air.
  */
 interface Props {
   value: string;
@@ -24,7 +24,7 @@ const { value, label, sub } = Astro.props;
     flex-direction: column;
     gap: 0.45rem;
     padding: 1.4rem 0;
-    border-top: 1px solid rgba(0, 255, 65, 0.22);
+    border-top: 1px solid rgba(45, 107, 255, 0.22);
   }
 
   .bigstat__value {
@@ -33,7 +33,7 @@ const { value, label, sub } = Astro.props;
     line-height: 0.95;
     letter-spacing: -0.02em;
     color: var(--text);
-    text-shadow: 0 0 26px rgba(0, 255, 65, 0.22);
+    text-shadow: 0 0 26px rgba(45, 107, 255, 0.22);
   }
 
   .bigstat__label {

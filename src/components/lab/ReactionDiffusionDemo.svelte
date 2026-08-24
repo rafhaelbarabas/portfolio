@@ -26,8 +26,8 @@
 
   let host: HTMLDivElement | null = null;
 
-  const BG = "2, 5, 3";
-  const GREEN = "0, 255, 65";
+  const BG = "2, 5, 16";
+  const BLUE = "45, 107, 255";
 
   onMount(() => {
     if (!host) return;
@@ -68,7 +68,7 @@
     if (!offCtx) return;
     const img = offCtx.createImageData(W, H);
 
-    // Phosphor LUT: v∈[0,1] → RGB from BG (dark green-black) toward GREEN.
+    // Phosphor LUT: v∈[0,1] → RGB from BG (dark navy-black) toward BLUE.
     const LUT = new Uint8ClampedArray(256 * 3);
     for (let i = 0; i < 256; i++) {
       const b = Math.pow(i / 255, 0.7); // gamma to lift mid-tones
@@ -257,7 +257,7 @@
     inset: 0;
     overflow: hidden;
     background:
-      radial-gradient(circle at 50% 45%, rgba(0, 255, 65, 0.04), transparent 65%),
+      radial-gradient(circle at 50% 45%, rgba(45, 107, 255, 0.04), transparent 65%),
       #020503;
     cursor: crosshair;
   }

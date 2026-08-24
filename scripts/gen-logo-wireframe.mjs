@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Generate green 3D-wireframe logo renders for client/brand cards.
+ * Generate blue 3D-wireframe logo renders for client/brand cards.
  * Famous marks are redrawn from the model's knowledge; lesser-known ones
  * (quantum, bitte, mintbase) pass a reference image fetched from the web.
  *
@@ -28,7 +28,7 @@ if (!KEY) {
   process.exit(1);
 }
 
-const STYLE = (brand, extra) => `The ${brand} logo, redrawn as a glowing phosphor-green (#00ff41) 3D WIREFRAME sculpture on a 100% pure black background — the exact ${brand} mark and wordmark, built from thin green mesh lines and dot lattices, like a CRT oscilloscope render of the logo. Subtle phosphor bloom, faint dot-matrix grid behind, generous black margins, centered composition. STRICTLY no other colors, no solid fills, no background scenery, no extra text. ${extra}`;
+const STYLE = (brand, extra) => `The ${brand} logo, redrawn as a glowing phosphor-blue (#2D6BFF) 3D WIREFRAME sculpture on a 100% pure black background — the exact ${brand} mark and wordmark, built from thin blue mesh lines and dot lattices, like a CRT oscilloscope render of the logo. Subtle phosphor bloom, faint dot-matrix grid behind, generous black margins, centered composition. STRICTLY no other colors, no solid fills, no background scenery, no extra text. ${extra}`;
 
 // brand slug → prompt; ref: optional image to pass as reference
 const LOGOS = {
@@ -41,7 +41,7 @@ const LOGOS = {
   santander: { prompt: STYLE("Santander", "The flame symbol plus wordmark of the bank, wireframe mesh.") },
   "under-armour": { prompt: STYLE("Under Armour", "The overlapping U/A monogram, wireframe mesh.") },
   flamengo: {
-    prompt: STYLE("Flamengo (Clube de Regatas do Flamengo, the Brazilian football club)", "Reproduce the GEOMETRY of the reference EXACTLY: the intertwined CRF monogram — the big C wrapping around the R, the F sharing the top stroke — inside the upper-left box, with the horizontal stripes of the shield below. CRITICAL: ignore the reference colors completely — no red, no white, no cream, no solid fills. Only phosphor-green wireframe lines and dot lattices on pure black, the stripes shown as stacked wireframe bands."),
+    prompt: STYLE("Flamengo (Clube de Regatas do Flamengo, the Brazilian football club)", "Reproduce the GEOMETRY of the reference EXACTLY: the intertwined CRF monogram — the big C wrapping around the R, the F sharing the top stroke — inside the upper-left box, with the horizontal stripes of the shield below. CRITICAL: ignore the reference colors completely — no red, no white, no cream, no solid fills. Only phosphor-blue wireframe lines and dot lattices on pure black, the stripes shown as stacked wireframe bands."),
     ref: "/tmp/logos/flamengo.png",
   },
   grover: {
