@@ -29,9 +29,7 @@ it("every group has a label and a place in the order", () => {
 
 it("no links to dead sites: pre-Grover groups and the Bitte era carry no url", () => {
   const linkless = ["bitte", "zup-fiap", "freelance-modern", "agency", "early"];
-  const offenders = projects.filter(
-    (p) => p.url && linkless.includes(p.group),
-  );
+  const offenders = projects.filter((p) => p.url && linkless.includes(p.group));
   expect(offenders).toEqual([]);
 });
 

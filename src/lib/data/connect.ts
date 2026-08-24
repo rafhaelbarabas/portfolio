@@ -12,7 +12,11 @@ export const MCP_URL = "https://www.rubenmarcus.dev/api/mcp";
 // code block. Interpolating the URL into the sentence made it one long
 // unbreakable token that overflowed the card on narrow columns.
 export type ConnectStep = { text: string; url?: boolean };
-export type ConnectClient = { name: string; icon: SvgIconName; steps: ConnectStep[] };
+export type ConnectClient = {
+  name: string;
+  icon: SvgIconName;
+  steps: ConnectStep[];
+};
 export type ConnectTool = { name: string; desc: string };
 
 export type ConnectContent = {
@@ -65,7 +69,10 @@ export const CONNECT_EN: ConnectContent = {
       name: "Kimi",
       icon: "kimi",
       steps: [
-        { text: "Add a streamable-HTTP MCP server, or paste the URL in Kimi's MCP settings:", url: true },
+        {
+          text: "Add a streamable-HTTP MCP server, or paste the URL in Kimi's MCP settings:",
+          url: true,
+        },
         { text: "Run tools/list to see the four tools." },
       ],
     },
@@ -79,7 +86,10 @@ export const CONNECT_EN: ConnectContent = {
     },
   ],
   tools: [
-    { name: "get_resume", desc: "full resume: experience, skills, proof points, links" },
+    {
+      name: "get_resume",
+      desc: "full resume: experience, skills, proof points, links",
+    },
     { name: "get_services", desc: "the three flagship fixed-scope offers" },
     { name: "check_availability", desc: "current engagement status" },
     { name: "book_intro", desc: "posts a project brief to my inbox" },
@@ -108,7 +118,9 @@ export const CONNECT_PT: ConnectContent = {
       name: "Claude",
       icon: "claude",
       steps: [
-        { text: "Abra as configurações do Claude → Connectors → Add custom connector." },
+        {
+          text: "Abra as configurações do Claude → Connectors → Add custom connector.",
+        },
         { text: "Dê o nome rubenmarcus e cole a URL:", url: true },
         { text: "Conecte. Depois pergunte: o que o Ruben já publicou?" },
       ],
@@ -126,7 +138,10 @@ export const CONNECT_PT: ConnectContent = {
       name: "Kimi",
       icon: "kimi",
       steps: [
-        { text: "Adicione um servidor MCP streamable-HTTP, ou cole a URL nas configurações de MCP do Kimi:", url: true },
+        {
+          text: "Adicione um servidor MCP streamable-HTTP, ou cole a URL nas configurações de MCP do Kimi:",
+          url: true,
+        },
         { text: "Rode tools/list pra ver as quatro tools." },
       ],
     },

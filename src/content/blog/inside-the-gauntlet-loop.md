@@ -78,4 +78,4 @@ Every prompt in this loop contains its own most likely failure mode, pre-rejecte
 
 That is the technique worth copying, and it costs nothing: when you write a prompt for an agent, add the wrong answer and ban it. Not in a style guide the agent never reads, but inline, next to the deliverable, with a literal example. Agents do not read your mind. They read your prompt. Make the wrong answer illegal in the text they actually see.
 
-*If your agents grade their own homework and you suspect the grades, my inbox is open.*
+_If your agents grade their own homework and you suspect the grades, my inbox is open._

@@ -9,7 +9,9 @@ describe("canonicalPath", () => {
   it("strips a trailing slash from pages", () => {
     expect(canonicalPath("/about/")).toBe("/about");
     expect(canonicalPath("/pt/")).toBe("/pt");
-    expect(canonicalPath("/pt/blog/evals-sao-o-produto/")).toBe("/pt/blog/evals-sao-o-produto");
+    expect(canonicalPath("/pt/blog/evals-sao-o-produto/")).toBe(
+      "/pt/blog/evals-sao-o-produto",
+    );
   });
 
   it("leaves canonical paths untouched", () => {

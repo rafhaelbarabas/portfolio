@@ -9,7 +9,7 @@ cover: "/art/blog/agent-command-center.png"
 
 For a while now I have been running a competitive optimization challenge (the kind where you throw compute and ingenuity at a hard target and the leaderboard keeps score) using a swarm of coding agents. Codex, Claude, Amp, Kimi, plus the occasional human who wandered in. The agents come and go, hit rate limits, lose their context windows, and forget everything between sessions.
 
-So the coordination layer cannot live in any of them. It lives in files. Markdown is the database, and chat history is explicitly, deliberately *not* the source of truth. If an agent discovers something and does not write it down, it did not happen. This post is the anatomy of that shared brain.
+So the coordination layer cannot live in any of them. It lives in files. Markdown is the database, and chat history is explicitly, deliberately _not_ the source of truth. If an agent discovers something and does not write it down, it did not happen. This post is the anatomy of that shared brain.
 
 ## Why not a database
 
@@ -62,7 +62,7 @@ Which brings me to my favorite directory: the **candidate cemetery**. Every dead
 
 Execution hygiene: one git worktree per route, so routes never contaminate each other and every result is attributable to a diff.
 
-And the automation is fail-closed. Automation may *prepare* (queue tasks, draft prompts, aggregate results) but it may never improvise spend. There are hard stops wired in: a `GPU_APPROVAL_NEEDED` gate for anything that costs real compute, and a plain `STOP` file that halts the scheduler dead. The STOP file is deliberately stupid: no conditionals, no parsing, if it exists nothing runs. When the thing supervising your agents is also software, the emergency brake should be the dumbest possible object in the repo.
+And the automation is fail-closed. Automation may _prepare_ (queue tasks, draft prompts, aggregate results) but it may never improvise spend. There are hard stops wired in: a `GPU_APPROVAL_NEEDED` gate for anything that costs real compute, and a plain `STOP` file that halts the scheduler dead. The STOP file is deliberately stupid: no conditionals, no parsing, if it exists nothing runs. When the thing supervising your agents is also software, the emergency brake should be the dumbest possible object in the repo.
 
 ## The dashboard observes, it does not decide
 

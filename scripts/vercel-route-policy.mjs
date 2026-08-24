@@ -20,7 +20,8 @@ import { readFileSync, writeFileSync } from "node:fs";
 const CONFIG_PATH = new URL("../.vercel/output/config.json", import.meta.url);
 
 // Mirrors PAGE in src/middleware.ts — keep the two in sync.
-const PAGE_SRC = "^/(|pt)(/(portfolio|ai|skills|lab|blog|about|contact|connect|agents)?)?/?$";
+const PAGE_SRC =
+  "^/(|pt)(/(portfolio|ai|skills|lab|blog|about|contact|connect|agents)?)?/?$";
 // `has.value` is evaluated as a JavaScript RegExp with no flags: inline
 // modifiers like (?i) are invalid there, so case variants are spelled out.
 const TERMINAL_UA = ".*(curl|Curl|CURL|wget|Wget|WGET|httpie|HTTPie|libcurl).*";
@@ -45,12 +46,16 @@ let config;
 try {
   config = JSON.parse(readFileSync(CONFIG_PATH, "utf8"));
 } catch (error) {
-  console.error(`vercel-route-policy: cannot read ${CONFIG_PATH.pathname} — run astro build first.`);
+  console.error(
+    `vercel-route-policy: cannot read ${CONFIG_PATH.pathname} — run astro build first.`,
+  );
   throw error;
 }
 
 const policySources = new Set(POLICY_ROUTES.map((route) => route.src));
-const existing = (config.routes ?? []).filter((route) => !policySources.has(route.src));
+const existing = (config.routes ?? []).filter(
+  (route) => !policySources.has(route.src),
+);
 config.routes = [...POLICY_ROUTES, ...existing];
 
 writeFileSync(CONFIG_PATH, JSON.stringify(config, null, 2));

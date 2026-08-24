@@ -18,7 +18,7 @@ const env = Object.fromEntries(
     .split("\n")
     .map((l) => l.trim())
     .filter((l) => l && !l.startsWith("#") && l.includes("="))
-    .map((l) => [l.slice(0, l.indexOf("=")), l.slice(l.indexOf("=") + 1)])
+    .map((l) => [l.slice(0, l.indexOf("=")), l.slice(l.indexOf("=") + 1)]),
 );
 const KEY = env.OPENROUTER_API_KEY;
 if (!KEY) {
@@ -160,23 +160,37 @@ for (const slug of picks) {
   console.log(`${slug}: generating…`);
   const res = await fetch("https://openrouter.ai/api/v1/chat/completions", {
     method: "POST",
-    headers: { "content-type": "application/json", authorization: `Bearer ${KEY}` },
+    headers: {
+      "content-type": "application/json",
+      authorization: `Bearer ${KEY}`,
+    },
     body: JSON.stringify({
       model: "google/gemini-2.5-flash-image",
       modalities: ["image", "text"],
-      messages: [{ role: "user", content: [{ type: "text", text: `${STYLE}\nMOTIF: ${motif}.` }] }],
+      messages: [
+        {
+          role: "user",
+          content: [{ type: "text", text: `${STYLE}\nMOTIF: ${motif}.` }],
+        },
+      ],
     }),
   });
   const json = await res.json();
   if (!res.ok) {
-    console.error(`${slug}: HTTP ${res.status}`, JSON.stringify(json).slice(0, 400));
+    console.error(
+      `${slug}: HTTP ${res.status}`,
+      JSON.stringify(json).slice(0, 400),
+    );
     continue;
   }
   const images = json.choices?.[0]?.message?.images ?? [];
   const dataUrl = images[0]?.image_url?.url ?? "";
   const b64 = dataUrl.startsWith("data:") ? dataUrl.split(",")[1] : undefined;
   if (!b64) {
-    console.error(`${slug}: no image in response`, JSON.stringify(json).slice(0, 400));
+    console.error(
+      `${slug}: no image in response`,
+      JSON.stringify(json).slice(0, 400),
+    );
     continue;
   }
   const out = join(outDir, `${slug}.png`);

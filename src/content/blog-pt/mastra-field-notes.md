@@ -30,7 +30,9 @@ const searchDocs = createTool({
     limit: z.number().default(5),
   }),
   outputSchema: z.object({
-    hits: z.array(z.object({ title: z.string(), url: z.string(), snippet: z.string() })),
+    hits: z.array(
+      z.object({ title: z.string(), url: z.string(), snippet: z.string() }),
+    ),
   }),
   execute: async ({ query, limit }) => {
     const hits = await docsIndex.search(query, limit);
@@ -40,7 +42,8 @@ const searchDocs = createTool({
 
 export const researcher = new Agent({
   name: "researcher",
-  instructions: "Answer using search-docs first. Cite URLs. Say when you don't know.",
+  instructions:
+    "Answer using search-docs first. Cite URLs. Say when you don't know.",
   model: "anthropic/claude-sonnet-4-5",
   tools: { searchDocs },
 });
@@ -51,7 +54,9 @@ Primeiro ponto honesto para a Mastra. Meu runtime carrega a mesma informação q
 Chamar é chato do bom jeito:
 
 ```ts
-const result = await researcher.generate("How does our retry policy handle 429s?");
+const result = await researcher.generate(
+  "How does our retry policy handle 429s?",
+);
 console.log(result.text);
 ```
 
@@ -69,7 +74,9 @@ const planStep = createStep({
   outputSchema: z.object({ subquestions: z.array(z.string()) }),
   execute: async ({ inputData }) => {
     const res = await planner.generate(inputData.question, {
-      structuredOutput: { schema: z.object({ subquestions: z.array(z.string()) }) },
+      structuredOutput: {
+        schema: z.object({ subquestions: z.array(z.string()) }),
+      },
     });
     return res.object;
   },
@@ -123,4 +130,4 @@ Mantenha seu próprio loop se o loop em si é o produto. Gates de avaliação, s
 
 A reescrita bateu meu runtime? Não. Bateu o que a maioria dos times escreveria no lugar do meu runtime? Claramente. Essa é a barra honesta para um framework, e a Mastra a clears.
 
-*Se você está escolhendo entre um framework e um loop feito à mão e quer comparar cicatrizes, minha caixa de entrada está aberta.*
+_Se você está escolhendo entre um framework e um loop feito à mão e quer comparar cicatrizes, minha caixa de entrada está aberta._

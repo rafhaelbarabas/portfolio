@@ -77,7 +77,8 @@ export function initScrollFx(root: ParentNode = document): () => void {
     // hiding an on-screen section just to animate it back reads as a
     // layout jump (reported by an actual visitor, 2026-08-17).
     const rect = container.getBoundingClientRect();
-    const alreadyVisible = rect.top < window.innerHeight * 0.88 && rect.bottom > 0;
+    const alreadyVisible =
+      rect.top < window.innerHeight * 0.88 && rect.bottom > 0;
     if (alreadyVisible) {
       setFinalState(revealTargets(container));
       return;

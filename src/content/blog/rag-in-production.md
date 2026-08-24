@@ -51,9 +51,9 @@ export async function retrieveForTurn(input: TurnInput): Promise<MemoryBlock> {
   ]);
 
   return {
-    relations: relations.edges.map(formatRelation),   // "agent 7 opposes the tariff"
-    episodes: episodes.map(formatEpisode),            // "at tick 1,203 you replied..."
-    tokenBudget: MEMORY_TOKEN_BUDGET,                 // hard cap, enforced downstream
+    relations: relations.edges.map(formatRelation), // "agent 7 opposes the tariff"
+    episodes: episodes.map(formatEpisode), // "at tick 1,203 you replied..."
+    tokenBudget: MEMORY_TOKEN_BUDGET, // hard cap, enforced downstream
   };
 }
 ```

@@ -139,7 +139,9 @@ describe("book_intro", () => {
   });
 
   it("relays valid briefs to formsubmit", async () => {
-    const fetchSpy = vi.fn().mockResolvedValue(new Response("ok", { status: 200 }));
+    const fetchSpy = vi
+      .fn()
+      .mockResolvedValue(new Response("ok", { status: 200 }));
     vi.stubGlobal("fetch", fetchSpy);
     const body = await (
       await rpc("tools/call", {
@@ -155,7 +157,10 @@ describe("book_intro", () => {
   });
 
   it("reports relay failures instead of throwing", async () => {
-    vi.stubGlobal("fetch", vi.fn().mockResolvedValue(new Response("x", { status: 500 })));
+    vi.stubGlobal(
+      "fetch",
+      vi.fn().mockResolvedValue(new Response("x", { status: 500 })),
+    );
     const body = await (
       await rpc("tools/call", {
         name: "book_intro",

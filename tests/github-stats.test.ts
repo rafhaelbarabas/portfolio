@@ -2,18 +2,26 @@ import { describe, expect, it, vi } from "vitest";
 import { fetchGithubCommitStats } from "../src/lib/github-stats";
 
 const response = (total_count: number, withItem = false) =>
-  new Response(JSON.stringify({
-    total_count,
-    items: withItem ? [{
-      sha: "1c8a95ec399c5069ff802f08996d648a544b0743",
-      html_url: "https://github.com/rubenmarcus/csbrasil/commit/1c8a95e",
-      repository: { full_name: "rubenmarcus/csbrasil" },
-      commit: {
-        message: "fix: ship the footer\n\nDetails",
-        author: { date: "2026-08-11T02:16:30+01:00" },
-      },
-    }] : [],
-  }), { status: 200 });
+  new Response(
+    JSON.stringify({
+      total_count,
+      items: withItem
+        ? [
+            {
+              sha: "1c8a95ec399c5069ff802f08996d648a544b0743",
+              html_url:
+                "https://github.com/rubenmarcus/csbrasil/commit/1c8a95e",
+              repository: { full_name: "rubenmarcus/csbrasil" },
+              commit: {
+                message: "fix: ship the footer\n\nDetails",
+                author: { date: "2026-08-11T02:16:30+01:00" },
+              },
+            },
+          ]
+        : [],
+    }),
+    { status: 200 },
+  );
 
 describe("GitHub public commit stats", () => {
   it("counts all-time, month and today using Lisbon dates", async () => {
@@ -40,8 +48,15 @@ describe("GitHub public commit stats", () => {
   });
 
   it("fails soft when GitHub is unavailable", async () => {
-    const fetcher = vi.fn(async () => new Response(null, { status: 403 })) as unknown as typeof fetch;
+    const fetcher = vi.fn(
+      async () => new Response(null, { status: 403 }),
+    ) as unknown as typeof fetch;
     const stats = await fetchGithubCommitStats({ fetcher });
-    expect(stats).toMatchObject({ total: null, month: null, today: null, latest: null });
+    expect(stats).toMatchObject({
+      total: null,
+      month: null,
+      today: null,
+      latest: null,
+    });
   });
 });

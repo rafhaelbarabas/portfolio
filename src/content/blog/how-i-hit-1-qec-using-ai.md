@@ -106,4 +106,4 @@ CMA-ES via the cmaes package for hyperparameter tuning.
 
 One engineer, one laptop, zero GPUs, forty-odd submissions over one week.
 
-*Ruben Marcus. AI Fullstack Engineer. Builder of Autoresearcher, Ralph Starter and AEO.js.*
+_Ruben Marcus. AI Fullstack Engineer. Builder of Autoresearcher, Ralph Starter and AEO.js._

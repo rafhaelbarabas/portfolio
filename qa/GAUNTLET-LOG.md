@@ -31,20 +31,20 @@ Mean: **29.4 / 30**. Console note: index shots show GitHub API 403s
 (unauthenticated rate limit from repeated QA runs — environmental, the HUD
 degrades gracefully to placeholder values).
 
-| Shot | Score | Worst items | Notes |
-|------|-------|-------------|-------|
-| index-1600x1000 | 29 | console(1) | poster contour + character + HUD settle cleanly; 403s |
-| index-390x844 | 29 | console(1) | true-390 layout after CDP fix; hamburger, poster, lede all clean |
-| portfolio-1600x1000 | 30 | — | ASCII title + era cards aligned, generous rhythm |
-| portfolio-390x844 | 30 | — | 2-col era grid wraps well |
-| ai-1600x1000 | 30 | — | |
-| ai-390x844 | 30 | — | |
-| blog-1600x1000 | 30 | — | |
-| blog-390x844 | 30 | — | |
-| about-1600x1000 | 30 | — | |
-| about-390x844 | 30 | — | earlier "overflow" was the 490px harness artifact, not the site |
-| contact-1600x1000 | 28 | HUD/legibility(1), cards(1) | email value crosses the primary card border |
-| contact-390x844 | 27 | cards(0), mobile(1), legibility(1) | email clipped mid-string ("@gmai…") in primary card |
+| Shot                | Score | Worst items                        | Notes                                                            |
+| ------------------- | ----- | ---------------------------------- | ---------------------------------------------------------------- |
+| index-1600x1000     | 29    | console(1)                         | poster contour + character + HUD settle cleanly; 403s            |
+| index-390x844       | 29    | console(1)                         | true-390 layout after CDP fix; hamburger, poster, lede all clean |
+| portfolio-1600x1000 | 30    | —                                  | ASCII title + era cards aligned, generous rhythm                 |
+| portfolio-390x844   | 30    | —                                  | 2-col era grid wraps well                                        |
+| ai-1600x1000        | 30    | —                                  |                                                                  |
+| ai-390x844          | 30    | —                                  |                                                                  |
+| blog-1600x1000      | 30    | —                                  |                                                                  |
+| blog-390x844        | 30    | —                                  |                                                                  |
+| about-1600x1000     | 30    | —                                  |                                                                  |
+| about-390x844       | 30    | —                                  | earlier "overflow" was the 490px harness artifact, not the site  |
+| contact-1600x1000   | 28    | HUD/legibility(1), cards(1)        | email value crosses the primary card border                      |
+| contact-390x844     | 27    | cards(0), mobile(1), legibility(1) | email clipped mid-string ("@gmai…") in primary card              |
 
 ### Cycle 1 fixes
 
@@ -58,20 +58,20 @@ degrades gracefully to placeholder values).
 
 Mean: **29.75 / 30**. Same environmental GitHub 403s on index.
 
-| Shot | Score | Delta vs C1 | Notes |
-|------|-------|-------------|-------|
-| index-1600x1000 | 29 | = | 403s only |
-| index-390x844 | 29 | = | 403s only |
-| portfolio-1600x1000 | 30 | = | |
-| portfolio-390x844 | 30 | = | |
-| ai-1600x1000 | 30 | = | |
-| ai-390x844 | 30 | = | |
-| blog-1600x1000 | 30 | = | |
-| blog-390x844 | 30 | = | |
-| about-1600x1000 | 30 | = | |
-| about-390x844 | 30 | = | |
-| contact-1600x1000 | 30 | +2 | email fully inside the card |
-| contact-390x844 | 29 | +2 | email contained but wraps an orphan "m" — needs a smaller floor |
+| Shot                | Score | Delta vs C1 | Notes                                                           |
+| ------------------- | ----- | ----------- | --------------------------------------------------------------- |
+| index-1600x1000     | 29    | =           | 403s only                                                       |
+| index-390x844       | 29    | =           | 403s only                                                       |
+| portfolio-1600x1000 | 30    | =           |                                                                 |
+| portfolio-390x844   | 30    | =           |                                                                 |
+| ai-1600x1000        | 30    | =           |                                                                 |
+| ai-390x844          | 30    | =           |                                                                 |
+| blog-1600x1000      | 30    | =           |                                                                 |
+| blog-390x844        | 30    | =           |                                                                 |
+| about-1600x1000     | 30    | =           |                                                                 |
+| about-390x844       | 30    | =           |                                                                 |
+| contact-1600x1000   | 30    | +2          | email fully inside the card                                     |
+| contact-390x844     | 29    | +2          | email contained but wraps an orphan "m" — needs a smaller floor |
 
 ### Cycle 2 fixes
 
@@ -82,20 +82,20 @@ Mean: **29.75 / 30**. Same environmental GitHub 403s on index.
 
 Mean: **29.83 / 30**. Same environmental GitHub 403s on index.
 
-| Shot | Score | Delta vs C2 | Notes |
-|------|-------|-------------|-------|
-| index-1600x1000 | 29 | = | 403s only |
-| index-390x844 | 29 | = | 403s only |
-| portfolio-1600x1000 | 30 | = | spot-checked, no regression |
-| portfolio-390x844 | 30 | = | spot-checked, no regression |
-| ai-1600x1000 | 30 | = | spot-checked, no regression |
-| ai-390x844 | 30 | = | |
-| blog-1600x1000 | 30 | = | |
-| blog-390x844 | 30 | = | |
-| about-1600x1000 | 30 | = | |
-| about-390x844 | 30 | = | |
-| contact-1600x1000 | 30 | = | |
-| contact-390x844 | 30 | +1 | email on one line inside the card |
+| Shot                | Score | Delta vs C2 | Notes                             |
+| ------------------- | ----- | ----------- | --------------------------------- |
+| index-1600x1000     | 29    | =           | 403s only                         |
+| index-390x844       | 29    | =           | 403s only                         |
+| portfolio-1600x1000 | 30    | =           | spot-checked, no regression       |
+| portfolio-390x844   | 30    | =           | spot-checked, no regression       |
+| ai-1600x1000        | 30    | =           | spot-checked, no regression       |
+| ai-390x844          | 30    | =           |                                   |
+| blog-1600x1000      | 30    | =           |                                   |
+| blog-390x844        | 30    | =           |                                   |
+| about-1600x1000     | 30    | =           |                                   |
+| about-390x844       | 30    | =           |                                   |
+| contact-1600x1000   | 30    | =           |                                   |
+| contact-390x844     | 30    | +1          | email on one line inside the card |
 
 ### Cycle 3 verdict
 
@@ -108,13 +108,13 @@ Spot cycle after the /agents rework (card removals, AI Framework rename,
 logo covers, article deep-links) and the global AudioPlayer deck. 8 shots,
 0 console errors — the earlier GitHub 403s did not recur.
 
-| Shot | Result | Notes |
-|------|--------|-------|
-| index both viewports | clean | radio deck settles bottom-right, no overlap issues |
-| agents-1600x1000 | clean | hero + AI Framework card + logo cover render correctly |
-| agents-390x844 | clean | hamburger, lede wrap, deck floats as designed |
-| blog both viewports | clean | |
-| pt-agents both viewports | clean | PT mirror matches EN structure |
+| Shot                     | Result | Notes                                                  |
+| ------------------------ | ------ | ------------------------------------------------------ |
+| index both viewports     | clean  | radio deck settles bottom-right, no overlap issues     |
+| agents-1600x1000         | clean  | hero + AI Framework card + logo cover render correctly |
+| agents-390x844           | clean  | hamburger, lede wrap, deck floats as designed          |
+| blog both viewports      | clean  |                                                        |
+| pt-agents both viewports | clean  | PT mirror matches EN structure                         |
 
 ## Remaining known issues (honest list)
 

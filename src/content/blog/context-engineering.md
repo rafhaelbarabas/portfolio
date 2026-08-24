@@ -149,8 +149,7 @@ What comes back from a tool matters as much as what goes out. The result contrac
 
 ```ts
 export type BitteToolResult<TResult = unknown> =
-  | { data: TResult; error?: never }
-  | { data?: never; error: string };
+  { data: TResult; error?: never } | { data?: never; error: string };
 ```
 
 A tool either produced data or produced a readable error string, never both, never neither. The error string went straight into the context, which meant the model could read "HTTP error during tool execution: 500" and recover or report, instead of pattern-matching on an empty body.

@@ -7,7 +7,7 @@ tags: ["ai", "llm", "agents", "research", "openrouter"]
 cover: "/art/blog/llm-cross-pollination.png"
 ---
 
-I run a research pipeline where several frontier models, from *different* providers, routed through OpenRouter, iteratively generate, critique, and merge each other's work. Nobody shares a vector store. Nobody shares memory. The only thing that ever crosses the boundary between models is the previous phase's text, pasted into the next prompt.
+I run a research pipeline where several frontier models, from _different_ providers, routed through OpenRouter, iteratively generate, critique, and merge each other's work. Nobody shares a vector store. Nobody shares memory. The only thing that ever crosses the boundary between models is the previous phase's text, pasted into the next prompt.
 
 That constraint sounds like a limitation. It is the design. What I accidentally built is peer review, compiled into prompt choreography. This post is how it works and why the specific choices matter.
 
@@ -27,7 +27,7 @@ This phase exists because I kept noticing that output quality tracked prompt qua
 
 Three to four models, each from a different provider, research the frozen prompt independently. Each runs with its own timeout and per-token cost accounting, so a slow or verbose model degrades gracefully instead of blocking the pipeline or eating the budget.
 
-The provider diversity is not a hedge against one API being down. It is decorrelation. Models from the same provider share training data, alignment recipes, and stylistic tics, so their errors are correlated and their agreement means little. Models from different providers fail in different directions, which makes their *agreement* informative and their *disagreement* diagnostic. This is the same reason you do not run a clinical trial with four copies of the same researcher.
+The provider diversity is not a hedge against one API being down. It is decorrelation. Models from the same provider share training data, alignment recipes, and stylistic tics, so their errors are correlated and their agreement means little. Models from different providers fail in different directions, which makes their _agreement_ informative and their _disagreement_ diagnostic. This is the same reason you do not run a clinical trial with four copies of the same researcher.
 
 ## Phase 1: reciprocal adversarial review
 
@@ -35,11 +35,11 @@ This is the phase that earns the title of the post. The models are paired up, an
 
 The merge step is where self-review gets structurally excluded. A model cannot just wave away criticism, because the criticism is already written down and the merge prompt requires it to address each point. It can rebut, but it has to rebut on the record.
 
-Then a judge, from a *third* provider, one that neither writer belongs to, scores the merged result as structured JSON across completeness, accuracy, balance, and actionability. The judge has no dog in the fight. It never wrote a word of the research, so it has nothing to defend. That turns out to matter as much for machines as it does for tenure committees.
+Then a judge, from a _third_ provider, one that neither writer belongs to, scores the merged result as structured JSON across completeness, accuracy, balance, and actionability. The judge has no dog in the fight. It never wrote a word of the research, so it has nothing to defend. That turns out to matter as much for machines as it does for tenure committees.
 
 ## Phase 2: the super-merge, with order shuffling
 
-Up to three fresh models each independently merge all the phase-1 documents into one synthesis. Here is the detail I am proudest of, because it is cheap and weird: each merging model receives the documents in a *different order*.
+Up to three fresh models each independently merge all the phase-1 documents into one synthesis. Here is the detail I am proudest of, because it is cheap and weird: each merging model receives the documents in a _different order_.
 
 Language models have primacy bias. The document they read first anchors the merge. If every merger sees the documents in the same order, the "consensus" of the mergers is partly an artifact of document one. Shuffle the order and whatever survives across all three merges is much more likely to be signal than sequence.
 

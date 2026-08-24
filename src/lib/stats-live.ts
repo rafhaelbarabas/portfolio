@@ -44,13 +44,17 @@ export async function fetchGithubStars(): Promise<number | null> {
 }
 
 /** Total all-time npm downloads across the given packages. */
-export async function fetchNpmDownloads(packages: string[]): Promise<number | null> {
+export async function fetchNpmDownloads(
+  packages: string[],
+): Promise<number | null> {
   try {
     const results = await Promise.allSettled(
       packages.map((p) =>
         fetch(
           `https://api.npmjs.org/downloads/range/2015-01-01:2030-01-01/${encodeURIComponent(p)}`,
-        ).then((r) => (r.ok ? r.json() : Promise.reject(new Error(String(r.status))))),
+        ).then((r) =>
+          r.ok ? r.json() : Promise.reject(new Error(String(r.status))),
+        ),
       ),
     );
     let total = 0;

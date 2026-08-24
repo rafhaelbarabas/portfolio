@@ -87,14 +87,14 @@ Model routing works better as a role table than as an abstract election for "bes
 
 My table changes with the project and availability, but the criteria are stable:
 
-| Role | What I look for |
-|---|---|
-| research scout | long context, search, good synthesis, and verifiable links |
-| spec writer | decomposition, constraints, and edge cases |
-| builder | reliable tool use and precise repository edits |
-| visual critic | screenshot reading and concrete defect reports |
+| Role              | What I look for                                                 |
+| ----------------- | --------------------------------------------------------------- |
+| research scout    | long context, search, good synthesis, and verifiable links      |
+| spec writer       | decomposition, constraints, and edge cases                      |
+| builder           | reliable tool use and precise repository edits                  |
+| visual critic     | screenshot reading and concrete defect reports                  |
 | regression hunter | patience to compare before and after without inventing findings |
-| reviewer | diff, risk, and test coverage analysis |
+| reviewer          | diff, risk, and test coverage analysis                          |
 
 Claude may own spec and build on one task. Codex may review and resolve issues in sequence. Kimi may research references. GLM may execute well-scoped work at volume. This is not a law about the models. It is an operational choice I can replace without redesigning the pipeline.
 

@@ -94,6 +94,7 @@ There is no config file for validation commands. ralph-starter detects them. It 
 
 ```md
 <!-- AGENTS.md -->
+
 - **Test**: `pnpm test`
 - **Lint**: `pnpm lint`
 - **Build**: `pnpm build`

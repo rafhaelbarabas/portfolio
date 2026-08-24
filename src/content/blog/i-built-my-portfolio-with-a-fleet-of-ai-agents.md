@@ -110,4 +110,4 @@ The result is this site: a terminal-green me, typing, dissolving into wireframe 
 
 If you're hiring someone to build AI-powered product end-to-end, or you just want to argue about shader pipelines, I'm around.
 
-*P.S. The gauntlet rubric and the text gate are both in the repo. Steal them.*
+_P.S. The gauntlet rubric and the text gate are both in the repo. Steal them._

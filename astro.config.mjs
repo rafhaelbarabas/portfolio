@@ -4,7 +4,10 @@ import tailwind from "@astrojs/tailwind";
 import sitemap from "@astrojs/sitemap";
 import vercel from "@astrojs/vercel";
 import { aeoAstroIntegration } from "aeo.js/astro";
-import { getBlogPathsFromPathname, PT_BLOG_REDIRECTS } from "./src/lib/blog-routes.ts";
+import {
+  getBlogPathsFromPathname,
+  PT_BLOG_REDIRECTS,
+} from "./src/lib/blog-routes.ts";
 import { canonicalPath } from "./src/lib/url-policy.ts";
 import { existsSync, readdirSync, unlinkSync } from "node:fs";
 import { join } from "node:path";
@@ -156,8 +159,16 @@ export default defineConfig({
         const paths = getBlogPathsFromPathname(url.pathname);
         const links = paths
           ? [
-              { lang: "en-US", hreflang: "en", url: new URL(paths.en, url.origin).href },
-              { lang: "pt-BR", hreflang: "pt-BR", url: new URL(paths.pt, url.origin).href },
+              {
+                lang: "en-US",
+                hreflang: "en",
+                url: new URL(paths.en, url.origin).href,
+              },
+              {
+                lang: "pt-BR",
+                hreflang: "pt-BR",
+                url: new URL(paths.pt, url.origin).href,
+              },
             ]
           : item.links?.map((link) => ({ ...link, url: normalize(link.url) }));
         return {

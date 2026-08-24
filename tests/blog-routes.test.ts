@@ -23,16 +23,22 @@ describe("localized blog routes", () => {
 
   it("resolves either locale URL back to the same pair", () => {
     expect(getBlogPathsFromPathname(`/blog/${key}`)).toEqual(getBlogPaths(key));
-    expect(getBlogPathsFromPathname(`/pt/blog/${ptSlug}/`)).toEqual(getBlogPaths(key));
+    expect(getBlogPathsFromPathname(`/pt/blog/${ptSlug}/`)).toEqual(
+      getBlogPaths(key),
+    );
   });
 
   it("keeps an old-to-new mapping for every localized slug", () => {
-    expect(Object.keys(PT_BLOG_REDIRECTS)).toHaveLength(Object.keys(PT_BLOG_SLUGS).length);
+    expect(Object.keys(PT_BLOG_REDIRECTS)).toHaveLength(
+      Object.keys(PT_BLOG_SLUGS).length,
+    );
     expect(PT_BLOG_REDIRECTS[`/pt/blog/${key}`]).toBe(`/pt/blog/${ptSlug}`);
   });
 
   it("requires a unique localized slug for every Portuguese article", () => {
-    const articleIds = readdirSync(new URL("../src/content/blog-pt", import.meta.url))
+    const articleIds = readdirSync(
+      new URL("../src/content/blog-pt", import.meta.url),
+    )
       .filter((filename) => filename.endsWith(".md"))
       .map((filename) => filename.replace(/\.md$/, ""));
     const localizedSlugs = Object.values(PT_BLOG_SLUGS);

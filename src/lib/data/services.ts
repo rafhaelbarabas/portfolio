@@ -28,7 +28,10 @@ export const serviceOffers: ServiceOffer[] = [
       en: "For founders and engineering teams shipping agentic workflows, RAG, internal tools, or AI-native products.",
       pt: "Para founders e times de engenharia entregando workflows agênticos, RAG, ferramentas internas ou produtos AI-native.",
     },
-    duration: { en: "Typical engagement: 3–8 weeks", pt: "Engajamento típico: 3–8 semanas" },
+    duration: {
+      en: "Typical engagement: 3–8 weeks",
+      pt: "Engajamento típico: 3–8 semanas",
+    },
     tags: ["agents", "RAG", "evals"],
     deliverables: {
       en: [
@@ -72,7 +75,10 @@ export const serviceOffers: ServiceOffer[] = [
       en: "For product teams that need a premium interface, an interactive experience, or a reliable React, Next.js, Svelte, or Astro delivery system.",
       pt: "Para times de produto que precisam de interface premium, experiência interativa ou entrega confiável em React, Next.js, Svelte ou Astro.",
     },
-    duration: { en: "Typical engagement: 2–6 weeks", pt: "Engajamento típico: 2–6 semanas" },
+    duration: {
+      en: "Typical engagement: 2–6 weeks",
+      pt: "Engajamento típico: 2–6 semanas",
+    },
     tags: ["React / Svelte", "Three.js", "visual QA"],
     deliverables: {
       en: [
@@ -104,7 +110,10 @@ export const serviceOffers: ServiceOffer[] = [
   {
     slug: "aeo",
     icon: "eye",
-    name: { en: "AEO audit & implementation", pt: "Auditoria & implementação de AEO" },
+    name: {
+      en: "AEO audit & implementation",
+      pt: "Auditoria & implementação de AEO",
+    },
     summary: {
       en: "Make a site legible, trustworthy, and citable to answer engines—from crawl policy and entities to content, evidence, and machine-readable delivery.",
       pt: "Torne um site legível, confiável e citável por answer engines — de políticas de crawl e entidades a conteúdo, evidência e entrega machine-readable.",
@@ -113,7 +122,10 @@ export const serviceOffers: ServiceOffer[] = [
       en: "For companies whose expertise should appear in AI answers, but whose current site is difficult for crawlers and models to interpret or cite.",
       pt: "Para empresas cuja expertise deveria aparecer em respostas de IA, mas cujo site ainda é difícil para crawlers e modelos interpretarem ou citarem.",
     },
-    duration: { en: "Typical engagement: 2–4 weeks", pt: "Engajamento típico: 2–4 semanas" },
+    duration: {
+      en: "Typical engagement: 2–4 weeks",
+      pt: "Engajamento típico: 2–4 semanas",
+    },
     tags: ["entities", "structured data", "citations"],
     deliverables: {
       en: [
@@ -132,7 +144,10 @@ export const serviceOffers: ServiceOffer[] = [
     proof: {
       en: [
         { value: "AEO.js", label: "framework and site export tooling" },
-        { value: "AEO Checker", label: "scanner for actionable site diagnostics" },
+        {
+          value: "AEO Checker",
+          label: "scanner for actionable site diagnostics",
+        },
         { value: "EN/PT", label: "canonical bilingual publishing system" },
       ],
       pt: [
@@ -144,4 +159,5 @@ export const serviceOffers: ServiceOffer[] = [
   },
 ];
 
-export const getService = (slug: string) => serviceOffers.find((service) => service.slug === slug);
+export const getService = (slug: string) =>
+  serviceOffers.find((service) => service.slug === slug);

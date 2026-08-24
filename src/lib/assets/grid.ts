@@ -25,15 +25,21 @@ export function parseGrid(def: IconDefinition): ParsedGrid {
   const cols = def.grid[0]?.length ?? 0;
   if (import.meta.env.DEV) {
     if (rows === 0 || cols === 0 || rows > MAX_DIM || cols > MAX_DIM) {
-      throw new Error(`[assets] "${def.label}": grid must be 1–${MAX_DIM} rows/cols`);
+      throw new Error(
+        `[assets] "${def.label}": grid must be 1–${MAX_DIM} rows/cols`,
+      );
     }
     for (const row of def.grid) {
       if (row.length !== cols) {
-        throw new Error(`[assets] "${def.label}": ragged grid (expected ${cols} cols, got ${row.length})`);
+        throw new Error(
+          `[assets] "${def.label}": ragged grid (expected ${cols} cols, got ${row.length})`,
+        );
       }
       for (const ch of row) {
         if (!(ch in HEIGHT_BY_CHAR)) {
-          throw new Error(`[assets] "${def.label}": unknown char "${ch}" (use · ░ ▒ ▓ █)`);
+          throw new Error(
+            `[assets] "${def.label}": unknown char "${ch}" (use · ░ ▒ ▓ █)`,
+          );
         }
       }
     }

@@ -61,7 +61,7 @@ E aqui está o algoritmo de seleção inteiro, literalmente:
 ```js
 // src/run-loop.js
 function parseMetric(output, metricRegex) {
-  const regex = new RegExp(metricRegex, 'm');
+  const regex = new RegExp(metricRegex, "m");
   const match = output.match(regex);
   if (!match || !match[1]) return null;
   const metric = Number(match[1]);
@@ -70,7 +70,7 @@ function parseMetric(output, metricRegex) {
 
 function isBetter(metric, best, direction) {
   if (best == null) return true;
-  return direction === 'min' ? metric < best : metric > best;
+  return direction === "min" ? metric < best : metric > best;
 }
 ```
 
@@ -146,4 +146,4 @@ O resultado de 2.642 erros por milhão que chegou ao #1 sobreviveu à versão ma
 
 O Autoresearcher é open source em [autoresearcher.org](https://autoresearcher.org). Os agentes vão continuar ficando mais inteligentes por conta própria. A engenharia interessante está em tudo ao redor deles que os mantém honestos, e a maior parte dessa engenharia é decidir o que não construir.
 
-*Se você está construindo infraestrutura de avaliação ou orquestração de agentes e quer comparar cicatrizes, minha caixa de entrada está aberta.*
+_Se você está construindo infraestrutura de avaliação ou orquestração de agentes e quer comparar cicatrizes, minha caixa de entrada está aberta._

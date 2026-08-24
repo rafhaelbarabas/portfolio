@@ -83,7 +83,8 @@ const latestOf = (response: SearchResponse | null): PublicCommit | null => {
   const sha = item?.sha;
   const url = item?.html_url;
   const message = item?.commit?.message;
-  const authoredAt = item?.commit?.author?.date ?? item?.commit?.committer?.date;
+  const authoredAt =
+    item?.commit?.author?.date ?? item?.commit?.committer?.date;
 
   if (
     typeof repository !== "string" ||
@@ -92,7 +93,8 @@ const latestOf = (response: SearchResponse | null): PublicCommit | null => {
     !url.startsWith("https://github.com/") ||
     typeof message !== "string" ||
     typeof authoredAt !== "string"
-  ) return null;
+  )
+    return null;
 
   return {
     repository,

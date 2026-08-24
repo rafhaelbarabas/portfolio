@@ -206,6 +206,7 @@ O que mudou para o negócio: o site foi de "invisível para answer engines" para
 ## Como medir um antes e depois
 
 Atribuição em AEO é ruim. Não vou fingir o contrário. Você não consegue marcar uma resposta do ChatGPT com UTM. Então meça o que você controla, em um loop:
+
 1. Rode um baseline: `npx aeo.js check yoursite.com`, ou o mesmo scan no navegador em check.aeojs.org. Tire um screenshot do resultado.
 2. Conserte uma camada da ordem acima. Uma, não quatro.
 3. Faça deploy, escaneie de novo, compare.
@@ -225,4 +226,4 @@ O que ele faz: remove as razões mecânicas por que uma answer engine não conse
 
 Conserte o encanamento primeiro. É a única parte que é grátis.
 
-*O aeo.js é open source. O scanner é grátis em check.aeojs.org. Se o seu score te surpreende, minha inbox está aberta.*
+_O aeo.js é open source. O scanner é grátis em check.aeojs.org. Se o seu score te surpreende, minha inbox está aberta._

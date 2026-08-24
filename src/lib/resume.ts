@@ -4,7 +4,12 @@
  * lives at /cv.pdf.
  */
 
-import { AEO_TOTAL_SCANS, CALENDLY_URL, CAREER_YEARS, formatFact } from "./site-facts";
+import {
+  AEO_TOTAL_SCANS,
+  CALENDLY_URL,
+  CAREER_YEARS,
+  formatFact,
+} from "./site-facts";
 import { serviceOffers } from "./data/services";
 
 export const EMAIL = "ruben@rubenmarcus.dev";
@@ -15,8 +20,7 @@ export const RESUME = {
   role: "Senior AI Fullstack Engineer",
   base: "Lisbon, Portugal — remote worldwide",
   yearsExperience: CAREER_YEARS,
-  summary:
-    `Senior AI Fullstack Engineer building AI-native products, agent tooling, and premium web experiences. ${CAREER_YEARS} years across AI dev tools, web3, fintech, and e-commerce: 4+ years deep in web3/crypto, 2+ years building AI developer tools. Built 10+ AI agents for DeFi protocols across Solana, EVM, SUI, NEAR, and Cardano.`,
+  summary: `Senior AI Fullstack Engineer building AI-native products, agent tooling, and premium web experiences. ${CAREER_YEARS} years across AI dev tools, web3, fintech, and e-commerce: 4+ years deep in web3/crypto, 2+ years building AI developer tools. Built 10+ AI agents for DeFi protocols across Solana, EVM, SUI, NEAR, and Cardano.`,
   proof: [
     "#1 on ECDSA.fail — multi-agent research harness, 9 LLM roles across 7+ providers",
     "#1 on Optimization Arena QEC decoder leaderboard (2,642 EPM)",
@@ -93,16 +97,56 @@ export const RESUME = {
   ],
   skills: {
     languages: ["TypeScript", "JavaScript", "Rust", "PHP", "C#"],
-    frameworks: ["React", "Next.js", "Svelte 5", "Astro", "Vue.js", "Angular", "Node", "Bun"],
-    aiAgents: ["Claude SDK", "OpenAI SDK", "AI SDK", "MCP", "Ralph loops", "Custom agent tooling"],
-    web3: ["EVM", "NEAR", "SUI", "Solana", "Cardano", "Wagmi", "Viem", "Solana Kit", "near-api-js", "Suiet", "ERC-4337"],
+    frameworks: [
+      "React",
+      "Next.js",
+      "Svelte 5",
+      "Astro",
+      "Vue.js",
+      "Angular",
+      "Node",
+      "Bun",
+    ],
+    aiAgents: [
+      "Claude SDK",
+      "OpenAI SDK",
+      "AI SDK",
+      "MCP",
+      "Ralph loops",
+      "Custom agent tooling",
+    ],
+    web3: [
+      "EVM",
+      "NEAR",
+      "SUI",
+      "Solana",
+      "Cardano",
+      "Wagmi",
+      "Viem",
+      "Solana Kit",
+      "near-api-js",
+      "Suiet",
+      "ERC-4337",
+    ],
     dataApi: ["GraphQL", "React Query", "Strapi", "Socket.io", "tRPC"],
-    infraDevops: ["AWS", "GCP", "Vercel", "Docker", "Terraform", "GitHub Actions", "Turborepo"],
+    infraDevops: [
+      "AWS",
+      "GCP",
+      "Vercel",
+      "Docker",
+      "Terraform",
+      "GitHub Actions",
+      "Turborepo",
+    ],
     testing: ["Jest", "Playwright", "Cypress", "RTL"],
     design: ["Figma", "Storybook", "Tailwind", "Three.js", "GLSL shaders"],
   },
   education: [
-    { school: "FIAP", program: "Information Systems (Associate)", period: "Jan 2020 → Jan 2022" },
+    {
+      school: "FIAP",
+      program: "Information Systems (Associate)",
+      period: "Jan 2020 → Jan 2022",
+    },
   ],
   openSource: {
     "ralph-starter": "https://ralphstarter.ai",
@@ -122,7 +166,8 @@ export const RESUME = {
 };
 
 export const SERVICES = serviceOffers.map(
-  (service) => `${service.name.en} — ${service.summary.en} (${service.duration.en}) · https://www.rubenmarcus.dev/services/${service.slug}`,
+  (service) =>
+    `${service.name.en} — ${service.summary.en} (${service.duration.en}) · https://www.rubenmarcus.dev/services/${service.slug}`,
 );
 
 export const AVAILABILITY =

@@ -52,4 +52,4 @@ Um loop de launchd de 30 minutos rodava a fábrica inteira: discover → validat
 
 O resultado: #1 no ECDSA.fail, e uma publicação de pesquisa em que sou contribuidor. O harness é a parte da qual me orgulho. A matemática do circuito pertence a uma longa linhagem de pesquisadores; a disciplina que a produziu de forma confiável é minha.
 
-*Se você está trabalhando com orquestração de agentes, infraestrutura de avaliação, ou só quer discutir design fail-closed, minha caixa de entrada está aberta.*
+_Se você está trabalhando com orquestração de agentes, infraestrutura de avaliação, ou só quer discutir design fail-closed, minha caixa de entrada está aberta._

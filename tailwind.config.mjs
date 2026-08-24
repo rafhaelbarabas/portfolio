@@ -39,10 +39,22 @@ export default {
         frame: "1240px",
       },
       fontSize: {
-        mega: ["clamp(4rem, 12vw, 11rem)", { lineHeight: "0.92", letterSpacing: "-0.02em" }],
-        display: ["clamp(3rem, 7vw, 6rem)", { lineHeight: "0.98", letterSpacing: "-0.015em" }],
-        h1: ["clamp(2.25rem, 5vw, 4rem)", { lineHeight: "1.03", letterSpacing: "-0.01em" }],
-        h2: ["clamp(1.75rem, 3.5vw, 2.75rem)", { lineHeight: "1.08", letterSpacing: "-0.005em" }],
+        mega: [
+          "clamp(4rem, 12vw, 11rem)",
+          { lineHeight: "0.92", letterSpacing: "-0.02em" },
+        ],
+        display: [
+          "clamp(3rem, 7vw, 6rem)",
+          { lineHeight: "0.98", letterSpacing: "-0.015em" },
+        ],
+        h1: [
+          "clamp(2.25rem, 5vw, 4rem)",
+          { lineHeight: "1.03", letterSpacing: "-0.01em" },
+        ],
+        h2: [
+          "clamp(1.75rem, 3.5vw, 2.75rem)",
+          { lineHeight: "1.08", letterSpacing: "-0.005em" },
+        ],
         h3: ["clamp(1.15rem, 1.5vw, 1.4rem)", { lineHeight: "1.3" }],
         body: ["1rem", { lineHeight: "1.65" }],
         small: ["0.85rem", { lineHeight: "1.55" }],

@@ -29,7 +29,8 @@ const agentSurface = (pathname: string): string | null => {
   return null;
 };
 
-const PAGE = /^\/(|pt)(\/(portfolio|ai|skills|lab|blog|about|contact|connect|agents)?)?\/?$/;
+const PAGE =
+  /^\/(|pt)(\/(portfolio|ai|skills|lab|blog|about|contact|connect|agents)?)?\/?$/;
 const TERMINAL = /curl|wget|httpie|libcurl/i;
 
 const json = (
@@ -54,12 +55,15 @@ const wellKnown = (pathname: string, origin: string): Response | null => {
           {
             anchor: `${origin}/api/mcp`,
             "service-desc": [
-              { href: `${origin}/openapi.json`, type: "application/openapi+json" },
+              {
+                href: `${origin}/openapi.json`,
+                type: "application/openapi+json",
+              },
             ],
-            "service-doc": [
-              { href: `${origin}/docs/api`, type: "text/html" },
+            "service-doc": [{ href: `${origin}/docs/api`, type: "text/html" }],
+            status: [
+              { href: `${origin}/api/health`, type: "application/json" },
             ],
-            status: [{ href: `${origin}/api/health`, type: "application/json" }],
           },
         ],
       },
@@ -69,7 +73,8 @@ const wellKnown = (pathname: string, origin: string): Response | null => {
 
   if (pathname === "/.well-known/mcp/server-card.json") {
     return json({
-      $schema: "https://static.modelcontextprotocol.io/schemas/mcp-server-card/v1.json",
+      $schema:
+        "https://static.modelcontextprotocol.io/schemas/mcp-server-card/v1.json",
       version: "1.0",
       protocolVersion: "2025-06-18",
       serverInfo: {
@@ -77,7 +82,8 @@ const wellKnown = (pathname: string, origin: string): Response | null => {
         title: "Ruben Marcus Portfolio",
         version: "1.0.0",
       },
-      description: "Public portfolio tools for resume, services, availability, and introductions.",
+      description:
+        "Public portfolio tools for resume, services, availability, and introductions.",
       iconUrl: `${origin}/favicon.svg`,
       documentationUrl: `${origin}/docs/api`,
       transport: { type: "streamable-http", endpoint: `${origin}/api/mcp` },
@@ -106,36 +112,44 @@ const wellKnown = (pathname: string, origin: string): Response | null => {
     pathname === "/.well-known/oauth-authorization-server" ||
     pathname === "/.well-known/openid-configuration"
   ) {
-    return json({
-      issuer: origin,
-      authorization_endpoint: `${origin}/oauth/authorize`,
-      token_endpoint: `${origin}/oauth/token`,
-      registration_endpoint: `${origin}/oauth/register`,
-      jwks_uri: `${origin}/oauth/jwks.json`,
-      response_types_supported: ["code"],
-      grant_types_supported: ["authorization_code"],
-      scopes_supported: ["portfolio:read"],
-      code_challenge_methods_supported: ["S256"],
-      token_endpoint_auth_methods_supported: ["none"],
-      agent_auth: {
-        skill_uri: `${origin}/auth.md`,
-        register_uri: `${origin}/oauth/register`,
-        identity_types_supported: ["anonymous"],
-        credential_types_supported: ["oauth2_bearer"],
+    return json(
+      {
+        issuer: origin,
+        authorization_endpoint: `${origin}/oauth/authorize`,
+        token_endpoint: `${origin}/oauth/token`,
+        registration_endpoint: `${origin}/oauth/register`,
+        jwks_uri: `${origin}/oauth/jwks.json`,
+        response_types_supported: ["code"],
+        grant_types_supported: ["authorization_code"],
+        scopes_supported: ["portfolio:read"],
+        code_challenge_methods_supported: ["S256"],
+        token_endpoint_auth_methods_supported: ["none"],
+        agent_auth: {
+          skill_uri: `${origin}/auth.md`,
+          register_uri: `${origin}/oauth/register`,
+          identity_types_supported: ["anonymous"],
+          credential_types_supported: ["oauth2_bearer"],
+        },
       },
-    }, "application/json", "no-store");
+      "application/json",
+      "no-store",
+    );
   }
   if (
     pathname === "/.well-known/oauth-protected-resource" ||
     pathname === "/.well-known/oauth-protected-resource/api/mcp"
   ) {
-    return json({
-      resource: `${origin}/api/mcp`,
-      resource_name: "Ruben Marcus Portfolio MCP",
-      authorization_servers: [origin],
-      scopes_supported: ["portfolio:read"],
-      bearer_methods_supported: ["header"],
-    }, "application/json", "no-store");
+    return json(
+      {
+        resource: `${origin}/api/mcp`,
+        resource_name: "Ruben Marcus Portfolio MCP",
+        authorization_servers: [origin],
+        scopes_supported: ["portfolio:read"],
+        bearer_methods_supported: ["header"],
+      },
+      "application/json",
+      "no-store",
+    );
   }
   return null;
 };
@@ -154,14 +168,18 @@ const HOME_LINKS = [
 const markdownAccepted = (accept: string) =>
   accept.split(",").some((entry) => {
     const [mediaType, ...parameters] = entry.trim().split(";");
-    const rejected = parameters.some((parameter) => /^\s*q=0(?:\.0*)?\s*$/i.test(parameter));
+    const rejected = parameters.some((parameter) =>
+      /^\s*q=0(?:\.0*)?\s*$/i.test(parameter),
+    );
     return mediaType.trim().toLowerCase() === "text/markdown" && !rejected;
   });
 
 const decodeEntities = (value: string) =>
   value
     .replace(/&#(\d+);/g, (_, code) => String.fromCodePoint(Number(code)))
-    .replace(/&#x([\da-f]+);/gi, (_, code) => String.fromCodePoint(Number.parseInt(code, 16)))
+    .replace(/&#x([\da-f]+);/gi, (_, code) =>
+      String.fromCodePoint(Number.parseInt(code, 16)),
+    )
     .replace(/&nbsp;/gi, " ")
     .replace(/&amp;/gi, "&")
     .replace(/&lt;/gi, "<")
@@ -177,11 +195,20 @@ const htmlToMarkdown = (html: string, source: URL) => {
     .replace(/<!--[\s\S]*?-->/g, "")
     .replace(/<(script|style|svg|canvas|template)[^>]*>[\s\S]*?<\/\1>/gi, "")
     .replace(/<img\b[^>]*alt=["']([^"']*)["'][^>]*>/gi, "![$1]")
-    .replace(/<a\b[^>]*href=["']([^"']+)["'][^>]*>([\s\S]*?)<\/a>/gi, "[$2]($1)")
-    .replace(/<h([1-6])[^>]*>([\s\S]*?)<\/h\1>/gi, (_, level, value) => `${"#".repeat(Number(level))} ${value}\n\n`)
+    .replace(
+      /<a\b[^>]*href=["']([^"']+)["'][^>]*>([\s\S]*?)<\/a>/gi,
+      "[$2]($1)",
+    )
+    .replace(
+      /<h([1-6])[^>]*>([\s\S]*?)<\/h\1>/gi,
+      (_, level, value) => `${"#".repeat(Number(level))} ${value}\n\n`,
+    )
     .replace(/<li[^>]*>([\s\S]*?)<\/li>/gi, "- $1\n")
     .replace(/<br\s*\/?\s*>/gi, "\n")
-    .replace(/<\/(p|div|section|article|header|footer|nav|ul|ol|dl|blockquote)>/gi, "\n\n")
+    .replace(
+      /<\/(p|div|section|article|header|footer|nav|ul|ol|dl|blockquote)>/gi,
+      "\n\n",
+    )
     .replace(/<[^>]+>/g, "")
     .replace(/[ \t]+\n/g, "\n")
     .replace(/\n{3,}/g, "\n\n")
@@ -205,8 +232,11 @@ export const onRequest = defineMiddleware(async (ctx, next) => {
       path: ctx.url.pathname,
       user_agent: ua.slice(0, 200) || null,
     });
-    const edge = (ctx.locals as { vercel?: { edge?: { waitUntil?: (p: Promise<unknown>) => void } } } | undefined)
-      ?.vercel?.edge;
+    const edge = (
+      ctx.locals as
+        | { vercel?: { edge?: { waitUntil?: (p: Promise<unknown>) => void } } }
+        | undefined
+    )?.vercel?.edge;
     if (edge?.waitUntil) edge.waitUntil(hit);
     else void hit;
   };
@@ -241,7 +271,10 @@ export const onRequest = defineMiddleware(async (ctx, next) => {
     const html = await response.text();
     headers.set("content-type", "text/markdown; charset=utf-8");
     headers.set("content-location", ctx.url.pathname);
-    headers.set("vary", [headers.get("vary"), "Accept"].filter(Boolean).join(", "));
+    headers.set(
+      "vary",
+      [headers.get("vary"), "Accept"].filter(Boolean).join(", "),
+    );
     headers.delete("content-length");
     headers.delete("content-encoding");
     return new Response(htmlToMarkdown(html, ctx.url), {

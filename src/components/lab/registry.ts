@@ -81,7 +81,7 @@ export const labRegistry: Record<string, LabDemoEntry> = {
       PROMPT_PREFIX +
       "Phosphor falling-glyph rain: columns of monospace glyphs (hex/symbols/katakana), each with a bright leading head and a fading tail, using per-frame alpha-fade (fillRect with low alpha) for soft decay. The pointer's column speeds up and flares brighter, with a small neighborhood boost. phosphor-blue on near-black, DPR cap 1.5, pause offscreen, static frame under reduced-motion.",
   },
-  "boids": {
+  boids: {
     component: BoidsDemo,
     source: boidsSrc,
     filename: "BoidsDemo.svelte",
@@ -89,7 +89,7 @@ export const labRegistry: Record<string, LabDemoEntry> = {
       PROMPT_PREFIX +
       "Reynolds flocking of 120–180 boids with separation, alignment, and cohesion, toroidal edge wrap, speed clamped. Draw short streaks in phosphor blue with brighter heads; trails via alpha-fade. When the pointer is inside, boids within ~160px are gently attracted toward it. Cap DPR 1.5, pause offscreen, static frame under reduced-motion.",
   },
-  "harmonograph": {
+  harmonograph: {
     component: HarmonographDemo,
     source: harmonographSrc,
     filename: "HarmonographDemo.svelte",
@@ -105,7 +105,7 @@ export const labRegistry: Record<string, LabDemoEntry> = {
       PROMPT_PREFIX +
       "Gray-Scott reaction-diffusion on a fixed 200×150 grid (Du=1.0, Dv=0.5, feed≈0.0545, kill≈0.062), 3×3 Laplacian (corners 0.05, edges 0.2, center -1), 2 substeps/frame, ping-pong Float32Arrays, clamp to [0,1]. Render v→phosphor brightness via an offscreen ImageData scaled up with smoothing. Seed blobs of v=1; the pointer paints v=1 discs to grow new patterns. Run ~300 steps then freeze under reduced-motion.",
   },
-  "ripple": {
+  ripple: {
     component: RippleDemo,
     source: rippleSrc,
     filename: "RippleDemo.svelte",
@@ -113,7 +113,7 @@ export const labRegistry: Record<string, LabDemoEntry> = {
       PROMPT_PREFIX +
       "A 2D water surface on a fixed 220×160 height-field grid using the classic double-buffered, damped wave equation (next = neighbors/2 − previous, ×0.985, swap). Render height→phosphor brightness via an offscreen ImageData upscaled with smoothing. Pointerdown/move stamps a Gaussian splash into the current buffer and wavefronts propagate outward. Seed a centered splash on init; ~120 steps then a static frame under reduced-motion.",
   },
-  "automaton": {
+  automaton: {
     component: CellularAutomatonDemo,
     source: automatonSrc,
     filename: "CellularAutomatonDemo.svelte",

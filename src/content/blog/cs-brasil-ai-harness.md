@@ -8,7 +8,7 @@ tags: ["ai", "agents", "gamedev", "harness"]
 cover: "/art/blog/cs-brasil-ai-harness.png"
 ---
 
-I already wrote the [build-side retrospective for CS Brasil](/blog/shipping-a-browser-fps): the Gauntlet loop, the adversarial critics, the parallel builders. That post is about how the game gets changed. This one is about how a change gets *believed*: the measurement engine underneath the loop. The repo is public, so everything here is a path you can open.
+I already wrote the [build-side retrospective for CS Brasil](/blog/shipping-a-browser-fps): the Gauntlet loop, the adversarial critics, the parallel builders. That post is about how the game gets changed. This one is about how a change gets _believed_: the measurement engine underneath the loop. The repo is public, so everything here is a path you can open.
 
 The previous version of this post described a folder of markdown. That was true at the time and isn't anymore. Since then the harness grew a spine: `tools/eval/` now holds 154 scripts, with 43 more pipeline scripts in `tools/`, all reachable through 41 npm scripts. Markdown still matters. It just no longer decides anything alone. Numbers do.
 
@@ -30,7 +30,7 @@ My favorite is AUD1, a meta-invariant: it checks that the ruler agrees with the 
 
 Mutation testing, for the uninitiated: you deliberately break the code (that's the mutant) and check that your tests catch it. If nothing goes red, your tests are decoration. The harness applies this to the rulers themselves: every invariant must ship with a mutation that turns it red.
 
-The rule exists because of a humiliating result. A mutant that removed a real fix passed 20 of 22 checks GREEN. The invariant was reading the constant's *declaration* (still sitting pretty in the file) instead of its *use*. The fix was gone, the number was still there, and the ruler applauded. As the repo puts it: *uma régua que não reprova a versão anterior do próprio arquivo não é régua, é decoração*. A ruler that can't fail the previous version of its own file is decoration.
+The rule exists because of a humiliating result. A mutant that removed a real fix passed 20 of 22 checks GREEN. The invariant was reading the constant's _declaration_ (still sitting pretty in the file) instead of its _use_. The fix was gone, the number was still there, and the ruler applauded. As the repo puts it: _uma régua que não reprova a versão anterior do próprio arquivo não é régua, é decoração_. A ruler that can't fail the previous version of its own file is decoration.
 
 ## The docs are generated, and CI checks
 
@@ -42,8 +42,8 @@ This was born from a real incident: a skill file claimed `game.js` had 3,234 lin
 
 The measurement engine runs on four laws, each with an incident receipt:
 
-1. **Goodhart is undefeated.** An agent once raised the gate score from 16/21 to 19/21, and silently zeroed `VM_OFF`, the constant that positioned the entire viewmodel, destroying the look we had deliberately chosen. The agent didn't cheat. As the incident note says: *o agente não trapaceou, ele otimizou honestamente a única coisa que estava medida.* It honestly optimized the only thing being measured. The fix was VM12, an invariant that encodes intent, not just numbers.
-2. **A ceiling without provenance is an opinion.** I spent three days fixing weapon framing against asserted numbers ("the muzzle sits at 0.66 of screen height") that nobody had ever measured in any pixel. The round only ended when we measured actual Counter-Strike 1.6 frames and replaced every asserted number with a measured one, plus the script that reproduces it. *Teto sem procedência é opinião.*
+1. **Goodhart is undefeated.** An agent once raised the gate score from 16/21 to 19/21, and silently zeroed `VM_OFF`, the constant that positioned the entire viewmodel, destroying the look we had deliberately chosen. The agent didn't cheat. As the incident note says: _o agente não trapaceou, ele otimizou honestamente a única coisa que estava medida._ It honestly optimized the only thing being measured. The fix was VM12, an invariant that encodes intent, not just numbers.
+2. **A ceiling without provenance is an opinion.** I spent three days fixing weapon framing against asserted numbers ("the muzzle sits at 0.66 of screen height") that nobody had ever measured in any pixel. The round only ended when we measured actual Counter-Strike 1.6 frames and replaced every asserted number with a measured one, plus the script that reproduces it. _Teto sem procedência é opinião._
 3. **Mutations or decoration.** Covered above.
 4. **Generate the figure and LOOK at it.** Numbers without images fooled this project four separate times. A metric can go green while the frame is garbage. A loop that doesn't end with a human looking at a picture ends as a cautionary blog post. Like this one.
 
@@ -66,4 +66,4 @@ The pattern across all six: the instrumentation is becoming a product of its own
 
 The lesson is short. Any check that depends on a human remembering to run it is already broken. You just haven't noticed yet.
 
-*If you've ever watched a metric go green while the product got worse, my inbox is open.*
+_If you've ever watched a metric go green while the product got worse, my inbox is open._

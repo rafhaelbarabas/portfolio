@@ -28,12 +28,16 @@ Agents that share a filesystem produce results you cannot attribute to anyone. E
 export async function createWorktree(
   repoDir: string,
   branchName: string,
-  baseBranch?: string
+  baseBranch?: string,
 ): Promise<string> {
-  const worktreeDir = join(repoDir, '.ralph', 'worktrees', branchName);
-  await execa('git', ['worktree', 'add', '-b', branchName, worktreeDir, baseBranch], {
-    cwd: repoDir,
-  });
+  const worktreeDir = join(repoDir, ".ralph", "worktrees", branchName);
+  await execa(
+    "git",
+    ["worktree", "add", "-b", branchName, worktreeDir, baseBranch],
+    {
+      cwd: repoDir,
+    },
+  );
   return worktreeDir;
 }
 ```
@@ -89,4 +93,4 @@ One more detail I would not skip. Failure does not travel back through a graph e
 
 If you are orchestrating coding agents, check what git already gives you before installing a framework: isolation (worktrees), state (commits), an audit trail (diffs), and crash recovery (reflog). Add the graph when a stage genuinely needs typed outputs from another stage, and not before. A `for` loop and `git worktree add` have been outshipping my graph designs for a year, and I can still read my whole orchestrator in one sitting.
 
-*ralph-starter is open source, MIT licensed. If you think the consensus winner heuristic is too naive, you are probably right, and the issue tracker is open.*
+_ralph-starter is open source, MIT licensed. If you think the consensus winner heuristic is too naive, you are probably right, and the issue tracker is open._

@@ -18,10 +18,10 @@ O site fala MCP. Um endpoint, quatro tools:
 ```ts
 // POST https://www.rubenmarcus.dev/api/mcp  (JSON-RPC 2.0)
 const tools = [
-  "get_resume",          // quem eu sou, proof points, links
-  "get_services",        // as seis ofertas de escopo fixo
-  "check_availability",  // status atual de engajamento
-  "book_intro",          // posta um brief para minha inbox
+  "get_resume", // quem eu sou, proof points, links
+  "get_services", // as seis ofertas de escopo fixo
+  "check_availability", // status atual de engajamento
+  "book_intro", // posta um brief para minha inbox
 ];
 ```
 
@@ -79,7 +79,8 @@ export const POST: APIRoute = async ({ request }) => {
   switch (method) {
     case "initialize":
       return json({
-        jsonrpc: "2.0", id,
+        jsonrpc: "2.0",
+        id,
         result: {
           protocolVersion: params?.protocolVersion ?? "2024-11-05",
           capabilities: { tools: {} },
@@ -91,8 +92,11 @@ export const POST: APIRoute = async ({ request }) => {
     case "tools/call":
       return dispatch(params?.name, params?.arguments, id);
     default:
-      return json({ jsonrpc: "2.0", id,
-        error: { code: -32601, message: `method not found: ${method}` } });
+      return json({
+        jsonrpc: "2.0",
+        id,
+        error: { code: -32601, message: `method not found: ${method}` },
+      });
   }
 };
 ```
@@ -110,10 +114,14 @@ Um detalhe que vale copiar: responda GET com um documento que se descreve. Quand
 if (data.website) return json({ ok: true });
 
 if (!name || !contact || !brief) {
-  return json({ ok: false, error: "name, contact and brief are required" }, 400);
+  return json(
+    { ok: false, error: "name, contact and brief are required" },
+    400,
+  );
 }
 for (const [k, v] of Object.entries({ name, contact, brief, budget, agent })) {
-  if (v.length > MAX[k]) return json({ ok: false, error: `${k} too long` }, 400);
+  if (v.length > MAX[k])
+    return json({ ok: false, error: `${k} too long` }, 400);
 }
 ```
 

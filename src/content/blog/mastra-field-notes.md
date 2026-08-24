@@ -30,7 +30,9 @@ const searchDocs = createTool({
     limit: z.number().default(5),
   }),
   outputSchema: z.object({
-    hits: z.array(z.object({ title: z.string(), url: z.string(), snippet: z.string() })),
+    hits: z.array(
+      z.object({ title: z.string(), url: z.string(), snippet: z.string() }),
+    ),
   }),
   execute: async ({ query, limit }) => {
     const hits = await docsIndex.search(query, limit);
@@ -40,7 +42,8 @@ const searchDocs = createTool({
 
 export const researcher = new Agent({
   name: "researcher",
-  instructions: "Answer using search-docs first. Cite URLs. Say when you don't know.",
+  instructions:
+    "Answer using search-docs first. Cite URLs. Say when you don't know.",
   model: "anthropic/claude-sonnet-4-5",
   tools: { searchDocs },
 });
@@ -51,7 +54,9 @@ First honest point for Mastra. My runtime carries the same information as this b
 Calling it is boring in the good way:
 
 ```ts
-const result = await researcher.generate("How does our retry policy handle 429s?");
+const result = await researcher.generate(
+  "How does our retry policy handle 429s?",
+);
 console.log(result.text);
 ```
 
@@ -69,7 +74,9 @@ const planStep = createStep({
   outputSchema: z.object({ subquestions: z.array(z.string()) }),
   execute: async ({ inputData }) => {
     const res = await planner.generate(inputData.question, {
-      structuredOutput: { schema: z.object({ subquestions: z.array(z.string()) }) },
+      structuredOutput: {
+        schema: z.object({ subquestions: z.array(z.string()) }),
+      },
     });
     return res.object;
   },
@@ -123,4 +130,4 @@ Keep your own loop if the loop itself is the product. Evaluation gates, money-ad
 
 Did the rebuild beat my runtime? No. Did it beat what most teams would write instead of my runtime? Clearly. That is the honest bar for a framework, and Mastra clears it.
 
-*If you're choosing between a framework and a hand-rolled loop and want to compare scars, my inbox is open.*
+_If you're choosing between a framework and a hand-rolled loop and want to compare scars, my inbox is open._

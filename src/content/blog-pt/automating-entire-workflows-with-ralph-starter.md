@@ -93,6 +93,7 @@ Não há arquivo de configuração para os comandos de validação. O ralph-star
 
 ```md
 <!-- AGENTS.md -->
+
 - **Test**: `pnpm test`
 - **Lint**: `pnpm lint`
 - **Build**: `pnpm build`

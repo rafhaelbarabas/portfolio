@@ -153,13 +153,13 @@ React, Next.js, Svelte e Tailwind não determinam o modo. Eles mudam as restriç
 
 Eu uso esta tabela mental:
 
-| Se a incerteza principal é... | Comece por... | A prova de progresso é... |
-|---|---|---|
-| como pedir | prompt engineering | uma resposta utilizável |
-| o que quero construir | vibe coding | uma direção que vale manter |
-| como executar com segurança | agentic engineering | gates externos passando |
-| o que cria valor | product engineering | comportamento e resultado do usuário |
-| o que é verdade | research engineering | evidência reproduzível |
+| Se a incerteza principal é... | Comece por...        | A prova de progresso é...            |
+| ----------------------------- | -------------------- | ------------------------------------ |
+| como pedir                    | prompt engineering   | uma resposta utilizável              |
+| o que quero construir         | vibe coding          | uma direção que vale manter          |
+| como executar com segurança   | agentic engineering  | gates externos passando              |
+| o que cria valor              | product engineering  | comportamento e resultado do usuário |
+| o que é verdade               | research engineering | evidência reproduzível               |
 
 Na prática, um produto passa pelos cinco. Eu posso pesquisar uma tecnologia, explorar a experiência por vibe, usar prompts para tarefas locais, executar a implementação com agentes e tomar decisões com telemetria de produto.
 

@@ -14,7 +14,11 @@ import type { APIRoute } from "astro";
 import { sbRpc, sbSelect, supabaseEnabled } from "../../lib/server/supabase";
 import { isValidBlogSlug } from "../../lib/server/blog-slugs";
 
-const json = (body: unknown, status = 200, headers: Record<string, string> = {}) =>
+const json = (
+  body: unknown,
+  status = 200,
+  headers: Record<string, string> = {},
+) =>
   new Response(JSON.stringify(body), {
     status,
     headers: {
@@ -33,12 +37,23 @@ export const GET: APIRoute = async ({ url }) => {
   if (!supabaseEnabled()) return json({ error: "likes disabled" }, 503);
   const slug = url.searchParams.get("slug");
   if (slug === null) {
-    const rows = await sbSelect<{ slug: string; likes: number }>("post_likes", "select=slug,likes");
-    const counters = Object.fromEntries(rows.map((row) => [row.slug, row.likes]));
-    return json({ counters }, 200, { "cache-control": "public, max-age=30, s-maxage=60" });
+    const rows = await sbSelect<{ slug: string; likes: number }>(
+      "post_likes",
+      "select=slug,likes",
+    );
+    const counters = Object.fromEntries(
+      rows.map((row) => [row.slug, row.likes]),
+    );
+    return json({ counters }, 200, {
+      "cache-control": "public, max-age=30, s-maxage=60",
+    });
   }
-  if (!(await isValidBlogSlug(slug))) return json({ error: "unknown slug" }, 400);
-  const rows = await sbSelect<{ likes: number }>("post_likes", `slug=eq.${encodeURIComponent(slug)}&select=likes`);
+  if (!(await isValidBlogSlug(slug)))
+    return json({ error: "unknown slug" }, 400);
+  const rows = await sbSelect<{ likes: number }>(
+    "post_likes",
+    `slug=eq.${encodeURIComponent(slug)}&select=likes`,
+  );
   return json({ slug, likes: rows[0]?.likes ?? 0 });
 };
 
@@ -46,9 +61,14 @@ export const POST: APIRoute = async ({ request }) => {
   if (!supabaseEnabled()) return json({ error: "likes disabled" }, 503);
   const body = await request.json().catch(() => null);
   const slug = typeof body?.slug === "string" ? body.slug : "";
-  if (!(await isValidBlogSlug(slug))) return json({ error: "unknown slug" }, 400);
+  if (!(await isValidBlogSlug(slug)))
+    return json({ error: "unknown slug" }, 400);
   const delta = body?.delta === -1 ? -1 : 1;
-  const likes = await sbRpc<number>("increment_like", { page_slug: slug, delta });
-  if (typeof likes !== "number") return json({ error: "store unavailable" }, 503);
+  const likes = await sbRpc<number>("increment_like", {
+    page_slug: slug,
+    delta,
+  });
+  if (typeof likes !== "number")
+    return json({ error: "store unavailable" }, 503);
   return json({ slug, likes });
 };

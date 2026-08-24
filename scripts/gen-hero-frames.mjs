@@ -18,7 +18,7 @@ const env = Object.fromEntries(
     .split("\n")
     .map((l) => l.trim())
     .filter((l) => l && !l.startsWith("#") && l.includes("="))
-    .map((l) => [l.slice(0, l.indexOf("=")), l.slice(l.indexOf("=") + 1)])
+    .map((l) => [l.slice(0, l.indexOf("=")), l.slice(l.indexOf("=") + 1)]),
 );
 const KEY = env.OPENROUTER_API_KEY;
 if (!KEY) {
@@ -26,7 +26,9 @@ if (!KEY) {
   process.exit(1);
 }
 
-const base = readFileSync(join(root, "public/art/ruben-hero-scan.png")).toString("base64");
+const base = readFileSync(
+  join(root, "public/art/ruben-hero-scan.png"),
+).toString("base64");
 const count = Number(process.argv[2] ?? 2);
 const OFFSET = 6; // new strict-typing set starts at frame-7
 
@@ -39,10 +41,14 @@ const POSES = [
   "BOTH hands stay flat on the laptop keyboard in a typing position — only the FINGERS change: left hand reaching upper keys, right hand fingers on home row. No hand is raised, no hand leaves the keyboard",
 ];
 
-const prompt = (pose) => `Edit this exact image. Keep EVERYTHING identical — same man, same face, same tattoos, same headphones, same laptop, same framing, same black background, same blue phosphor scanline/dither render style, same color tone. Change ONLY the hands: ${pose}. The head may tilt down a barely-perceptible amount, nothing else moves. The result must look like the next frame of the same scene, not a new image.`;
+const prompt = (pose) =>
+  `Edit this exact image. Keep EVERYTHING identical — same man, same face, same tattoos, same headphones, same laptop, same framing, same black background, same blue phosphor scanline/dither render style, same color tone. Change ONLY the hands: ${pose}. The head may tilt down a barely-perceptible amount, nothing else moves. The result must look like the next frame of the same scene, not a new image.`;
 
 for (let i = 0; i < count; i++) {
-  const out = join(root, `public/art/ruben-hero-scan-frame-${i + 1 + OFFSET}.png`);
+  const out = join(
+    root,
+    `public/art/ruben-hero-scan-frame-${i + 1 + OFFSET}.png`,
+  );
   if (existsSync(out)) {
     console.log(`frame ${i + 1}: exists, skipping (${out})`);
     continue;
@@ -50,7 +56,10 @@ for (let i = 0; i < count; i++) {
   console.log(`frame ${i + 1}: generating…`);
   const res = await fetch("https://openrouter.ai/api/v1/chat/completions", {
     method: "POST",
-    headers: { "content-type": "application/json", authorization: `Bearer ${KEY}` },
+    headers: {
+      "content-type": "application/json",
+      authorization: `Bearer ${KEY}`,
+    },
     body: JSON.stringify({
       model: "google/gemini-2.5-flash-image",
       modalities: ["image", "text"],
@@ -59,7 +68,10 @@ for (let i = 0; i < count; i++) {
           role: "user",
           content: [
             { type: "text", text: prompt(POSES[i % POSES.length]) },
-            { type: "image_url", image_url: { url: `data:image/png;base64,${base}` } },
+            {
+              type: "image_url",
+              image_url: { url: `data:image/png;base64,${base}` },
+            },
           ],
         },
       ],
@@ -67,13 +79,19 @@ for (let i = 0; i < count; i++) {
   });
   const json = await res.json();
   if (!res.ok) {
-    console.error(`frame ${i + 1}: HTTP ${res.status}`, JSON.stringify(json).slice(0, 400));
+    console.error(
+      `frame ${i + 1}: HTTP ${res.status}`,
+      JSON.stringify(json).slice(0, 400),
+    );
     continue;
   }
   const dataUrl = json.choices?.[0]?.message?.images?.[0]?.image_url?.url ?? "";
   const b64 = dataUrl.startsWith("data:") ? dataUrl.split(",")[1] : undefined;
   if (!b64) {
-    console.error(`frame ${i + 1}: no image`, JSON.stringify(json).slice(0, 400));
+    console.error(
+      `frame ${i + 1}: no image`,
+      JSON.stringify(json).slice(0, 400),
+    );
     continue;
   }
   writeFileSync(out, Buffer.from(b64, "base64"));

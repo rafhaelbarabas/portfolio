@@ -87,14 +87,14 @@ Roteamento de modelo funciona melhor como uma tabela de papéis do que como uma 
 
 Minha tabela muda com o projeto e a disponibilidade, mas os critérios são estáveis:
 
-| Papel | O que procuro |
-|---|---|
-| scout de pesquisa | contexto longo, busca, boa síntese e links verificáveis |
-| spec writer | decomposição, restrições e casos de borda |
-| builder | uso confiável de ferramentas e edição precisa do repo |
-| crítico visual | leitura de screenshots e capacidade de apontar defeitos concretos |
-| regression hunter | paciência para comparar antes e depois sem inventar achados |
-| reviewer | análise de diff, risco e cobertura de testes |
+| Papel             | O que procuro                                                     |
+| ----------------- | ----------------------------------------------------------------- |
+| scout de pesquisa | contexto longo, busca, boa síntese e links verificáveis           |
+| spec writer       | decomposição, restrições e casos de borda                         |
+| builder           | uso confiável de ferramentas e edição precisa do repo             |
+| crítico visual    | leitura de screenshots e capacidade de apontar defeitos concretos |
+| regression hunter | paciência para comparar antes e depois sem inventar achados       |
+| reviewer          | análise de diff, risco e cobertura de testes                      |
 
 Claude pode ocupar spec e build numa tarefa. Codex pode revisar e corrigir issues em sequência. Kimi pode pesquisar referências. GLM pode executar trabalho bem delimitado em volume. Isso não é uma lei sobre os modelos. É uma decisão operacional que posso trocar sem redesenhar o pipeline.
 

@@ -47,7 +47,8 @@ export const POST: APIRoute = async ({ request }) => {
   return json(
     {
       client_id: crypto.randomUUID(),
-      client_name: typeof body.client_name === "string" ? body.client_name : "mcp-client",
+      client_name:
+        typeof body.client_name === "string" ? body.client_name : "mcp-client",
       redirect_uris: redirectUris,
       grant_types: ["authorization_code"],
       response_types: ["code"],

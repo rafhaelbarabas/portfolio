@@ -206,6 +206,7 @@ What changed for the business: the site went from "invisible to answer engines" 
 ## How to measure a before and after
 
 Attribution in AEO is bad. I will not pretend otherwise. You cannot UTM-tag a ChatGPT answer. So measure what you control, in a loop:
+
 1. Run a baseline: `npx aeo.js check yoursite.com`, or the same scan in the browser at check.aeojs.org. Screenshot the result.
 2. Fix one layer from the order above. One, not four.
 3. Deploy, rescan, compare.
@@ -225,4 +226,4 @@ What it does: removes the mechanical reasons an answer engine cannot read you, a
 
 Fix the plumbing first. It is the only part that is free.
 
-*aeo.js is open source. The scanner is free at check.aeojs.org. If your score surprises you, my inbox is open.*
+_aeo.js is open source. The scanner is free at check.aeojs.org. If your score surprises you, my inbox is open._

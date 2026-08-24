@@ -38,7 +38,7 @@ Record per-shot scores and cycle summaries in `qa/GAUNTLET-LOG.md`.
 13. **Accent discipline** — terminal green (#00ff41 family) is the only
     structural accent; it is used sparingly enough to stay special.
 14. **Motion residue** — screenshot (taken after virtual-time settle) shows a
-    *settled* frame: no mid-glitch artifacts, half-scrambled text, or
+    _settled_ frame: no mid-glitch artifacts, half-scrambled text, or
     particles stuck mid-transition.
 15. **Hero composition (desktop)** — figure framed centre-right, lede clear of
     the canvas, HUD card not colliding with the figure or the marquee.

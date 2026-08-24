@@ -61,7 +61,7 @@ Você sabe quando abre páginas que costumam enganar o usuário para digitar dad
 Você precisa criar um [novo middleware](https://strapi.io/documentation/v3.x/concepts/middlewares.html#middlewares), que vai checar se o endpoint que queremos é o `/graphql` e se o usuário autenticado é o que queremos:
 
 ```js
-module.exports = strapi => {
+module.exports = (strapi) => {
   return {
     initialize() {
       strapi.app.use(async (ctx, next) => {
@@ -73,32 +73,48 @@ module.exports = strapi => {
         };
 
         // check if it's a graphql request
-        if (ctx.request.url === '/graphql' && ctx.request.method === 'POST') {
-          if (ctx.request && ctx.request.header && ctx.request.header.authorization) {
+        if (ctx.request.url === "/graphql" && ctx.request.method === "POST") {
+          if (
+            ctx.request &&
+            ctx.request.header &&
+            ctx.request.header.authorization
+          ) {
             try {
               // get token data
-              const { id } = await strapi.plugins['users-permissions']
-                .services.jwt.getToken(ctx);
+              const { id } =
+                await strapi.plugins["users-permissions"].services.jwt.getToken(
+                  ctx,
+                );
 
               if (id === undefined) {
-                throw new Error('Invalid token: Token did not contain required fields');
+                throw new Error(
+                  "Invalid token: Token did not contain required fields",
+                );
               }
 
               // check if the id match to the user you want
-              if (id !== 'my-user-id') {
-                return handleErrors(ctx, 'You are not authorized to access to the GraphQL API', 'unauthorized');
+              if (id !== "my-user-id") {
+                return handleErrors(
+                  ctx,
+                  "You are not authorized to access to the GraphQL API",
+                  "unauthorized",
+                );
               }
             } catch (err) {
-              return handleErrors(ctx, err, 'unauthorized');
+              return handleErrors(ctx, err, "unauthorized");
             }
           } else {
-            return handleErrors(ctx, 'You need to be authenticated to request GraphQL API', 'unauthorized');
+            return handleErrors(
+              ctx,
+              "You need to be authenticated to request GraphQL API",
+              "unauthorized",
+            );
           }
         }
 
         await next();
       });
-    }
+    },
   };
 };
 ```

@@ -20,7 +20,7 @@ const env = Object.fromEntries(
     .split("\n")
     .map((l) => l.trim())
     .filter((l) => l && !l.startsWith("#") && l.includes("="))
-    .map((l) => [l.slice(0, l.indexOf("=")), l.slice(l.indexOf("=") + 1)])
+    .map((l) => [l.slice(0, l.indexOf("=")), l.slice(l.indexOf("=") + 1)]),
 );
 const KEY = env.OPENROUTER_API_KEY;
 if (!KEY) {
@@ -35,11 +35,11 @@ const FRAMES = {
 MOTIF: an engineering cycle diagram — three small abstract geometric glyphs (a branching tree, a gear, an eye) arranged in a triangle, connected by crisp circular arcs with arrowheads forming a closed loop, dashed orbit rings, tick marks along the arcs.`,
   autoresearcher: `${STYLE}
 MOTIF: a scatter field of small crosses and plus marks rising from the lower left toward a single crisp ascending frontier curve drawn in a hotter line, concentric measurement arcs centered off-frame, a few candidate points circled.`,
-  "aeojs": `${STYLE}
+  aeojs: `${STYLE}
 MOTIF: a radar reticle — concentric hairline circles, one sweeping wedge sector slightly brighter, small square blips scattered at detection points, full-frame crosshair lines, corner registration brackets.`,
-  "corosolto": `${STYLE}
+  corosolto: `${STYLE}
 MOTIF: a large sniper crosshair reticle — circle with perpendicular hairlines, range-finder tick marks, mil-dots along the horizontal axis, four corner brackets marking a capture zone, faint flat dot-grid floor suggested by dashed horizontal lines.`,
-  "scanrepo": `${STYLE}
+  scanrepo: `${STYLE}
 MOTIF: a repository tree under inspection — a vertical file-tree drawn in hairlines on the left (folder and file glyphs, NO text), with a large magnifying bracket-frame hovering over one branch, measurement ticks and a dashed baseline grid.`,
   "aeo-checker": `${STYLE}
 MOTIF: a precision gauge dial — semicircular arc with fine tick marks and a needle pointing high, a small globe wireframe at the pivot, corner registration brackets, faint concentric calibration rings.`,
@@ -54,13 +54,18 @@ mkdirSync(outDir, { recursive: true });
 for (const slug of picks) {
   const prompt = FRAMES[slug];
   if (!prompt) {
-    console.error(`unknown frame "${slug}" (${Object.keys(FRAMES).join("|")}|all)`);
+    console.error(
+      `unknown frame "${slug}" (${Object.keys(FRAMES).join("|")}|all)`,
+    );
     process.exit(1);
   }
   console.log(`${slug}: generating…`);
   const res = await fetch("https://openrouter.ai/api/v1/chat/completions", {
     method: "POST",
-    headers: { "content-type": "application/json", authorization: `Bearer ${KEY}` },
+    headers: {
+      "content-type": "application/json",
+      authorization: `Bearer ${KEY}`,
+    },
     body: JSON.stringify({
       model: "google/gemini-2.5-flash-image",
       modalities: ["image", "text"],
@@ -69,14 +74,20 @@ for (const slug of picks) {
   });
   const json = await res.json();
   if (!res.ok) {
-    console.error(`${slug}: HTTP ${res.status}`, JSON.stringify(json).slice(0, 400));
+    console.error(
+      `${slug}: HTTP ${res.status}`,
+      JSON.stringify(json).slice(0, 400),
+    );
     continue;
   }
   const images = json.choices?.[0]?.message?.images ?? [];
   const dataUrl = images[0]?.image_url?.url ?? "";
   const b64 = dataUrl.startsWith("data:") ? dataUrl.split(",")[1] : undefined;
   if (!b64) {
-    console.error(`${slug}: no image in response`, JSON.stringify(json).slice(0, 400));
+    console.error(
+      `${slug}: no image in response`,
+      JSON.stringify(json).slice(0, 400),
+    );
     continue;
   }
   const out = join(outDir, `${slug}.png`);

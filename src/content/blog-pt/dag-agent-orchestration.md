@@ -28,12 +28,16 @@ Agentes que dividem um filesystem produzem resultados que você não consegue at
 export async function createWorktree(
   repoDir: string,
   branchName: string,
-  baseBranch?: string
+  baseBranch?: string,
 ): Promise<string> {
-  const worktreeDir = join(repoDir, '.ralph', 'worktrees', branchName);
-  await execa('git', ['worktree', 'add', '-b', branchName, worktreeDir, baseBranch], {
-    cwd: repoDir,
-  });
+  const worktreeDir = join(repoDir, ".ralph", "worktrees", branchName);
+  await execa(
+    "git",
+    ["worktree", "add", "-b", branchName, worktreeDir, baseBranch],
+    {
+      cwd: repoDir,
+    },
+  );
   return worktreeDir;
 }
 ```
@@ -89,4 +93,4 @@ Mais um detalhe que eu não pularia. A falha não volta por uma aresta de grafo.
 
 Se você está orquestrando agentes de código, confira o que o git já te dá antes de instalar um framework: isolamento (worktrees), estado (commits), trilha de auditoria (diffs) e recuperação de crash (reflog). Adicione o grafo quando um estágio genuinamente precisar de saídas tipadas de outro estágio, e não antes. Um `for` loop e `git worktree add` vêm entregando mais que meus designs de grafo há um ano, e eu ainda consigo ler meu orquestrador inteiro numa sentada só.
 
-*ralph-starter é open source, licenciado sob MIT. Se você acha que a heurística do vencedor do consensus é ingênua demais, você provavelmente está certo, e o issue tracker está aberto.*
+_ralph-starter é open source, licenciado sob MIT. Se você acha que a heurística do vencedor do consensus é ingênua demais, você provavelmente está certo, e o issue tracker está aberto._

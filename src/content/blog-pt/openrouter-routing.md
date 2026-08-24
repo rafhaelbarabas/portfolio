@@ -21,18 +21,21 @@ A primeira versão do router escolhia um modelo por chamada com base numa vaga n
 
 ```ts
 type Role =
-  | "research-scout" | "circuit-engineer" | "density-analyst"
-  | "falsifier" | "orchestrator-reviewer";
+  | "research-scout"
+  | "circuit-engineer"
+  | "density-analyst"
+  | "falsifier"
+  | "orchestrator-reviewer";
 
 const ROUTES: Record<Role, string[]> = {
   // Queima mais tokens na frota. Barato e rápido vence aqui.
-  "research-scout":       ["google/gemini-2.5-flash", "deepseek/deepseek-chat-v3.1"],
+  "research-scout": ["google/gemini-2.5-flash", "deepseek/deepseek-chat-v3.1"],
   // Propõe otimizações de circuito. Modelo forte, volume moderado.
-  "circuit-engineer":     ["anthropic/claude-sonnet-4.5", "openai/gpt-5.1"],
+  "circuit-engineer": ["anthropic/claude-sonnet-4.5", "openai/gpt-5.1"],
   // Perfilagem de contagem de portas. Trabalho mecânico, mid-tier basta.
-  "density-analyst":      ["deepseek/deepseek-chat-v3.1", "google/gemini-2.5-flash"],
+  "density-analyst": ["deepseek/deepseek-chat-v3.1", "google/gemini-2.5-flash"],
   // Mata candidatos. Vendor diferente do engineer, de propósito.
-  "falsifier":            ["openai/o4-mini", "deepseek/deepseek-r1"],
+  falsifier: ["openai/o4-mini", "deepseek/deepseek-r1"],
   // Audita todo mundo. Modelo mais forte, sem otimização de custo aqui.
   "orchestrator-reviewer": ["anthropic/claude-opus-4.5"],
 };
@@ -134,4 +137,4 @@ O harness ficou em #1 no ECDSA.fail com zero erros em todos os casos do benchmar
 
 Nota de rodapé honesta: a maioria dos projetos não precisa disso. Se você tem uma carga de trabalho e um modelo em que confia, um SDK direto de provider com um loop de retry tem 40 linhas e menos partes móveis. A camada de roteamento ganha sua complexidade quando você tem papéis com necessidades diferentes de custo e qualidade, loops autônomos que precisam sobreviver a perrengues de provider, ou um teto de gasto com consequências. O harness tinha os três.
 
-*Se você está montando roteamento multi-provider e quer comparar cicatrizes, minha caixa de entrada está aberta.*
+_Se você está montando roteamento multi-provider e quer comparar cicatrizes, minha caixa de entrada está aberta._

@@ -32,7 +32,9 @@ describe("register (RFC 7591 DCR)", () => {
   });
 
   it("rejects non-https redirect URIs", async () => {
-    const res = await post(register, { redirect_uris: ["http://evil.local/cb"] });
+    const res = await post(register, {
+      redirect_uris: ["http://evil.local/cb"],
+    });
     expect(res.status).toBe(400);
     expect((await res.json()).error).toBe("invalid_client_metadata");
   });
@@ -75,7 +77,10 @@ describe("authorize (auto-approve)", () => {
 
 describe("token", () => {
   it("exchanges any code for a bearer token", async () => {
-    const res = await post(token, { grant_type: "authorization_code", code: "rmc-x" });
+    const res = await post(token, {
+      grant_type: "authorization_code",
+      code: "rmc-x",
+    });
     const body = await res.json();
     expect(body.access_token).toMatch(/^rmc-/);
     expect(body.token_type).toBe("Bearer");

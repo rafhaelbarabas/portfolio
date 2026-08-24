@@ -33,14 +33,18 @@ const pending = new Map();
 const eventHandlers = new Map();
 
 async function launchChrome() {
-  chromeProc = spawn(CHROME, [
-    "--headless=new",
-    "--use-angle=metal",
-    "--hide-scrollbars",
-    `--remote-debugging-port=${CDP_PORT}`,
-    "--window-size=1600,1000",
-    "about:blank",
-  ], { stdio: ["ignore", "ignore", "ignore"] });
+  chromeProc = spawn(
+    CHROME,
+    [
+      "--headless=new",
+      "--use-angle=metal",
+      "--hide-scrollbars",
+      `--remote-debugging-port=${CDP_PORT}`,
+      "--window-size=1600,1000",
+      "about:blank",
+    ],
+    { stdio: ["ignore", "ignore", "ignore"] },
+  );
 
   for (let i = 0; i < 40; i++) {
     try {
@@ -85,12 +89,19 @@ async function main() {
   await launchChrome();
 
   const consoleLines = [];
-  const { targetId } = await send("Target.createTarget", { url: "about:blank" });
-  const { sessionId } = await send("Target.attachToTarget", { targetId, flatten: true });
+  const { targetId } = await send("Target.createTarget", {
+    url: "about:blank",
+  });
+  const { sessionId } = await send("Target.attachToTarget", {
+    targetId,
+    flatten: true,
+  });
 
   eventHandlers.set("Log.entryAdded", (params) => {
     if (params?.entry?.level === "error") {
-      consoleLines.push(`[log] ${params.entry.text} (${params.entry.url ?? ""})`);
+      consoleLines.push(
+        `[log] ${params.entry.text} (${params.entry.url ?? ""})`,
+      );
     }
   });
   eventHandlers.set("Runtime.exceptionThrown", (p) => {

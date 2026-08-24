@@ -50,7 +50,9 @@ it("rejects oversized fields", async () => {
 });
 
 it("relays valid inquiries to formsubmit", async () => {
-  const fetchSpy = vi.fn().mockResolvedValue(new Response("ok", { status: 200 }));
+  const fetchSpy = vi
+    .fn()
+    .mockResolvedValue(new Response("ok", { status: 200 }));
   vi.stubGlobal("fetch", fetchSpy);
   const res = await call(valid);
   const body = await res.json();
@@ -63,7 +65,10 @@ it("relays valid inquiries to formsubmit", async () => {
 });
 
 it("maps relay failures to 502", async () => {
-  vi.stubGlobal("fetch", vi.fn().mockResolvedValue(new Response("x", { status: 500 })));
+  vi.stubGlobal(
+    "fetch",
+    vi.fn().mockResolvedValue(new Response("x", { status: 500 })),
+  );
   expect((await call(valid)).status).toBe(502);
 
   vi.stubGlobal("fetch", vi.fn().mockRejectedValue(new Error("down")));

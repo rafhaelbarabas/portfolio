@@ -78,4 +78,4 @@ Todo prompt desse loop contém o próprio modo de falha mais provável, rejeitad
 
 Essa é a técnica que vale copiar, e custa nada: quando você escrever um prompt para um agente, adicione a resposta errada e a proíba. Não num style guide que o agente nunca lê, mas inline, do lado da entrega, com um exemplo literal. Agentes não leem a sua mente. Eles leem o seu prompt. Torne a resposta errada ilegal no texto que eles realmente veem.
 
-*Se os seus agentes corrigem a própria lição de casa e você desconfia das notas, minha caixa de entrada está aberta.*
+_Se os seus agentes corrigem a própria lição de casa e você desconfia das notas, minha caixa de entrada está aberta._

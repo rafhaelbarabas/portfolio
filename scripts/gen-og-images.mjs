@@ -15,7 +15,13 @@
  * Reads OPENROUTER_API_KEY from .env; never prints it.
  */
 
-import { readFileSync, writeFileSync, mkdirSync, existsSync, readdirSync } from "node:fs";
+import {
+  readFileSync,
+  writeFileSync,
+  mkdirSync,
+  existsSync,
+  readdirSync,
+} from "node:fs";
 import { fileURLToPath } from "node:url";
 import { dirname, join } from "node:path";
 import sharp from "sharp";
@@ -26,7 +32,7 @@ const env = Object.fromEntries(
     .split("\n")
     .map((l) => l.trim())
     .filter((l) => l && !l.startsWith("#") && l.includes("="))
-    .map((l) => [l.slice(0, l.indexOf("=")), l.slice(l.indexOf("=") + 1)])
+    .map((l) => [l.slice(0, l.indexOf("=")), l.slice(l.indexOf("=") + 1)]),
 );
 const KEY = env.OPENROUTER_API_KEY;
 const FORCE_GEN = process.argv.includes("--force-gen");
@@ -48,25 +54,33 @@ const PAGES = [
   },
   {
     out: "portfolio",
-    bg: { gen: "a floating grid of glowing project cards orbiting one bright central card, faint timeline rail below" },
+    bg: {
+      gen: "a floating grid of glowing project cards orbiting one bright central card, faint timeline rail below",
+    },
     kicker: "RUBENMARCUS.DEV /PORTFOLIO",
     title: "14 years of shipped work",
   },
   {
     out: "ai",
-    bg: { gen: "a particle terminal window with a streaming beam of tokens flowing out of it into a tool rack" },
+    bg: {
+      gen: "a particle terminal window with a streaming beam of tokens flowing out of it into a tool rack",
+    },
     kicker: "RUBENMARCUS.DEV /AI",
     title: "AI tooling, built and shipped",
   },
   {
     out: "agents",
-    bg: { gen: "a fleet of small particle drones in formation docking into a glowing control tower" },
+    bg: {
+      gen: "a fleet of small particle drones in formation docking into a glowing control tower",
+    },
     kicker: "RUBENMARCUS.DEV /AGENTS",
     title: "A fleet of AI agents that actually transact",
   },
   {
     out: "blog",
-    bg: { gen: "a stack of glowing particle documents, one page lifting off and unfolding into light trails" },
+    bg: {
+      gen: "a stack of glowing particle documents, one page lifting off and unfolding into light trails",
+    },
     kicker: "RUBENMARCUS.DEV /BLOG",
     title: "Writing for humans and machines",
   },
@@ -78,19 +92,25 @@ const PAGES = [
   },
   {
     out: "contact",
-    bg: { gen: "a single glowing particle doorway slightly open, a beam of light spilling out onto the dark floor" },
+    bg: {
+      gen: "a single glowing particle doorway slightly open, a beam of light spilling out onto the dark floor",
+    },
     kicker: "RUBENMARCUS.DEV /CONTACT",
     title: "Ship an AI feature end to end",
   },
   {
     out: "lab",
-    bg: { gen: "a particle workbench with small experiment flasks of light, one beeping waveform hovering above" },
+    bg: {
+      gen: "a particle workbench with small experiment flasks of light, one beeping waveform hovering above",
+    },
     kicker: "RUBENMARCUS.DEV /LAB",
     title: "Weekly demos and experiments",
   },
   {
     out: "connect",
-    bg: { gen: "two particle nodes shaking hands across a glowing link beam, smaller nodes lighting up around them" },
+    bg: {
+      gen: "two particle nodes shaking hands across a glowing link beam, smaller nodes lighting up around them",
+    },
     kicker: "RUBENMARCUS.DEV /CONNECT",
     title: "Say hello, human or agent",
   },
@@ -121,7 +141,9 @@ const SOCIAL = [
     out: "art/social/linkedin-cover.png",
     w: 1584,
     h: 396,
-    bg: { gen: "a wide panoramic terminal horizon made of particles, one long glowing command line stretching across with a bright block cursor, depth fading to the right" },
+    bg: {
+      gen: "a wide panoramic terminal horizon made of particles, one long glowing command line stretching across with a bright block cursor, depth fading to the right",
+    },
     slogan: "the first portfolio made for agents",
     sub: "rubenmarcus.dev · ruben@rubenmarcus.dev · github.com/rubenmarcus",
   },
@@ -129,7 +151,9 @@ const SOCIAL = [
     out: "art/social/x-cover.png",
     w: 1500,
     h: 500,
-    bg: { gen: "a wide panoramic terminal horizon made of particles, one long glowing command line stretching across with a bright block cursor, depth fading to the right" },
+    bg: {
+      gen: "a wide panoramic terminal horizon made of particles, one long glowing command line stretching across with a bright block cursor, depth fading to the right",
+    },
     slogan: "the first portfolio made for agents",
     sub: "rubenmarcus.dev · ruben@rubenmarcus.dev · github.com/rubenmarcus",
   },
@@ -137,7 +161,11 @@ const SOCIAL = [
 
 // ── helpers ─────────────────────────────────────────────────────────────
 const esc = (s) =>
-  s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+  s
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;");
 
 function wrap(text, maxChars) {
   const words = text.split(" ");
@@ -167,7 +195,7 @@ function ogSvg({ w, h, kicker, title }) {
   const texts = lines
     .map(
       (l, i) =>
-        `<text x="${m}" y="${titleTop + i * lh}" font-family="Menlo, monospace" font-weight="bold" font-size="${size}" fill="${INK}">${esc(l)}</text>`
+        `<text x="${m}" y="${titleTop + i * lh}" font-family="Menlo, monospace" font-weight="bold" font-size="${size}" fill="${INK}">${esc(l)}</text>`,
     )
     .join("\n");
   return `<svg width="${w}" height="${h}" xmlns="http://www.w3.org/2000/svg">
@@ -213,15 +241,26 @@ async function genBg(motif, outPath) {
   if (!KEY) throw new Error("OPENROUTER_API_KEY missing in .env");
   const res = await fetch("https://openrouter.ai/api/v1/chat/completions", {
     method: "POST",
-    headers: { "content-type": "application/json", authorization: `Bearer ${KEY}` },
+    headers: {
+      "content-type": "application/json",
+      authorization: `Bearer ${KEY}`,
+    },
     body: JSON.stringify({
       model: "google/gemini-2.5-flash-image",
       modalities: ["image", "text"],
-      messages: [{ role: "user", content: [{ type: "text", text: `${GEN_STYLE}\nMOTIF: ${motif}.` }] }],
+      messages: [
+        {
+          role: "user",
+          content: [{ type: "text", text: `${GEN_STYLE}\nMOTIF: ${motif}.` }],
+        },
+      ],
     }),
   });
   const json = await res.json();
-  if (!res.ok) throw new Error(`HTTP ${res.status}: ${JSON.stringify(json).slice(0, 300)}`);
+  if (!res.ok)
+    throw new Error(
+      `HTTP ${res.status}: ${JSON.stringify(json).slice(0, 300)}`,
+    );
   const images = json.choices?.[0]?.message?.images ?? [];
   const dataUrl = images[0]?.image_url?.url ?? "";
   const b64 = dataUrl.startsWith("data:") ? dataUrl.split(",")[1] : undefined;
@@ -264,7 +303,13 @@ async function resolveBg(bg, key) {
 // Pages (EN + PT mirrors)
 for (const p of PAGES) {
   const bgPath = await resolveBg(p.bg, p.out);
-  await composite(bgPath, ogSvg({ w: 1200, h: 630, ...p }), join(ogDir, `${p.out}.png`), 1200, 630);
+  await composite(
+    bgPath,
+    ogSvg({ w: 1200, h: 630, ...p }),
+    join(ogDir, `${p.out}.png`),
+    1200,
+    630,
+  );
   console.log(`og: ${p.out}.png`);
   const ptTitle = PAGES_PT[p.out];
   if (ptTitle) {
@@ -272,14 +317,17 @@ for (const p of PAGES) {
       bgPath,
       ogSvg({ w: 1200, h: 630, kicker: p.kicker, title: ptTitle }),
       join(ogDir, `pt-${p.out}.png`),
-      1200, 630
+      1200,
+      630,
     );
     console.log(`og: pt-${p.out}.png`);
   }
 }
 
 // Blog posts (EN + PT), backgrounds are the existing covers
-for (const f of readdirSync(join(root, "src/content/blog")).filter((f) => f.endsWith(".md"))) {
+for (const f of readdirSync(join(root, "src/content/blog")).filter((f) =>
+  f.endsWith(".md"),
+)) {
   const slug = f.replace(/\.md$/, "");
   const title = readTitle(join(root, "src/content/blog", f));
   const cover = join(root, "public/art/blog", `${slug}.png`);
@@ -287,10 +335,18 @@ for (const f of readdirSync(join(root, "src/content/blog")).filter((f) => f.ends
     console.warn(`skip ${slug}: ${!title ? "no title" : "no cover"}`);
     continue;
   }
-  await composite(cover, ogSvg({ w: 1200, h: 630, kicker: "RUBENMARCUS.DEV /BLOG", title }), join(ogDir, "blog", `${slug}.png`), 1200, 630);
+  await composite(
+    cover,
+    ogSvg({ w: 1200, h: 630, kicker: "RUBENMARCUS.DEV /BLOG", title }),
+    join(ogDir, "blog", `${slug}.png`),
+    1200,
+    630,
+  );
   console.log(`og: blog/${slug}.png`);
 }
-for (const f of readdirSync(join(root, "src/content/blog-pt")).filter((f) => f.endsWith(".md"))) {
+for (const f of readdirSync(join(root, "src/content/blog-pt")).filter((f) =>
+  f.endsWith(".md"),
+)) {
   const slug = f.replace(/\.md$/, "");
   const title = readTitle(join(root, "src/content/blog-pt", f));
   const cover = join(root, "public/art/blog", `${slug}.png`);
@@ -298,7 +354,13 @@ for (const f of readdirSync(join(root, "src/content/blog-pt")).filter((f) => f.e
     console.warn(`skip pt/${slug}: ${!title ? "no title" : "no cover"}`);
     continue;
   }
-  await composite(cover, ogSvg({ w: 1200, h: 630, kicker: "RUBENMARCUS.DEV /BLOG", title }), join(ogDir, "blog-pt", `${slug}.png`), 1200, 630);
+  await composite(
+    cover,
+    ogSvg({ w: 1200, h: 630, kicker: "RUBENMARCUS.DEV /BLOG", title }),
+    join(ogDir, "blog-pt", `${slug}.png`),
+    1200,
+    630,
+  );
   console.log(`og: blog-pt/${slug}.png`);
 }
 

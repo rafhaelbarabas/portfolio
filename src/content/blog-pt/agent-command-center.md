@@ -9,7 +9,7 @@ cover: "/art/blog/agent-command-center.png"
 
 Há um tempo venho rodando um desafio competitivo de otimização (o tipo em que você joga computação e engenhosidade contra um alvo difícil e o leaderboard marca os pontos) usando um swarm de agentes de codificação. Codex, Claude, Amp, Kimi, mais um ou outro humano que apareceu. Os agentes vêm e vão, batem no rate limit, estouram a janela de contexto e esquecem tudo entre sessões.
 
-Então a camada de coordenação não pode viver em nenhum deles. Ela vive em arquivos. Markdown é o banco de dados, e o histórico de chat é explícita e deliberadamente *não* a fonte da verdade. Se um agente descobriu algo e não escreveu, isso não aconteceu. Este post é a anatomia desse cérebro compartilhado.
+Então a camada de coordenação não pode viver em nenhum deles. Ela vive em arquivos. Markdown é o banco de dados, e o histórico de chat é explícita e deliberadamente _não_ a fonte da verdade. Se um agente descobriu algo e não escreveu, isso não aconteceu. Este post é a anatomia desse cérebro compartilhado.
 
 ## Por que não um banco de dados
 
@@ -62,7 +62,7 @@ O que me traz ao meu diretório favorito: o **cemitério de candidatos**. Todo c
 
 Higiene de execução: um git worktree por rota, então rotas nunca contaminam umas às outras e todo resultado é atribuível a um diff.
 
-E a automação é fail-closed. A automação pode *preparar* (enfileirar tarefas, rascunhar prompts, agregar resultados), mas nunca pode improvisar gastos. Há hard stops ligados no circuito: um portão `GPU_APPROVAL_NEEDED` para qualquer coisa que custe computação de verdade, e um simples arquivo `STOP` que mata o scheduler na hora. O arquivo STOP é deliberadamente burro: sem condicionais, sem parsing, se ele existe nada roda. Quando a coisa que supervisiona seus agentes também é software, o freio de emergência deve ser o objeto mais burro possível no repositório.
+E a automação é fail-closed. A automação pode _preparar_ (enfileirar tarefas, rascunhar prompts, agregar resultados), mas nunca pode improvisar gastos. Há hard stops ligados no circuito: um portão `GPU_APPROVAL_NEEDED` para qualquer coisa que custe computação de verdade, e um simples arquivo `STOP` que mata o scheduler na hora. O arquivo STOP é deliberadamente burro: sem condicionais, sem parsing, se ele existe nada roda. Quando a coisa que supervisiona seus agentes também é software, o freio de emergência deve ser o objeto mais burro possível no repositório.
 
 ## O dashboard observa, não decide
 

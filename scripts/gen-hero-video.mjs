@@ -19,7 +19,7 @@ const env = Object.fromEntries(
     .split("\n")
     .map((l) => l.trim())
     .filter((l) => l && !l.startsWith("#") && l.includes("="))
-    .map((l) => [l.slice(0, l.indexOf("=")), l.slice(l.indexOf("=") + 1)])
+    .map((l) => [l.slice(0, l.indexOf("=")), l.slice(l.indexOf("=") + 1)]),
 );
 const KEY = env.GEMINI_API_KEY;
 if (!KEY) {
@@ -28,10 +28,14 @@ if (!KEY) {
 }
 
 const MODEL =
-  process.argv[2] === "full" ? "veo-3.0-generate-001" : "veo-3.0-fast-generate-001";
+  process.argv[2] === "full"
+    ? "veo-3.0-generate-001"
+    : "veo-3.0-fast-generate-001";
 const BASE = "https://generativelanguage.googleapis.com/v1beta";
 
-const image = readFileSync(join(root, "public/art/ruben-hero-scan.png")).toString("base64");
+const image = readFileSync(
+  join(root, "public/art/ruben-hero-scan.png"),
+).toString("base64");
 
 const PROMPT = `The man types continuously on the laptop keyboard: fingers articulate and press keys with natural weight and rhythm, hands stay on the keyboard, subtle head movement as he reads the screen, faint breathing motion in the shoulders. Everything else stays still. The blue phosphor scanline render style, the black background, the framing and the color tone remain EXACTLY as in the source image — no camera movement, no cuts, no new elements. The motion should loop seamlessly: end in a pose close to the start.`;
 
@@ -43,9 +47,17 @@ const submit = await fetch(`${BASE}/models/${MODEL}:predictLongRunning`, {
   headers: { "content-type": "application/json", "x-goog-api-key": KEY },
   body: JSON.stringify({
     instances: [
-      { prompt: PROMPT, image: { bytesBase64Encoded: image, mimeType: "image/png" } },
+      {
+        prompt: PROMPT,
+        image: { bytesBase64Encoded: image, mimeType: "image/png" },
+      },
     ],
-    parameters: { aspectRatio: "16:9", resolution: "1080p", negativePrompt: "camera movement, zoom, scene change, color change, realistic skin, photorealistic" },
+    parameters: {
+      aspectRatio: "16:9",
+      resolution: "1080p",
+      negativePrompt:
+        "camera movement, zoom, scene change, color change, realistic skin, photorealistic",
+    },
   }),
 });
 const op = await submit.json();
@@ -59,7 +71,9 @@ console.log(`operation: ${op.name}`);
 let status = op;
 while (!status.done) {
   await sleep(10000);
-  const r = await fetch(`${BASE}/${op.name}`, { headers: { "x-goog-api-key": KEY } });
+  const r = await fetch(`${BASE}/${op.name}`, {
+    headers: { "x-goog-api-key": KEY },
+  });
   status = await r.json();
   console.log(status.done ? "done" : "still running…");
   if (status.error) {
@@ -68,7 +82,8 @@ while (!status.done) {
   }
 }
 
-const video = status.response?.generateVideoResponse?.generatedSamples?.[0]?.video;
+const video =
+  status.response?.generateVideoResponse?.generatedSamples?.[0]?.video;
 if (!video?.uri) {
   console.error("no video in response", JSON.stringify(status).slice(0, 600));
   process.exit(1);

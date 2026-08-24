@@ -39,26 +39,35 @@ export const GET: APIRoute = async () => {
     })),
   ].sort((a, b) => b.dateModified.localeCompare(a.dateModified));
 
-  return new Response(JSON.stringify({
-    version: "1.0",
-    generatedAt: new Date().toISOString(),
-    site: {
-      name: "Ruben Marcus",
-      url: ORIGIN,
-      description: "AI Fullstack Engineer building web products, agent systems, developer tooling, and AEO infrastructure.",
-      languages: ["en", "pt-BR"],
+  return new Response(
+    JSON.stringify(
+      {
+        version: "1.0",
+        generatedAt: new Date().toISOString(),
+        site: {
+          name: "Ruben Marcus",
+          url: ORIGIN,
+          description:
+            "AI Fullstack Engineer building web products, agent systems, developer tooling, and AEO infrastructure.",
+          languages: ["en", "pt-BR"],
+        },
+        // Every URL below with a `markdown` field also answers at `<url>.md` with
+        // the plain source — no HTML parsing needed.
+        markdown: {
+          convention:
+            "Append .md to a listed URL to fetch its Markdown source.",
+          pages: [`${ORIGIN}/connect.md`, `${ORIGIN}/pt/connect.md`],
+        },
+        entries,
+      },
+      null,
+      2,
+    ),
+    {
+      headers: {
+        "content-type": "application/json; charset=utf-8",
+        "cache-control": "public, max-age=3600",
+      },
     },
-    // Every URL below with a `markdown` field also answers at `<url>.md` with
-    // the plain source — no HTML parsing needed.
-    markdown: {
-      convention: "Append .md to a listed URL to fetch its Markdown source.",
-      pages: [`${ORIGIN}/connect.md`, `${ORIGIN}/pt/connect.md`],
-    },
-    entries,
-  }, null, 2), {
-    headers: {
-      "content-type": "application/json; charset=utf-8",
-      "cache-control": "public, max-age=3600",
-    },
-  });
+  );
 };

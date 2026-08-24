@@ -36,7 +36,7 @@
     aria-haspopup="dialog"
     onclick={() => (open = true)}
   >
-    <span class="lab-source__glyph" aria-hidden="true">{"</>"}</span>
+    <span class="lab-source__glyph" aria-hidden="true">&lt;/&gt;</span>
     {label}
   </button>
 

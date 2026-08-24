@@ -7,7 +7,13 @@
 export type { IconDefinition, ParsedGrid, SvgIconDef, Voxel } from "./types";
 export { VOXEL_ICONS, SVG_ICONS } from "./registry";
 export type { VoxelIconName, SvgIconName } from "./registry";
-export { getParsed, parseGrid, asciiRows, seededRng, HEIGHT_GLYPHS } from "./grid";
+export {
+  getParsed,
+  parseGrid,
+  asciiRows,
+  seededRng,
+  HEIGHT_GLYPHS,
+} from "./grid";
 export { ACCENT, ACCENT_SOFT, ACCENT_DEEP, GLYPH_COLOR } from "./palette";
 
 export { default as AsciiIcon } from "./AsciiIcon.svelte";

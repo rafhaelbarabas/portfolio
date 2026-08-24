@@ -30,8 +30,12 @@ describe("without Supabase env vars", () => {
   it("answers 503 and never touches the network", async () => {
     const fetchSpy = vi.fn();
     vi.stubGlobal("fetch", fetchSpy);
-    expect((await get(viewsGet, "?slug=evals-are-the-product")).status).toBe(503);
-    expect((await post(likesPost, { slug: "evals-are-the-product" })).status).toBe(503);
+    expect((await get(viewsGet, "?slug=evals-are-the-product")).status).toBe(
+      503,
+    );
+    expect(
+      (await post(likesPost, { slug: "evals-are-the-product" })).status,
+    ).toBe(503);
     expect((await statsGet({} as never)).status).toBe(503);
     expect(fetchSpy).not.toHaveBeenCalled();
   });
@@ -55,17 +59,24 @@ describe("with Supabase configured", () => {
   it("accepts lab counter keys (shape-only membership)", async () => {
     const fetchSpy = vi.fn(async () => new Response("3", { status: 200 }));
     vi.stubGlobal("fetch", fetchSpy);
-    expect((await post(likesPost, { slug: "lab-flow-field" })).status).toBe(200);
+    expect((await post(likesPost, { slug: "lab-flow-field" })).status).toBe(
+      200,
+    );
     expect((await post(likesPost, { slug: "lab-" })).status).toBe(400);
   });
 
   it("answers the batch shape without a slug param, briefly cacheable", async () => {
     const rows = JSON.stringify([{ slug: "evals-are-the-product", views: 7 }]);
-    vi.stubGlobal("fetch", vi.fn(async () => new Response(rows, { status: 200 })));
+    vi.stubGlobal(
+      "fetch",
+      vi.fn(async () => new Response(rows, { status: 200 })),
+    );
     const res = await get(viewsGet, "");
     expect(res.status).toBe(200);
     expect(res.headers.get("cache-control")).toContain("s-maxage=60");
-    expect(await res.json()).toEqual({ counters: { "evals-are-the-product": 7 } });
+    expect(await res.json()).toEqual({
+      counters: { "evals-are-the-product": 7 },
+    });
   });
 
   it("increments views through the RPC and returns the count", async () => {
@@ -73,8 +84,14 @@ describe("with Supabase configured", () => {
     vi.stubGlobal("fetch", fetchSpy);
     const res = await post(viewsPost, { slug: "evals-are-the-product" });
     expect(res.status).toBe(200);
-    expect(await res.json()).toEqual({ slug: "evals-are-the-product", views: 42 });
-    const [url, init] = fetchSpy.mock.calls[0] as unknown as [string, RequestInit];
+    expect(await res.json()).toEqual({
+      slug: "evals-are-the-product",
+      views: 42,
+    });
+    const [url, init] = fetchSpy.mock.calls[0] as unknown as [
+      string,
+      RequestInit,
+    ];
     expect(String(url)).toContain("/rest/v1/rpc/increment_view");
     expect(init.headers).toMatchObject({ apikey: "service-key" });
   });
@@ -83,15 +100,26 @@ describe("with Supabase configured", () => {
     const fetchSpy = vi.fn(async () => new Response("7", { status: 200 }));
     vi.stubGlobal("fetch", fetchSpy);
     await post(likesPost, { slug: "evals-are-the-product", delta: -5 });
-    let body = JSON.parse((fetchSpy.mock.calls[0] as unknown as [string, RequestInit])[1].body as string);
+    let body = JSON.parse(
+      (fetchSpy.mock.calls[0] as unknown as [string, RequestInit])[1]
+        .body as string,
+    );
     expect(body.delta).toBe(1);
     await post(likesPost, { slug: "evals-are-the-product", delta: -1 });
-    body = JSON.parse((fetchSpy.mock.calls[1] as unknown as [string, RequestInit])[1].body as string);
+    body = JSON.parse(
+      (fetchSpy.mock.calls[1] as unknown as [string, RequestInit])[1]
+        .body as string,
+    );
     expect(body.delta).toBe(-1);
   });
 
   it("answers 503 when the store itself fails", async () => {
-    vi.stubGlobal("fetch", vi.fn(async () => new Response("error", { status: 500 })));
-    expect((await post(viewsPost, { slug: "evals-are-the-product" })).status).toBe(503);
+    vi.stubGlobal(
+      "fetch",
+      vi.fn(async () => new Response("error", { status: 500 })),
+    );
+    expect(
+      (await post(viewsPost, { slug: "evals-are-the-product" })).status,
+    ).toBe(503);
   });
 });

@@ -42,12 +42,14 @@ const TOOLS = [
   },
   {
     name: "check_availability",
-    description: "Current availability for full-time roles and freelance contracts.",
+    description:
+      "Current availability for full-time roles and freelance contracts.",
     inputSchema: { type: "object", properties: {} },
   },
   {
     name: "book_intro",
-    description: "Book a project intro with Ruben. Relays the brief to his email.",
+    description:
+      "Book a project intro with Ruben. Relays the brief to his email.",
     inputSchema: {
       type: "object",
       properties: {
@@ -55,7 +57,10 @@ const TOOLS = [
         contact: { type: "string", description: "Email or Telegram handle" },
         brief: { type: "string", description: "What they want to build" },
         budget: { type: "string", description: "Optional budget range" },
-        agent: { type: "string", description: "Calling agent (claude, chatgpt, kimi...)" },
+        agent: {
+          type: "string",
+          description: "Calling agent (claude, chatgpt, kimi...)",
+        },
       },
       required: ["name", "contact", "brief"],
     },
@@ -102,7 +107,14 @@ export const POST: APIRoute = async ({ request }) => {
   try {
     msg = await request.json();
   } catch {
-    return json({ jsonrpc: "2.0", id: null, error: { code: -32700, message: "parse error" } }, 400);
+    return json(
+      {
+        jsonrpc: "2.0",
+        id: null,
+        error: { code: -32700, message: "parse error" },
+      },
+      400,
+    );
   }
   const { id, method, params } = msg;
 
@@ -131,17 +143,29 @@ export const POST: APIRoute = async ({ request }) => {
     case "tools/call": {
       const name = params?.name;
       const args = params?.arguments ?? {};
-      recordMcpCall({ method, tool: typeof name === "string" ? name : "unknown" });
-      if (name === "get_resume") return json(result(id, JSON.stringify(RESUME, null, 2)));
+      recordMcpCall({
+        method,
+        tool: typeof name === "string" ? name : "unknown",
+      });
+      if (name === "get_resume")
+        return json(result(id, JSON.stringify(RESUME, null, 2)));
       if (name === "get_services") return json(result(id, SERVICES.join("\n")));
       if (name === "check_availability") return json(result(id, AVAILABILITY));
       if (name === "book_intro") {
-        const { name: n, contact, brief, budget, agent } = args as Record<string, string>;
+        const {
+          name: n,
+          contact,
+          brief,
+          budget,
+          agent,
+        } = args as Record<string, string>;
         if (!n || !contact || !brief) {
           // An agent that reaches book_intro and fails validation is a lead
           // that got away. Counted separately from a delivery failure.
           recordMcpCall({ method, tool: "book_intro", outcome: "error" });
-          return json(result(id, "error: name, contact and brief are required"));
+          return json(
+            result(id, "error: name, contact and brief are required"),
+          );
         }
         const delivery = await deliverLead({
           id: crypto.randomUUID(),
@@ -161,14 +185,32 @@ export const POST: APIRoute = async ({ request }) => {
         });
         if (!delivery.ok) {
           recordMcpCall({ method, tool: "book_intro", outcome: "error" });
-          return json(result(id, `error: lead delivery unavailable; reference ${delivery.leadId}`));
+          return json(
+            result(
+              id,
+              `error: lead delivery unavailable; reference ${delivery.leadId}`,
+            ),
+          );
         }
         recordMcpCall({ method, tool: "book_intro", outcome: "ok" });
-        return json(result(id, `Intro booked. Reference ${delivery.leadId}. Ruben replies within a day or two. The person can also choose a 15-minute slot at ${CALENDLY_URL}`));
+        return json(
+          result(
+            id,
+            `Intro booked. Reference ${delivery.leadId}. Ruben replies within a day or two. The person can also choose a 15-minute slot at ${CALENDLY_URL}`,
+          ),
+        );
       }
-      return json({ jsonrpc: "2.0", id, error: { code: -32602, message: `unknown tool: ${name}` } });
+      return json({
+        jsonrpc: "2.0",
+        id,
+        error: { code: -32602, message: `unknown tool: ${name}` },
+      });
     }
     default:
-      return json({ jsonrpc: "2.0", id, error: { code: -32601, message: `method not found: ${method}` } });
+      return json({
+        jsonrpc: "2.0",
+        id,
+        error: { code: -32601, message: `method not found: ${method}` },
+      });
   }
 };

@@ -16,4 +16,6 @@ export async function getStaticPaths() {
 }
 
 export const GET: APIRoute = ({ props }) =>
-  new Response(blogPostMarkdown(props.post, "pt"), { headers: MARKDOWN_HEADERS });
+  new Response(blogPostMarkdown(props.post, "pt"), {
+    headers: MARKDOWN_HEADERS,
+  });

@@ -20,7 +20,7 @@ const env = Object.fromEntries(
     .split("\n")
     .map((l) => l.trim())
     .filter((l) => l && !l.startsWith("#") && l.includes("="))
-    .map((l) => [l.slice(0, l.indexOf("=")), l.slice(l.indexOf("=") + 1)])
+    .map((l) => [l.slice(0, l.indexOf("=")), l.slice(l.indexOf("=") + 1)]),
 );
 const KEY = env.OPENROUTER_API_KEY;
 if (!KEY) {
@@ -37,9 +37,9 @@ const CLIPS = {
 MOTIF: an endless looping pipeline of glowing wireframe machinery — code brackets, gear-like rotors and git-commit nodes flowing left to right through a conduit of blue mesh, merging into a single pulsing node, then the cycle restarts. Mechanical, precise, rhythmic.`,
   autoresearcher: `${STYLE}
 MOTIF: a swarm of glowing wireframe particles exploring dark space like a star field with intent — divergent trajectories that slowly converge onto a rising frontier curve made of blue dots; the curve sharpens, holds, dissolves back into the swarm. Organic, searching, hypnotic.`,
-  "aeojs": `${STYLE}
+  aeojs: `${STYLE}
 MOTIF: a radar scanline sweeping repeatedly across a tilted wireframe grid of document-like rectangles; wherever the beam passes, nodes and connection edges light up and stay glowing, mapping a network of citations. Precise, measured, scanning.`,
-  "corosolto": `${STYLE}
+  corosolto: `${STYLE}
 MOTIF: a fast first-person flythrough of a glowing blue wireframe arena — corridor walls of mesh rushing past, a pulsing crosshair reticle at center frame, muzzle-flash-like line bursts in the distance. Energetic but clean, video-game wireframe test-map aesthetic.`,
 };
 
@@ -54,13 +54,18 @@ const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 for (const slug of picks) {
   const prompt = CLIPS[slug];
   if (!prompt) {
-    console.error(`unknown clip "${slug}" (${Object.keys(CLIPS).join("|")}|all)`);
+    console.error(
+      `unknown clip "${slug}" (${Object.keys(CLIPS).join("|")}|all)`,
+    );
     process.exit(1);
   }
   console.log(`${slug}: submitting…`);
   const submit = await fetch("https://openrouter.ai/api/v1/videos", {
     method: "POST",
-    headers: { "content-type": "application/json", authorization: `Bearer ${KEY}` },
+    headers: {
+      "content-type": "application/json",
+      authorization: `Bearer ${KEY}`,
+    },
     body: JSON.stringify({
       model: MODEL,
       prompt,
@@ -72,7 +77,10 @@ for (const slug of picks) {
   });
   const job = await submit.json();
   if (!submit.ok) {
-    console.error(`${slug}: HTTP ${submit.status}`, JSON.stringify(job).slice(0, 600));
+    console.error(
+      `${slug}: HTTP ${submit.status}`,
+      JSON.stringify(job).slice(0, 600),
+    );
     continue;
   }
   console.log(`${slug}: job ${job.id} — polling…`);
@@ -80,20 +88,28 @@ for (const slug of picks) {
   let status = job;
   while (status.status !== "completed" && status.status !== "failed") {
     await sleep(15000);
-    const r = await fetch(job.polling_url, { headers: { authorization: `Bearer ${KEY}` } });
+    const r = await fetch(job.polling_url, {
+      headers: { authorization: `Bearer ${KEY}` },
+    });
     status = await r.json();
     console.log(`${slug}: ${status.status}`);
     if (status.status === "failed") {
-      console.error(`${slug}: FAILED:`, status.error ?? JSON.stringify(status).slice(0, 400));
+      console.error(
+        `${slug}: FAILED:`,
+        status.error ?? JSON.stringify(status).slice(0, 400),
+      );
       break;
     }
   }
   if (status.status !== "completed") continue;
 
   console.log(`${slug}: cost $${status.usage?.cost ?? "?"}`);
-  const dl = await fetch(`https://openrouter.ai/api/v1/videos/${job.id}/content?index=0`, {
-    headers: { authorization: `Bearer ${KEY}` },
-  });
+  const dl = await fetch(
+    `https://openrouter.ai/api/v1/videos/${job.id}/content?index=0`,
+    {
+      headers: { authorization: `Bearer ${KEY}` },
+    },
+  );
   if (!dl.ok) {
     console.error(`${slug}: download failed HTTP ${dl.status}`);
     continue;

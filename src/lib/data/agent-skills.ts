@@ -1,4 +1,5 @@
-export type SkillScope = "products" | "ecdsa-fail" | "cs-brasil" | "portfolio" | "general";
+export type SkillScope =
+  "products" | "ecdsa-fail" | "cs-brasil" | "portfolio" | "general";
 export type SkillStatus = "public" | "documented" | "internal";
 
 export interface AgentSkill {
@@ -54,7 +55,10 @@ export const agentSkills: AgentSkill[] = [
       en: "The operating loop behind Autoresearcher and leaderboard work in QEC and ECDSA.fail, with git and JSONL as the audit trail.",
       pt: "É o loop operacional do Autoresearcher e dos trabalhos de leaderboard em QEC e ECDSA.fail, com git e JSONL como trilha de auditoria.",
     },
-    article: { en: "/blog/autoresearcher-pareto-frontier", pt: "/pt/blog/mantendo-um-agente-de-pesquisa-autonomo-honesto" },
+    article: {
+      en: "/blog/autoresearcher-pareto-frontier",
+      pt: "/pt/blog/mantendo-um-agente-de-pesquisa-autonomo-honesto",
+    },
   },
   {
     slug: "aeo-delivery-system",
@@ -94,7 +98,10 @@ export const agentSkills: AgentSkill[] = [
       en: "Used by the ECDSA.fail Frontier Dissector to react to structural leaderboard changes without spending on stale routes.",
       pt: "Usada pelo Frontier Dissector do ECDSA.fail para reagir a mudanças estruturais do leaderboard sem gastar em rotas vencidas.",
     },
-    article: { en: "/blog/the-agent-swarm-that-took-1-on-ecdsa-fail", pt: "/pt/blog/o-swarm-que-chegou-ao-primeiro-lugar-no-ecdsa-fail" },
+    article: {
+      en: "/blog/the-agent-swarm-that-took-1-on-ecdsa-fail",
+      pt: "/pt/blog/o-swarm-que-chegou-ao-primeiro-lugar-no-ecdsa-fail",
+    },
   },
   {
     slug: "ecdsa-route-spec",
@@ -114,7 +121,10 @@ export const agentSkills: AgentSkill[] = [
       en: "Prevents vague research prompts from reaching workers or paid GPU hunts in the ECDSA.fail command center.",
       pt: "Impede prompts vagos de pesquisa de chegarem aos workers ou às buscas pagas em GPU do command center do ECDSA.fail.",
     },
-    article: { en: "/blog/agent-command-center", pt: "/pt/blog/centro-de-comando-para-swarms-de-agentes-em-markdown" },
+    article: {
+      en: "/blog/agent-command-center",
+      pt: "/pt/blog/centro-de-comando-para-swarms-de-agentes-em-markdown",
+    },
   },
   {
     slug: "circuit-engineer-factory",
@@ -134,7 +144,10 @@ export const agentSkills: AgentSkill[] = [
       en: "Keeps model-specific workers aligned with the reversible-circuit invariants the command center actually evaluates.",
       pt: "Mantém workers de modelos diferentes alinhados aos invariantes de circuitos reversíveis que o command center realmente avalia.",
     },
-    article: { en: "/blog/agent-command-center", pt: "/pt/blog/centro-de-comando-para-swarms-de-agentes-em-markdown" },
+    article: {
+      en: "/blog/agent-command-center",
+      pt: "/pt/blog/centro-de-comando-para-swarms-de-agentes-em-markdown",
+    },
   },
   {
     slug: "circuit-optimization",
@@ -194,7 +207,10 @@ export const agentSkills: AgentSkill[] = [
       en: "Makes width reduction explicit instead of treating total ancilla count as a proxy for peak cost.",
       pt: "Torna a redução de largura explícita em vez de tratar a contagem total de ancillas como proxy do custo de pico.",
     },
-    article: { en: "/blog/the-agent-swarm-that-took-1-on-ecdsa-fail", pt: "/pt/blog/o-swarm-que-chegou-ao-primeiro-lugar-no-ecdsa-fail" },
+    article: {
+      en: "/blog/the-agent-swarm-that-took-1-on-ecdsa-fail",
+      pt: "/pt/blog/o-swarm-que-chegou-ao-primeiro-lugar-no-ecdsa-fail",
+    },
   },
   {
     slug: "toffoli-reduction",
@@ -234,7 +250,10 @@ export const agentSkills: AgentSkill[] = [
       en: "Connects CPU triage to GPU spend using explicit huntability thresholds and trusted full validation.",
       pt: "Conecta triagem em CPU a gasto em GPU usando thresholds explícitos de viabilidade e validação completa confiável.",
     },
-    article: { en: "/blog/the-agent-swarm-that-took-1-on-ecdsa-fail", pt: "/pt/blog/o-swarm-que-chegou-ao-primeiro-lugar-no-ecdsa-fail" },
+    article: {
+      en: "/blog/the-agent-swarm-that-took-1-on-ecdsa-fail",
+      pt: "/pt/blog/o-swarm-que-chegou-ao-primeiro-lugar-no-ecdsa-fail",
+    },
   },
   {
     slug: "multi-agent-research-collaboration",
@@ -254,7 +273,10 @@ export const agentSkills: AgentSkill[] = [
       en: "Coordinates Claude, Codex, Kimi, GLM, Amp, and specialist workers without making chat history the source of truth.",
       pt: "Coordena Claude, Codex, Kimi, GLM, Amp e workers especialistas sem transformar o histórico de chat em fonte da verdade.",
     },
-    article: { en: "/blog/agent-command-center", pt: "/pt/blog/centro-de-comando-para-swarms-de-agentes-em-markdown" },
+    article: {
+      en: "/blog/agent-command-center",
+      pt: "/pt/blog/centro-de-comando-para-swarms-de-agentes-em-markdown",
+    },
   },
   {
     slug: "csbrasil-content-pipeline",
@@ -332,7 +354,10 @@ export const agentSkills: AgentSkill[] = [
       en: "Encodes the repository law: a ruler that cannot turn red is decoration, not evidence.",
       pt: "Codifica a lei do repositório: régua que não pode ficar vermelha é decoração, não evidência.",
     },
-    article: { en: "/blog/cs-brasil-ai-harness", pt: "/pt/blog/harness-de-ia-por-tras-do-cs-brasil" },
+    article: {
+      en: "/blog/cs-brasil-ai-harness",
+      pt: "/pt/blog/harness-de-ia-por-tras-do-cs-brasil",
+    },
   },
   {
     slug: "csbrasil-pr-triage",
@@ -390,7 +415,10 @@ export const agentSkills: AgentSkill[] = [
       en: "Used to evolve CS Brasil maps, weapons, HUD, lighting, and gameplay without letting builders grade their own work.",
       pt: "Usada para evoluir mapas, armas, HUD, iluminação e jogabilidade do CS Brasil sem deixar builders avaliarem o próprio trabalho.",
     },
-    article: { en: "/blog/inside-the-gauntlet-loop", pt: "/pt/blog/por-dentro-do-gauntlet-loop" },
+    article: {
+      en: "/blog/inside-the-gauntlet-loop",
+      pt: "/pt/blog/por-dentro-do-gauntlet-loop",
+    },
   },
   {
     slug: "bug-hunt",
@@ -433,7 +461,8 @@ export const agentSkills: AgentSkill[] = [
   {
     slug: "bilingual-publishing",
     name: "Bilingual Publishing",
-    thumbnail: "/art/blog/from-prompt-to-product-five-ways-to-build-with-ai.png",
+    thumbnail:
+      "/art/blog/from-prompt-to-product-five-ways-to-build-with-ai.png",
     scope: "portfolio",
     status: "public",
     summary: {
@@ -486,7 +515,10 @@ export const agentSkills: AgentSkill[] = [
       en: "The operating method behind this portfolio's prompt-to-pull-request workflow.",
       pt: "O método operacional por trás do fluxo prompt-to-pull-request deste portfólio.",
     },
-    article: { en: "/blog/frontend-ai-harness-prompt-to-pull-request", pt: "/pt/blog/meu-harness-de-ia-para-frontend-do-prompt-ao-pull-request" },
+    article: {
+      en: "/blog/frontend-ai-harness-prompt-to-pull-request",
+      pt: "/pt/blog/meu-harness-de-ia-para-frontend-do-prompt-ao-pull-request",
+    },
   },
   {
     slug: "portfolio-mcp",
@@ -507,8 +539,11 @@ export const agentSkills: AgentSkill[] = [
       pt: "Publicada via descoberta Agent Skills e pelo endpoint MCP público do site.",
     },
     discoveryUrl: "/.well-known/agent-skills/portfolio-mcp/SKILL.md",
-    digest: "sha256:a92c645621d60003fade5f068d5a6c0112a753b3b4d71f03405e4d59a7c39c38",
+    digest:
+      "sha256:a92c645621d60003fade5f068d5a6c0112a753b3b4d71f03405e4d59a7c39c38",
   },
 ];
 
-export const discoverableSkills = agentSkills.filter((skill) => skill.discoveryUrl);
+export const discoverableSkills = agentSkills.filter(
+  (skill) => skill.discoveryUrl,
+);

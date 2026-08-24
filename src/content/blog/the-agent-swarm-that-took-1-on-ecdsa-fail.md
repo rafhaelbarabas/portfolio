@@ -52,4 +52,4 @@ A 30-minute launchd loop ran the whole factory: discover → validate → submit
 
 The result: #1 on ECDSA.fail, and a research publication where I'm a contributor. The harness is the part I'm proud of. The circuit math belongs to a long line of researchers; the discipline that produced it reliably is mine.
 
-*If you're working on agent orchestration, evaluation infrastructure, or just want to argue about fail-closed design, my inbox is open.*
+_If you're working on agent orchestration, evaluation infrastructure, or just want to argue about fail-closed design, my inbox is open._

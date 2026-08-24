@@ -29,7 +29,7 @@ const env = Object.fromEntries(
     .split("\n")
     .map((l) => l.trim())
     .filter((l) => l && !l.startsWith("#") && l.includes("="))
-    .map((l) => [l.slice(0, l.indexOf("=")), l.slice(l.indexOf("=") + 1)])
+    .map((l) => [l.slice(0, l.indexOf("=")), l.slice(l.indexOf("=") + 1)]),
 );
 const KEY_GEMINI = env.GEMINI_API_KEY;
 const KEY_OR = env.OPENROUTER_API_KEY;
@@ -44,14 +44,20 @@ if (PROVIDER === "gemini" && !KEY_GEMINI) {
 }
 
 const MODEL =
-  PROVIDER === "openrouter" ? "google/gemini-2.5-flash-image" : "gemini-2.5-flash-image";
+  PROVIDER === "openrouter"
+    ? "google/gemini-2.5-flash-image"
+    : "gemini-2.5-flash-image";
 const URL =
   PROVIDER === "openrouter"
     ? "https://openrouter.ai/api/v1/chat/completions"
     : `https://generativelanguage.googleapis.com/v1beta/models/${MODEL}:generateContent`;
 
-const face = readFileSync(join(root, "public/reference/ruben-face.jpeg")).toString("base64");
-const style = readFileSync(join(root, "ref/f3ba3e90a7b313cf5ff460ddfa825cd8.jpg")).toString("base64");
+const face = readFileSync(
+  join(root, "public/reference/ruben-face.jpeg"),
+).toString("base64");
+const style = readFileSync(
+  join(root, "ref/f3ba3e90a7b313cf5ff460ddfa825cd8.jpg"),
+).toString("base64");
 
 const STYLE_DESC = `
 RENDER STYLE (follow the second reference image exactly):
@@ -230,7 +236,10 @@ for (const v of picks) {
   } else {
     res = await fetch(URL, {
       method: "POST",
-      headers: { "content-type": "application/json", "x-goog-api-key": KEY_GEMINI },
+      headers: {
+        "content-type": "application/json",
+        "x-goog-api-key": KEY_GEMINI,
+      },
       body: JSON.stringify({
         contents: [
           {
@@ -247,7 +256,10 @@ for (const v of picks) {
   }
   const json = await res.json();
   if (!res.ok) {
-    console.error(`variant ${v}: HTTP ${res.status}`, JSON.stringify(json).slice(0, 500));
+    console.error(
+      `variant ${v}: HTTP ${res.status}`,
+      JSON.stringify(json).slice(0, 500),
+    );
     continue;
   }
 
@@ -261,7 +273,10 @@ for (const v of picks) {
     b64 = parts.find((p) => p.inlineData?.data)?.inlineData?.data;
   }
   if (!b64) {
-    console.error(`variant ${v}: no image in response`, JSON.stringify(json).slice(0, 500));
+    console.error(
+      `variant ${v}: no image in response`,
+      JSON.stringify(json).slice(0, 500),
+    );
     continue;
   }
   const file = join(outDir, `variant-${v}-${Date.now()}.png`);

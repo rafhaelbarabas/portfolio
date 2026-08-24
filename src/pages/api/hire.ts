@@ -15,7 +15,18 @@ import { deliverLead } from "../../lib/server/leads";
 import { CALENDLY_URL } from "../../lib/site-facts";
 
 const MAX = { name: 120, contact: 160, brief: 4000, budget: 120, agent: 80 };
-const ATTRIBUTION_KEYS = ["source", "utm_source", "utm_medium", "utm_campaign", "utm_content", "referrer", "landing", "conversion_path", "offer", "language"] as const;
+const ATTRIBUTION_KEYS = [
+  "source",
+  "utm_source",
+  "utm_medium",
+  "utm_campaign",
+  "utm_content",
+  "referrer",
+  "landing",
+  "conversion_path",
+  "offer",
+  "language",
+] as const;
 
 const json = (body: unknown, status = 200) =>
   new Response(JSON.stringify(body), {
@@ -65,7 +76,8 @@ export const GET: APIRoute = () =>
     },
     responses: {
       "200": '{ "ok": true, "leadId": "...", "message": "..." }',
-      "400": "name, contact and brief are required, or a field exceeded its limit",
+      "400":
+        "name, contact and brief are required, or a field exceeded its limit",
       "502": "lead delivery unavailable; leadId is still returned",
     },
     alternatives: {
@@ -93,20 +105,32 @@ export const POST: APIRoute = async ({ request }) => {
   if (data.website) return json({ ok: true });
 
   if (!name || !contact || !brief) {
-    return json({ ok: false, error: "name, contact and brief are required" }, 400);
+    return json(
+      { ok: false, error: "name, contact and brief are required" },
+      400,
+    );
   }
-  for (const [k, v] of Object.entries({ name, contact, brief, budget, agent })) {
+  for (const [k, v] of Object.entries({
+    name,
+    contact,
+    brief,
+    budget,
+    agent,
+  })) {
     if (v.length > MAX[k as keyof typeof MAX]) {
       return json({ ok: false, error: `${k} too long` }, 400);
     }
   }
 
-  const rawAttribution = data.attribution && typeof data.attribution === "object"
-    ? data.attribution as Record<string, unknown>
-    : {};
+  const rawAttribution =
+    data.attribution && typeof data.attribution === "object"
+      ? (data.attribution as Record<string, unknown>)
+      : {};
   const attribution = Object.fromEntries(
     ATTRIBUTION_KEYS.flatMap((key) => {
-      const value = String(rawAttribution[key] ?? "").trim().slice(0, 240);
+      const value = String(rawAttribution[key] ?? "")
+        .trim()
+        .slice(0, 240);
       return value ? [[key, value]] : [];
     }),
   );
@@ -121,7 +145,15 @@ export const POST: APIRoute = async ({ request }) => {
     agent,
     attribution,
   });
-  if (!delivery.ok) return json({ ok: false, error: "lead delivery unavailable", leadId: delivery.leadId }, 502);
+  if (!delivery.ok)
+    return json(
+      {
+        ok: false,
+        error: "lead delivery unavailable",
+        leadId: delivery.leadId,
+      },
+      502,
+    );
   return json({
     ok: true,
     leadId: delivery.leadId,

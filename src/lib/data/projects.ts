@@ -7,7 +7,14 @@ export interface Project {
   description: string;
   url?: string;
   stack?: string[];
-  group: "ai" | "bitte" | "grover" | "zup-fiap" | "freelance-modern" | "agency" | "early";
+  group:
+    | "ai"
+    | "bitte"
+    | "grover"
+    | "zup-fiap"
+    | "freelance-modern"
+    | "agency"
+    | "early";
   highlight?: boolean;
   /** Show on /portfolio — the curated cut (the full list is the archive). */
   featured?: boolean;
@@ -255,7 +262,8 @@ export const projects: Project[] = [
     org: "Grover",
     period: "Sep 2021 — Jul 2022",
     year: 2021,
-    description: "New features, documentation, and bug fixes on the tech-rental marketplace.",
+    description:
+      "New features, documentation, and bug fixes on the tech-rental marketplace.",
     stack: ["Next.js", "React"],
     group: "grover",
     featured: true,
@@ -302,7 +310,16 @@ export const projects: Project[] = [
     year: 2020,
     description:
       "Lead front and backend architecture, ongoing benchmarking, and a new developer journey inside Itaú's open banking developer portal — the face of Open Banking at the largest bank in Latin America.",
-    stack: ["Next.js", "TypeScript", "React", "Jest", "Node", "AWS Lambda", "Docker", "Terraform"],
+    stack: [
+      "Next.js",
+      "TypeScript",
+      "React",
+      "Jest",
+      "Node",
+      "AWS Lambda",
+      "Docker",
+      "Terraform",
+    ],
     group: "zup-fiap",
     highlight: true,
     featured: true,
@@ -376,7 +393,8 @@ export const projects: Project[] = [
     org: "Freelance",
     period: "Jul 2018 — Aug 2018",
     year: 2018,
-    description: "New INCA Tecnologia site — design and code by me. WordPress one-pager.",
+    description:
+      "New INCA Tecnologia site — design and code by me. WordPress one-pager.",
     stack: ["WordPress", "Design"],
     group: "freelance-modern",
   },
@@ -479,7 +497,8 @@ export const projects: Project[] = [
     org: "Freelance",
     period: "Jan 2016 — Feb 2016",
     year: 2016,
-    description: "Itaú campaign — HTML5, ASP.NET C#, jQuery, with IE6 compatibility.",
+    description:
+      "Itaú campaign — HTML5, ASP.NET C#, jQuery, with IE6 compatibility.",
     stack: ["HTML5", "ASP.NET C#", "jQuery"],
     group: "agency",
   },
@@ -518,7 +537,8 @@ export const projects: Project[] = [
     org: "Freelance",
     period: "Aug 2014 — Jan 2015",
     year: 2014,
-    description: "Screen-to-code from agency designs — HTML5/CSS3/ASP.NET/jQuery.",
+    description:
+      "Screen-to-code from agency designs — HTML5/CSS3/ASP.NET/jQuery.",
     stack: ["HTML5", "CSS3", "ASP.NET", "jQuery"],
     group: "agency",
   },
@@ -530,7 +550,8 @@ export const projects: Project[] = [
     org: "Samsung",
     period: "Oct 2011 — Jan 2012",
     year: 2011,
-    description: "Employee training system for Samsung — ASP.NET C#, HTML/CSS, jQuery.",
+    description:
+      "Employee training system for Samsung — ASP.NET C#, HTML/CSS, jQuery.",
     stack: ["ASP.NET C#", "HTML/CSS", "jQuery"],
     group: "early",
     featured: true,
@@ -552,7 +573,8 @@ export const projects: Project[] = [
     org: "Cyrela",
     period: "Nov 2011 — Jan 2012",
     year: 2011,
-    description: "Website for Cyrela's Thera Faria Lima apartments, via Agência Ole — WordPress / PHP / MySQL.",
+    description:
+      "Website for Cyrela's Thera Faria Lima apartments, via Agência Ole — WordPress / PHP / MySQL.",
     stack: ["WordPress", "PHP", "MySQL"],
     group: "early",
     featured: true,
@@ -587,7 +609,8 @@ export const projects: Project[] = [
     org: "Freelance",
     period: "Jan 2014 — Sep 2014",
     year: 2014,
-    description: "HTML/CSS, WordPress, PHP, JS. 5 templates EN/PT, 1000 posts. Mobile adaptation post-launch.",
+    description:
+      "HTML/CSS, WordPress, PHP, JS. 5 templates EN/PT, 1000 posts. Mobile adaptation post-launch.",
     stack: ["WordPress", "PHP", "HTML/CSS"],
     group: "early",
   },
@@ -607,7 +630,8 @@ export const projects: Project[] = [
     org: "Panasonic",
     period: "Dec 2011 — Jul 2014",
     year: 2011,
-    description: "UI Design + Frontend (ASP.NET C# Razor / HTML / CSS) for Panasonic's Panalink.",
+    description:
+      "UI Design + Frontend (ASP.NET C# Razor / HTML / CSS) for Panasonic's Panalink.",
     stack: ["ASP.NET", "Razor", "HTML/CSS"],
     group: "early",
     featured: true,
@@ -668,7 +692,8 @@ export const projects: Project[] = [
     org: "FrontLogin",
     period: "Apr 2013 — Aug 2013",
     year: 2013,
-    description: "Screen redesign, mobile adaptation, layout review and implementation.",
+    description:
+      "Screen redesign, mobile adaptation, layout review and implementation.",
     stack: ["ASP.NET C#", "HTML/CSS"],
     group: "early",
   },
@@ -678,7 +703,8 @@ export const projects: Project[] = [
     org: "Freelance",
     period: "Oct 2012 — Mar 2013",
     year: 2012,
-    description: "First version of the Shots opinion + entertainment site. WordPress / PHP / MySQL, 4+ layout iterations, 12 screens.",
+    description:
+      "First version of the Shots opinion + entertainment site. WordPress / PHP / MySQL, 4+ layout iterations, 12 screens.",
     stack: ["WordPress", "PHP", "MySQL"],
     group: "early",
   },

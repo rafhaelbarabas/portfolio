@@ -8,7 +8,7 @@ tags: ["ai", "agents", "gamedev", "harness"]
 cover: "/art/blog/cs-brasil-ai-harness.png"
 ---
 
-Eu já escrevi a [retrospectiva do lado de build do CS Brasil](/blog/shipping-a-browser-fps): o Gauntlet loop, os críticos adversariais, os builders em paralelo. Aquele post é sobre como o jogo muda. Este é sobre como uma mudança passa a ser *acreditada*: o motor de medição embaixo do loop. O repo é público, então tudo aqui é um caminho que você pode abrir.
+Eu já escrevi a [retrospectiva do lado de build do CS Brasil](/blog/shipping-a-browser-fps): o Gauntlet loop, os críticos adversariais, os builders em paralelo. Aquele post é sobre como o jogo muda. Este é sobre como uma mudança passa a ser _acreditada_: o motor de medição embaixo do loop. O repo é público, então tudo aqui é um caminho que você pode abrir.
 
 A versão anterior deste post descrevia uma pasta de markdown. Era verdade na época e não é mais. Desde então o harness criou uma espinha: `tools/eval/` agora tem 154 scripts, com mais 43 scripts de pipeline em `tools/`, todos alcançáveis por 41 npm scripts. Markdown ainda importa. Só não decide mais nada sozinho. Números decidem.
 
@@ -30,7 +30,7 @@ Minha favorita é a AUD1, uma invariante meta: ela checa se a régua concorda co
 
 Teste de mutação, para os não-infectados: você quebra o código de propósito (esse é o mutante) e confere se seus testes pegam. Se nada fica vermelho, seus testes são decoração. O harness aplica isso às próprias réguas: toda invariante precisa shipar com uma mutação que a deixe vermelha.
 
-A regra existe por causa de um resultado humilhante. Um mutante que removia um fix de verdade passou em 20 de 22 checagens, GREEN. A invariante lia a *declaração* da constante (ainda linda no arquivo) em vez do *uso* dela. O fix tinha sumido, o número continuava lá, e a régua aplaudiu. Como diz o repo: **uma régua que não reprova a versão anterior do próprio arquivo não é régua, é decoração.**
+A regra existe por causa de um resultado humilhante. Um mutante que removia um fix de verdade passou em 20 de 22 checagens, GREEN. A invariante lia a _declaração_ da constante (ainda linda no arquivo) em vez do _uso_ dela. O fix tinha sumido, o número continuava lá, e a régua aplaudiu. Como diz o repo: **uma régua que não reprova a versão anterior do próprio arquivo não é régua, é decoração.**
 
 ## As docs são geradas, e o CI confere
 
@@ -66,4 +66,4 @@ O padrão nos seis itens: a instrumentação está virando um produto próprio, 
 
 A lição é curta. Qualquer checagem que depende de um humano lembrar de rodar já está quebrada. Você só ainda não percebeu.
 
-*Se você já viu uma métrica ficar verde enquanto o produto piorava, minha inbox está aberta.*
+_Se você já viu uma métrica ficar verde enquanto o produto piorava, minha inbox está aberta._

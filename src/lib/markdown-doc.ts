@@ -16,9 +16,15 @@ export type MarkdownFrontmatter = Record<string, string | string[] | undefined>;
  * JSON-quoted because titles routinely contain colons and quotes, which would
  * otherwise produce invalid YAML.
  */
-export const markdownDocument = (frontmatter: MarkdownFrontmatter, body: string) => {
+export const markdownDocument = (
+  frontmatter: MarkdownFrontmatter,
+  body: string,
+) => {
   const lines = Object.entries(frontmatter)
-    .filter(([, value]) => value !== undefined && (!Array.isArray(value) || value.length > 0))
+    .filter(
+      ([, value]) =>
+        value !== undefined && (!Array.isArray(value) || value.length > 0),
+    )
     .map(([key, value]) =>
       Array.isArray(value)
         ? `${key}: [${value.map((item) => JSON.stringify(item)).join(", ")}]`
@@ -83,7 +89,10 @@ const CONNECT_LABELS = {
 } as const;
 
 /** The /connect page as Markdown — same steps, tools and prompts, no HTML. */
-export const connectMarkdown = (content: ConnectContent, locale: "en" | "pt") => {
+export const connectMarkdown = (
+  content: ConnectContent,
+  locale: "en" | "pt",
+) => {
   const label = CONNECT_LABELS[locale];
   const path = locale === "pt" ? "/pt/connect" : "/connect";
   const other = locale === "pt" ? "/connect" : "/pt/connect";
@@ -105,7 +114,8 @@ export const connectMarkdown = (content: ConnectContent, locale: "en" | "pt") =>
       `### ${client.name}`,
       "",
       ...client.steps.map(
-        (step, index) => `${index + 1}. ${step.text}${step.url ? ` \`${MCP_URL}\`` : ""}`,
+        (step, index) =>
+          `${index + 1}. ${step.text}${step.url ? ` \`${MCP_URL}\`` : ""}`,
       ),
       "",
     ]),
@@ -114,7 +124,12 @@ export const connectMarkdown = (content: ConnectContent, locale: "en" | "pt") =>
     ...content.tools.map((tool) => `- \`${tool.name}\` — ${tool.desc}`),
     "",
     ...(content.prompts?.length
-      ? [`## ${label.prompts}`, "", ...content.prompts.map((prompt) => `- ${prompt}`), ""]
+      ? [
+          `## ${label.prompts}`,
+          "",
+          ...content.prompts.map((prompt) => `- ${prompt}`),
+          "",
+        ]
       : []),
     `## ${label.plainHttp}`,
     "",

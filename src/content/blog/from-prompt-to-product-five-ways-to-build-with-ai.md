@@ -153,13 +153,13 @@ React, Next.js, Svelte, and Tailwind do not determine the mode. They change the 
 
 I use this mental table:
 
-| If the main uncertainty is... | Start with... | Proof of progress is... |
-|---|---|---|
-| how to ask | prompt engineering | a usable response |
-| what I want to build | vibe coding | a direction worth keeping |
-| how to execute safely | agentic engineering | external gates passing |
-| what creates value | product engineering | user behavior and outcomes |
-| what is true | research engineering | reproducible evidence |
+| If the main uncertainty is... | Start with...        | Proof of progress is...    |
+| ----------------------------- | -------------------- | -------------------------- |
+| how to ask                    | prompt engineering   | a usable response          |
+| what I want to build          | vibe coding          | a direction worth keeping  |
+| how to execute safely         | agentic engineering  | external gates passing     |
+| what creates value            | product engineering  | user behavior and outcomes |
+| what is true                  | research engineering | reproducible evidence      |
 
 In practice, a product moves through all five. I may research a technology, explore the experience by vibe, use prompts for local tasks, execute implementation with agents, and make product decisions from telemetry.
 

@@ -23,7 +23,7 @@ Banned openings: "In the world of...", "AI is changing...", "I planned to write 
 
 ### 2. Depth means implementation detail and scars
 
-Every technical claim must carry at least one of: a real number, a `file:line`/path, a command, a constraint, or a failure story. Explain *how the author thought*: what was tried first, what broke, what the measurement said, what got killed. A post without at least one "this failed and here's why" is superficial.
+Every technical claim must carry at least one of: a real number, a `file:line`/path, a command, a constraint, or a failure story. Explain _how the author thought_: what was tried first, what broke, what the measurement said, what got killed. A post without at least one "this failed and here's why" is superficial.
 
 Good: "One file, 200KB max. Only numpy, scipy, pymatching, and stim. Every decode finishes in 2.5 seconds or you get disqualified."
 Bad: "The constraints were challenging but we persevered."

@@ -209,7 +209,10 @@ export const aiAgents: AIAgent[] = [
     group: "ecdsa",
     tags: ["Route slates", "Frontier classification", "dispatch: Amp"],
     cover: "/art/blog/agent-frontier-dissector.png",
-    link: { href: "/blog/the-agent-swarm-that-took-1-on-ecdsa-fail", label: "Read the story →" },
+    link: {
+      href: "/blog/the-agent-swarm-that-took-1-on-ecdsa-fail",
+      label: "Read the story →",
+    },
   },
   {
     slug: "agent-circuit-engineer",
@@ -222,7 +225,10 @@ export const aiAgents: AIAgent[] = [
     group: "ecdsa",
     tags: ["Isolated worktrees", "Fixtures", "dispatch: Codex"],
     cover: "/art/blog/agent-circuit-engineer.png",
-    link: { href: "/blog/the-agent-swarm-that-took-1-on-ecdsa-fail", label: "Read the story →" },
+    link: {
+      href: "/blog/the-agent-swarm-that-took-1-on-ecdsa-fail",
+      label: "Read the story →",
+    },
   },
   {
     slug: "agent-density-analyst",
@@ -235,7 +241,10 @@ export const aiAgents: AIAgent[] = [
     group: "ecdsa",
     tags: ["Hunt economics", "Thresholds", "dispatch: Amp"],
     cover: "/art/blog/agent-density-analyst.png",
-    link: { href: "/blog/the-agent-swarm-that-took-1-on-ecdsa-fail", label: "Read the story →" },
+    link: {
+      href: "/blog/the-agent-swarm-that-took-1-on-ecdsa-fail",
+      label: "Read the story →",
+    },
   },
   {
     slug: "agent-cuda-engineer",
@@ -248,7 +257,10 @@ export const aiAgents: AIAgent[] = [
     group: "ecdsa",
     tags: ["CUDA", "Parity gates", "dispatch: Codex"],
     cover: "/art/blog/agent-cuda-engineer.png",
-    link: { href: "/blog/the-agent-swarm-that-took-1-on-ecdsa-fail", label: "Read the story →" },
+    link: {
+      href: "/blog/the-agent-swarm-that-took-1-on-ecdsa-fail",
+      label: "Read the story →",
+    },
   },
   {
     slug: "agent-pod-manager",
@@ -261,7 +273,10 @@ export const aiAgents: AIAgent[] = [
     group: "ecdsa",
     tags: ["Pod contracts", "Spend caps", "dispatch: Amp"],
     cover: "/art/blog/agent-pod-manager.png",
-    link: { href: "/blog/the-agent-swarm-that-took-1-on-ecdsa-fail", label: "Read the story →" },
+    link: {
+      href: "/blog/the-agent-swarm-that-took-1-on-ecdsa-fail",
+      label: "Read the story →",
+    },
   },
   {
     slug: "agent-research-scout",
@@ -287,7 +302,10 @@ export const aiAgents: AIAgent[] = [
     group: "ecdsa",
     tags: ["Ticket sizing", "Claim audits", "dispatch: Codex"],
     cover: "/art/blog/agent-orchestrator-reviewer.png",
-    link: { href: "/blog/the-agent-swarm-that-took-1-on-ecdsa-fail", label: "Read the story →" },
+    link: {
+      href: "/blog/the-agent-swarm-that-took-1-on-ecdsa-fail",
+      label: "Read the story →",
+    },
   },
   {
     slug: "agent-combinator",
@@ -300,7 +318,10 @@ export const aiAgents: AIAgent[] = [
     group: "ecdsa",
     tags: ["Composition", "Evidence labels", "dispatch: Amp"],
     cover: "/art/blog/agent-combinator.png",
-    link: { href: "/blog/the-agent-swarm-that-took-1-on-ecdsa-fail", label: "Read the story →" },
+    link: {
+      href: "/blog/the-agent-swarm-that-took-1-on-ecdsa-fail",
+      label: "Read the story →",
+    },
   },
 
   // ── CS Brasil — the Gauntlet loop roles ──────────────────────────────

@@ -20,7 +20,7 @@ const env = Object.fromEntries(
     .split("\n")
     .map((l) => l.trim())
     .filter((l) => l && !l.startsWith("#") && l.includes("="))
-    .map((l) => [l.slice(0, l.indexOf("=")), l.slice(l.indexOf("=") + 1)])
+    .map((l) => [l.slice(0, l.indexOf("=")), l.slice(l.indexOf("=") + 1)]),
 );
 const KEY = env.OPENROUTER_API_KEY;
 if (!KEY) {
@@ -31,17 +31,28 @@ if (!KEY) {
 const STYLE = `A dense luminous swarm of tiny phosphor-blue (#2D6BFF) particles, sparks and hairline light-trails on a 100% pure black background, forming the motif below. Organic depth and parallax, soft phosphor bloom, subtle dot-matrix grain, cinematic contrast, wide composition with generous black margins. STRICTLY no text, no letters, no logos, no people, no solid fills, no other colors. Dark analog occult-techno mood.`;
 
 const COVERS = {
-  "ralph-starter": "a glowing swarm flowing through a closed conveyor loop, bright commit nodes orbiting and merging into one pulsing core",
-  autoresearcher: "a rising staircase frontier curve drawn in hot bright particles, a vast dimmer swarm of candidate points below it",
-  aeojs: "a radar wave of light sweeping across a field of particles, revealing a constellation of document-like nodes that stay lit",
-  "ecdsa-fail": "a particle elliptic curve with one eruption point multiplying into orbiting trajectories",
-  "qec-decoder": "a particle lattice of qubit nodes with one snaking brighter error-chain being pulled straight",
-  mirofish: "a school of particle fish swirling in formation through dark water, dust trailing",
-  "bitte-agent-sdk": "a cube of interlocking particle modules connected by beams of light",
-  "bitte-ai-runtime": "a particle engine core with concentric orbiting rings and streams of dots flowing through",
-  corosolto: "a particle crosshair over a sweeping arena corridor of light trails",
-  "aeo-checker": "a particle gauge dial with a needle pointing high, concentric score rings of glowing dots",
-  scanrepo: "a particle file-tree whose branches end in small glowing cubes, one branch lit up under a magnifying ring",
+  "ralph-starter":
+    "a glowing swarm flowing through a closed conveyor loop, bright commit nodes orbiting and merging into one pulsing core",
+  autoresearcher:
+    "a rising staircase frontier curve drawn in hot bright particles, a vast dimmer swarm of candidate points below it",
+  aeojs:
+    "a radar wave of light sweeping across a field of particles, revealing a constellation of document-like nodes that stay lit",
+  "ecdsa-fail":
+    "a particle elliptic curve with one eruption point multiplying into orbiting trajectories",
+  "qec-decoder":
+    "a particle lattice of qubit nodes with one snaking brighter error-chain being pulled straight",
+  mirofish:
+    "a school of particle fish swirling in formation through dark water, dust trailing",
+  "bitte-agent-sdk":
+    "a cube of interlocking particle modules connected by beams of light",
+  "bitte-ai-runtime":
+    "a particle engine core with concentric orbiting rings and streams of dots flowing through",
+  corosolto:
+    "a particle crosshair over a sweeping arena corridor of light trails",
+  "aeo-checker":
+    "a particle gauge dial with a needle pointing high, concentric score rings of glowing dots",
+  scanrepo:
+    "a particle file-tree whose branches end in small glowing cubes, one branch lit up under a magnifying ring",
 };
 
 const which = process.argv[2] ?? "all";
@@ -53,31 +64,45 @@ mkdirSync(outDir, { recursive: true });
 for (const slug of picks) {
   const motif = COVERS[slug];
   if (!motif) {
-    console.error(`unknown cover "${slug}" (${Object.keys(COVERS).join("|")}|all)`);
+    console.error(
+      `unknown cover "${slug}" (${Object.keys(COVERS).join("|")}|all)`,
+    );
     process.exit(1);
   }
   console.log(`${slug}: generating…`);
   const res = await fetch("https://openrouter.ai/api/v1/chat/completions", {
     method: "POST",
-    headers: { "content-type": "application/json", authorization: `Bearer ${KEY}` },
+    headers: {
+      "content-type": "application/json",
+      authorization: `Bearer ${KEY}`,
+    },
     body: JSON.stringify({
       model: "google/gemini-2.5-flash-image",
       modalities: ["image", "text"],
       messages: [
-        { role: "user", content: [{ type: "text", text: `${STYLE}\nMOTIF: ${motif}.` }] },
+        {
+          role: "user",
+          content: [{ type: "text", text: `${STYLE}\nMOTIF: ${motif}.` }],
+        },
       ],
     }),
   });
   const json = await res.json();
   if (!res.ok) {
-    console.error(`${slug}: HTTP ${res.status}`, JSON.stringify(json).slice(0, 400));
+    console.error(
+      `${slug}: HTTP ${res.status}`,
+      JSON.stringify(json).slice(0, 400),
+    );
     continue;
   }
   const images = json.choices?.[0]?.message?.images ?? [];
   const dataUrl = images[0]?.image_url?.url ?? "";
   const b64 = dataUrl.startsWith("data:") ? dataUrl.split(",")[1] : undefined;
   if (!b64) {
-    console.error(`${slug}: no image in response`, JSON.stringify(json).slice(0, 400));
+    console.error(
+      `${slug}: no image in response`,
+      JSON.stringify(json).slice(0, 400),
+    );
     continue;
   }
   const out = join(outDir, `${slug}.png`);

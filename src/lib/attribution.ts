@@ -39,24 +39,50 @@ const hostnameFrom = (value: string) => {
 export const normalizeSource = (hostname: string) => {
   const host = hostnameFrom(hostname);
   if (!host) return "direct";
-  if (host === "lnkd.in" || host === "linkedin.com" || host.endsWith(".linkedin.com") || host === "com.linkedin.android") return "linkedin";
-  if (host === "t.co" || host === "x.com" || host.endsWith(".twitter.com")) return "x";
+  if (
+    host === "lnkd.in" ||
+    host === "linkedin.com" ||
+    host.endsWith(".linkedin.com") ||
+    host === "com.linkedin.android"
+  )
+    return "linkedin";
+  if (host === "t.co" || host === "x.com" || host.endsWith(".twitter.com"))
+    return "x";
   if (host === "reddit.com" || host.endsWith(".reddit.com")) return "reddit";
-  if (host === "pinterest.com" || host.endsWith(".pinterest.com") || host === "pin.it") return "pinterest";
-  if (host === "facebook.com" || host.endsWith(".facebook.com") || host === "fb.com") return "facebook";
-  if (host === "instagram.com" || host.endsWith(".instagram.com")) return "instagram";
-  if (host === "awwwards.com" || host.endsWith(".awwwards.com")) return "awwwards";
-  if (host === "land-book.com" || host.endsWith(".land-book.com")) return "landbook";
-  if (host === "dribbble.com" || host.endsWith(".dribbble.com")) return "dribbble";
+  if (
+    host === "pinterest.com" ||
+    host.endsWith(".pinterest.com") ||
+    host === "pin.it"
+  )
+    return "pinterest";
+  if (
+    host === "facebook.com" ||
+    host.endsWith(".facebook.com") ||
+    host === "fb.com"
+  )
+    return "facebook";
+  if (host === "instagram.com" || host.endsWith(".instagram.com"))
+    return "instagram";
+  if (host === "awwwards.com" || host.endsWith(".awwwards.com"))
+    return "awwwards";
+  if (host === "land-book.com" || host.endsWith(".land-book.com"))
+    return "landbook";
+  if (host === "dribbble.com" || host.endsWith(".dribbble.com"))
+    return "dribbble";
   if (host === "behance.net" || host.endsWith(".behance.net")) return "behance";
-  if (host === "lapa.ninja" || host.endsWith(".lapa.ninja")) return "lapa_ninja";
-  if (host === "siteinspire.com" || host.endsWith(".siteinspire.com")) return "siteinspire";
-  if (host === "minimal.gallery" || host.endsWith(".minimal.gallery")) return "minimal_gallery";
-  if (host === "indiehackers.com" || host.endsWith(".indiehackers.com")) return "indie_hackers";
+  if (host === "lapa.ninja" || host.endsWith(".lapa.ninja"))
+    return "lapa_ninja";
+  if (host === "siteinspire.com" || host.endsWith(".siteinspire.com"))
+    return "siteinspire";
+  if (host === "minimal.gallery" || host.endsWith(".minimal.gallery"))
+    return "minimal_gallery";
+  if (host === "indiehackers.com" || host.endsWith(".indiehackers.com"))
+    return "indie_hackers";
   if (host === "google.com" || host.endsWith(".google.com")) return "google";
   if (host === "claude.ai" || host.endsWith(".claude.ai")) return "claude";
   if (host === "chatgpt.com" || host.endsWith(".chatgpt.com")) return "chatgpt";
-  if (host === "perplexity.ai" || host.endsWith(".perplexity.ai")) return "perplexity";
+  if (host === "perplexity.ai" || host.endsWith(".perplexity.ai"))
+    return "perplexity";
   if (host === "github.com" || host.endsWith(".github.com")) return "github";
   return host;
 };
@@ -73,7 +99,8 @@ export const buildFirstTouchAttribution = (
   const referralSource = clean(params.get("ref"));
   const referrer = hostnameFrom(documentReferrer);
   const currentHost = hostnameFrom(siteHostname);
-  const internalReferrer = referrer === currentHost || referrer.endsWith(`.${currentHost}`);
+  const internalReferrer =
+    referrer === currentHost || referrer.endsWith(`.${currentHost}`);
   const externalReferrer = internalReferrer ? "" : referrer;
 
   return {
@@ -90,12 +117,21 @@ export const buildFirstTouchAttribution = (
 const isAttribution = (value: unknown): value is FirstTouchAttribution => {
   if (!value || typeof value !== "object") return false;
   const candidate = value as Record<string, unknown>;
-  return ["source", "referrer", "landing", "utm_source", "utm_medium", "utm_campaign", "utm_content"]
-    .every((key) => typeof candidate[key] === "string");
+  return [
+    "source",
+    "referrer",
+    "landing",
+    "utm_source",
+    "utm_medium",
+    "utm_campaign",
+    "utm_content",
+  ].every((key) => typeof candidate[key] === "string");
 };
 
 export const getFirstTouchAttribution = (): FirstTouchAttribution => {
-  const fallback = buildFirstTouchAttribution(new URL("https://www.rubenmarcus.dev/"));
+  const fallback = buildFirstTouchAttribution(
+    new URL("https://www.rubenmarcus.dev/"),
+  );
   if (typeof window === "undefined") return fallback;
 
   try {
@@ -110,7 +146,10 @@ export const getFirstTouchAttribution = (): FirstTouchAttribution => {
       document.referrer,
       window.location.hostname,
     );
-    window.sessionStorage.setItem(ATTRIBUTION_STORAGE_KEY, JSON.stringify(attribution));
+    window.sessionStorage.setItem(
+      ATTRIBUTION_STORAGE_KEY,
+      JSON.stringify(attribution),
+    );
     return attribution;
   } catch {
     return buildFirstTouchAttribution(
@@ -122,7 +161,10 @@ export const getFirstTouchAttribution = (): FirstTouchAttribution => {
 };
 
 /** Four low-cardinality properties suitable for Vercel custom events. */
-export const getFunnelEventProperties = (location: string, language: string) => {
+export const getFunnelEventProperties = (
+  location: string,
+  language: string,
+) => {
   const attribution = getFirstTouchAttribution();
   return {
     source: attribution.source,

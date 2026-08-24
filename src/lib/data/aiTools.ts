@@ -77,7 +77,11 @@ export const aiTools: AITool[] = [
   },
 ];
 
-export const supportingTools: { name: string; description: string; repo: string }[] = [
+export const supportingTools: {
+  name: string;
+  description: string;
+  repo: string;
+}[] = [
   {
     name: "Mirofi.sh",
     description:

@@ -9,6 +9,11 @@
     "build": "astro build && node scripts/vercel-route-policy.mjs",
     "preview": "astro preview",
     "check": "astro check",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "format": "prettier --write --ignore-unknown .",
+    "format:check": "prettier --check --ignore-unknown .",
+    "fix": "pnpm format && pnpm lint:fix",
     "test": "vitest run",
     "smoke:prod": "node scripts/smoke-prod.mjs",
     "text:gate": "node scripts/text-gate.mjs",
@@ -41,11 +46,18 @@
     "three": "^0.182.0"
   },
   "devDependencies": {
+    "@eslint/js": "^10.0.1",
     "@types/three": "^0.182.0",
     "autoprefixer": "^10.4.20",
+    "eslint": "^10.9.1",
+    "eslint-plugin-astro": "^3.1.0",
+    "eslint-plugin-svelte": "^3.23.0",
+    "globals": "^17.11.0",
+    "prettier": "^3.9.6",
     "sharp": "^0.35.3",
     "tailwindcss": "^3.4.17",
     "typescript": "^5",
+    "typescript-eslint": "^8.68.0",
     "vitest": "^4.1.10"
   },
   "license": "MIT"

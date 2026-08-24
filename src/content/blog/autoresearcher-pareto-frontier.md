@@ -61,7 +61,7 @@ And here is the entire selection algorithm, verbatim:
 ```js
 // src/run-loop.js
 function parseMetric(output, metricRegex) {
-  const regex = new RegExp(metricRegex, 'm');
+  const regex = new RegExp(metricRegex, "m");
   const match = output.match(regex);
   if (!match || !match[1]) return null;
   const metric = Number(match[1]);
@@ -70,7 +70,7 @@ function parseMetric(output, metricRegex) {
 
 function isBetter(metric, best, direction) {
   if (best == null) return true;
-  return direction === 'min' ? metric < best : metric > best;
+  return direction === "min" ? metric < best : metric > best;
 }
 ```
 
@@ -146,4 +146,4 @@ The 2,642 errors-per-million result that took #1 survived the strictest version 
 
 Autoresearcher is open source at [autoresearcher.org](https://autoresearcher.org). The agents will keep getting smarter on their own. The interesting engineering is in everything around them that keeps them honest, and most of that engineering is deciding what not to build.
 
-*If you're building evaluation infrastructure or agent orchestration and want to compare scars, my inbox is open.*
+_If you're building evaluation infrastructure or agent orchestration and want to compare scars, my inbox is open._

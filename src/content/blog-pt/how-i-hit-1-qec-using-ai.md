@@ -105,4 +105,4 @@ CMA-ES via pacote cmaes pra tuning de hiperparâmetros.
 
 Um engenheiro, um laptop, zero GPUs, umas quarenta submissões ao longo de uma semana.
 
-*Ruben Marcus. Senior AI Fullstack Engineer na MultiVm Labs. Construtor do autoresearcher, ralph-starter, AEO.js.*
+_Ruben Marcus. Senior AI Fullstack Engineer na MultiVm Labs. Construtor do autoresearcher, ralph-starter, AEO.js._

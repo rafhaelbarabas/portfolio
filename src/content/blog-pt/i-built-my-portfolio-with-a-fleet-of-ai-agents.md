@@ -110,4 +110,4 @@ O resultado é este site: um eu verde-terminal, digitando, se dissolvendo em wir
 
 Se você está contratando alguém pra construir produto powered-by-IA de ponta a ponta, ou só quer discutir pipelines de shader, estou por aí.
 
-*P.S. A rubrica do gauntlet e o text gate estão os dois no repo. Roube eles.*
+_P.S. A rubrica do gauntlet e o text gate estão os dois no repo. Roube eles._

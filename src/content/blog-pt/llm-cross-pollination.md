@@ -7,7 +7,7 @@ tags: ["ai", "llm", "agents", "research", "openrouter"]
 cover: "/art/blog/llm-cross-pollination.png"
 ---
 
-Eu rodo um pipeline de pesquisa em que vários modelos de fronteira, de provedores *diferentes*, roteados pelo OpenRouter, geram, criticam e fazem merge do trabalho uns dos outros iterativamente. Ninguém compartilha vector store. Ninguém compartilha memória. A única coisa que atravessa a fronteira entre os modelos é o texto da fase anterior, colado no próximo prompt.
+Eu rodo um pipeline de pesquisa em que vários modelos de fronteira, de provedores _diferentes_, roteados pelo OpenRouter, geram, criticam e fazem merge do trabalho uns dos outros iterativamente. Ninguém compartilha vector store. Ninguém compartilha memória. A única coisa que atravessa a fronteira entre os modelos é o texto da fase anterior, colado no próximo prompt.
 
 Essa restrição parece uma limitação. É o design. O que eu construí sem querer foi revisão por pares, compilada em coreografia de prompts. Este post é sobre como funciona e por que as escolhas específicas importam.
 
@@ -27,7 +27,7 @@ Essa fase existe porque eu vivia notando que a qualidade do output acompanhava a
 
 Três a quatro modelos, cada um de um provedor diferente, pesquisam o prompt congelado independentemente. Cada um roda com seu próprio timeout e contabilidade de custo por token, então um modelo lento ou verboso degrada com elegância em vez de bloquear o pipeline ou comer o orçamento.
 
-A diversidade de provedores não é proteção contra uma API cair. É decorrelação. Modelos do mesmo provedor compartilham dados de treino, receitas de alinhamento e tiques estilísticos, então os erros deles são correlacionados e a concordância entre eles significa pouco. Modelos de provedores diferentes erram em direções diferentes, o que torna a *concordância* informativa e a *discordância* diagnóstica. É a mesma razão pela qual você não roda um ensaio clínico com quatro cópias do mesmo pesquisador.
+A diversidade de provedores não é proteção contra uma API cair. É decorrelação. Modelos do mesmo provedor compartilham dados de treino, receitas de alinhamento e tiques estilísticos, então os erros deles são correlacionados e a concordância entre eles significa pouco. Modelos de provedores diferentes erram em direções diferentes, o que torna a _concordância_ informativa e a _discordância_ diagnóstica. É a mesma razão pela qual você não roda um ensaio clínico com quatro cópias do mesmo pesquisador.
 
 ## Fase 1: revisão adversarial recíproca
 
@@ -35,11 +35,11 @@ Esta é a fase que justifica o título do post. Os modelos são emparelhados, e 
 
 A etapa de merge é onde a auto-revisão é estruturalmente excluída. Um modelo não pode simplesmente dispensar a crítica com um aceno, porque a crítica já está escrita e o prompt de merge exige que ele responda a cada ponto. Ele pode rebater, mas tem que rebater em registro.
 
-Aí um juiz, de um *terceiro* provedor, ao qual nenhum dos dois autores pertence, pontua o resultado do merge como JSON estruturado em completude, acurácia, equilíbrio e acionabilidade. O juiz não tem cavalo na corrida. Não escreveu uma palavra da pesquisa, então não tem nada a defender. Isso acaba importando tanto para máquinas quanto para comitês de titulação.
+Aí um juiz, de um _terceiro_ provedor, ao qual nenhum dos dois autores pertence, pontua o resultado do merge como JSON estruturado em completude, acurácia, equilíbrio e acionabilidade. O juiz não tem cavalo na corrida. Não escreveu uma palavra da pesquisa, então não tem nada a defender. Isso acaba importando tanto para máquinas quanto para comitês de titulação.
 
 ## Fase 2: o super-merge, com embaralhamento de ordem
 
-Até três modelos novos fazem merge, cada um independentemente, de todos os documentos da fase 1 numa única síntese. Aqui está o detalhe de que mais me orgulho, porque é barato e estranho: cada modelo de merge recebe os documentos numa *ordem diferente*.
+Até três modelos novos fazem merge, cada um independentemente, de todos os documentos da fase 1 numa única síntese. Aqui está o detalhe de que mais me orgulho, porque é barato e estranho: cada modelo de merge recebe os documentos numa _ordem diferente_.
 
 Language models têm viés de primazia. O documento que leem primeiro ancora o merge. Se todo merger vê os documentos na mesma ordem, o "consenso" dos mergers é em parte um artefato do documento um. Embaralhe a ordem e o que sobrevive nos três merges tem muito mais chance de ser sinal do que sequência.
 

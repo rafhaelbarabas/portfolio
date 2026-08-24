@@ -37,9 +37,11 @@ export const deliverLead = async (lead: Lead): Promise<DeliveryResult> => {
       agent: lead.agent,
       attribution: JSON.stringify(lead.attribution ?? {}),
     }),
-  }).then((response) => {
-    if (response.ok) deliveredTo.push("email");
-  }).catch(() => undefined);
+  })
+    .then((response) => {
+      if (response.ok) deliveredTo.push("email");
+    })
+    .catch(() => undefined);
 
   const webhook = webhookUrl
     ? fetch(webhookUrl, {
@@ -49,9 +51,11 @@ export const deliverLead = async (lead: Lead): Promise<DeliveryResult> => {
           ...(webhookToken ? { authorization: `Bearer ${webhookToken}` } : {}),
         },
         body: JSON.stringify(lead),
-      }).then((response) => {
-        if (response.ok) deliveredTo.push("webhook");
-      }).catch(() => undefined)
+      })
+        .then((response) => {
+          if (response.ok) deliveredTo.push("webhook");
+        })
+        .catch(() => undefined)
     : Promise.resolve();
 
   await Promise.all([mail, webhook]);

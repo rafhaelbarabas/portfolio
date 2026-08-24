@@ -76,7 +76,7 @@ O truque central do runtime era que as ferramentas não eram funções que algu�
 ```ts
 export const findToolPathAndMethod = (
   localAgent: LocalAgent,
-  toolName: string
+  toolName: string,
 ): { toolPath?: string; httpMethod?: string } => {
   let toolPath: string | undefined;
   let httpMethod: string | undefined;
@@ -89,7 +89,7 @@ export const findToolPathAndMethod = (
           httpMethod = method.toUpperCase();
         }
       });
-    }
+    },
   );
 
   return { toolPath, httpMethod };
@@ -180,7 +180,7 @@ function addToolMessageToChat({
         ...message,
         toolInvocations: message.toolInvocations.map((toolInvocation) => {
           const toolResult = toolMessage.content.find(
-            (tool) => tool.toolCallId === toolInvocation.toolCallId
+            (tool) => tool.toolCallId === toolInvocation.toolCallId,
           );
 
           if (toolResult) {
@@ -217,4 +217,4 @@ As lições são menos glamorosas que a arquitetura.
 
 Nada disso exigiu inventar um protocolo de streaming. O Vercel AI SDK nos deu o loop, os states e os primitives de continuação. O trabalho foi decidir o que viaja no stream, o que espera por um humano, e o que a UI faz enquanto o modelo pensa. Essa é a diferença entre uma demo e um runtime, e a maior parte disso mora em um switch statement sobre `toolInvocation.state`.
 
-*Se você roda agentes em streaming em produção e tem sua própria lista de falhas chatas, eu gostaria de lê-la. Minha inbox está aberta.*
+_Se você roda agentes em streaming em produção e tem sua própria lista de falhas chatas, eu gostaria de lê-la. Minha inbox está aberta._

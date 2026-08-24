@@ -149,8 +149,7 @@ O que volta de uma tool importa tanto quanto o que sai. O contrato de resultado 
 
 ```ts
 export type BitteToolResult<TResult = unknown> =
-  | { data: TResult; error?: never }
-  | { data?: never; error: string };
+  { data: TResult; error?: never } | { data?: never; error: string };
 ```
 
 Uma tool ou produzia dados ou produzia uma string de erro legível, nunca ambos, nunca nenhum. A string de erro ia direto para o contexto, o que significava que o modelo podia ler "HTTP error during tool execution: 500" e se recuperar ou reportar, em vez de fazer pattern matching num body vazio.

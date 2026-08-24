@@ -21,18 +21,21 @@ The first router version picked a model per call based on a vague sense of "hard
 
 ```ts
 type Role =
-  | "research-scout" | "circuit-engineer" | "density-analyst"
-  | "falsifier" | "orchestrator-reviewer";
+  | "research-scout"
+  | "circuit-engineer"
+  | "density-analyst"
+  | "falsifier"
+  | "orchestrator-reviewer";
 
 const ROUTES: Record<Role, string[]> = {
   // Burns the most tokens in the fleet. Cheap and fast wins here.
-  "research-scout":       ["google/gemini-2.5-flash", "deepseek/deepseek-chat-v3.1"],
+  "research-scout": ["google/gemini-2.5-flash", "deepseek/deepseek-chat-v3.1"],
   // Proposes circuit optimizations. Strong model, moderate volume.
-  "circuit-engineer":     ["anthropic/claude-sonnet-4.5", "openai/gpt-5.1"],
+  "circuit-engineer": ["anthropic/claude-sonnet-4.5", "openai/gpt-5.1"],
   // Gate-count profiling. Mechanical work, mid-tier is fine.
-  "density-analyst":      ["deepseek/deepseek-chat-v3.1", "google/gemini-2.5-flash"],
+  "density-analyst": ["deepseek/deepseek-chat-v3.1", "google/gemini-2.5-flash"],
   // Kills candidates. Different vendor than the engineer, on purpose.
-  "falsifier":            ["openai/o4-mini", "deepseek/deepseek-r1"],
+  falsifier: ["openai/o4-mini", "deepseek/deepseek-r1"],
   // Audits everyone. Strongest model, no cost optimization here.
   "orchestrator-reviewer": ["anthropic/claude-opus-4.5"],
 };
@@ -134,4 +137,4 @@ The harness took #1 on ECDSA.fail with zero errors across all benchmark cases. T
 
 Honest footnote: most projects do not need this. If you have one workload and one model you trust, a direct provider SDK with a retry loop is 40 lines and has fewer moving parts. The routing layer earns its complexity when you have roles with different cost and quality needs, unattended loops that must survive provider hiccups, or a spend cap with consequences. The harness had all three.
 
-*If you are wiring up multi-provider routing and want to compare scars, my inbox is open.*
+_If you are wiring up multi-provider routing and want to compare scars, my inbox is open._

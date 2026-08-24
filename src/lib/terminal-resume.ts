@@ -7,9 +7,9 @@
 import { AEO_TOTAL_SCANS, CAREER_YEARS, formatFact } from "./site-facts";
 
 const G = "\x1b[34m"; // blue
-const B = "\x1b[1m";  // bold
-const D = "\x1b[2m";  // dim
-const R = "\x1b[0m";  // reset
+const B = "\x1b[1m"; // bold
+const D = "\x1b[2m"; // dim
+const R = "\x1b[0m"; // reset
 
 export const TERMINAL_RESUME = `
 ${G}${B}rubenmarcus.dev${R} ${D}// terminal resume${R}
@@ -41,5 +41,8 @@ ${D}agents welcome — this server speaks MCP.${R}
 
 export const terminalResumeResponse = () =>
   new Response(TERMINAL_RESUME, {
-    headers: { "content-type": "text/plain; charset=utf-8", "cache-control": "public, max-age=3600" },
+    headers: {
+      "content-type": "text/plain; charset=utf-8",
+      "cache-control": "public, max-age=3600",
+    },
   });
