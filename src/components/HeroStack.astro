@@ -6,8 +6,9 @@
 interface Props {
   lang?: string;
 }
+import { resolveLocale, useTranslations } from "../i18n";
 const { lang = "en" } = Astro.props;
-const pt = lang.startsWith("pt");
+const t = useTranslations(resolveLocale(lang));
 
 const STACK: string[] = [
   "TypeScript", "Node.js", "Bun", "React", "Next.js", "Svelte", "Vue.js",
@@ -23,7 +24,7 @@ const STACK: string[] = [
 <section class="stack-section" aria-label="Tech stack">
   <header class="stack-section__head">
     <span class="bracket">Stack</span>
-    <h2 class="stack-section__title">{pt ? "Ferramentas que eu uso pra entregar, todo dia." : "Tools I ship with, daily."}</h2>
+    <h2 class="stack-section__title">{t.home.techStack.title}</h2>
   </header>
   <div class="stack-section__inner">
     {STACK.map((label) => (

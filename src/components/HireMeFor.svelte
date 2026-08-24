@@ -16,42 +16,25 @@
   import { onMount } from "svelte";
   import VoxelIcon from "../lib/assets/VoxelIcon.svelte";
   import { serviceOffers } from "../lib/data/services";
+  import { resolveLocale, useTranslations } from "../i18n";
 
   interface Props {
     lang?: string;
   }
   let { lang = "en" }: Props = $props();
-  const pt = $derived(lang.startsWith("pt"));
-  const base = $derived(pt ? "/pt" : "");
+  const locale = $derived(resolveLocale(lang));
+  const base = $derived(locale === "pt" ? "/pt" : "");
+  const copy = $derived(useTranslations(locale).home.hire);
 
   const services = $derived(
     serviceOffers.map((service) => ({
       ...service,
-      name: service.name[pt ? "pt" : "en"],
-      desc: service.summary[pt ? "pt" : "en"],
+      name: service.name[locale],
+      desc: service.summary[locale],
       chips: service.tags,
     })),
   );
 
-  const copy = $derived(
-    pt
-      ? {
-          bracket: "01 / Contrate",
-          title: "Me contrate para",
-          sub: "Projetos de escopo fechado, execução sênior, sem babysitting. Cada oferta abaixo é algo que já entreguei em produção.",
-          availability: ["Lisboa · remoto global", "Sobreposição EU · UK · USA", "Full-time · contrato · escopo fechado"],
-          book: "Agendar um projeto →",
-          cta: "ver escopo",
-        }
-      : {
-          bracket: "01 / Hire me",
-          title: "Hire me for",
-          sub: "Fixed-scope engagements, senior execution, no hand-holding. Every offer below is something I've shipped in production.",
-          availability: ["Lisbon · remote worldwide", "EU · UK · US overlap", "Full-time · contract · fixed-scope"],
-          book: "Book a project →",
-          cta: "view scope",
-        },
-  );
 
   let root = $state<HTMLElement | null>(null);
   let inView = $state(false);
@@ -91,10 +74,8 @@
       <div class="hire__headRow">
         <h2 class="hire__title">{copy.title}</h2>
         <div class="hire__headSide">
-          <p class="hire__sub">
-            {copy.sub}
-          </p>
-          <ul class="hire__availability" aria-label={pt ? "Disponibilidade e formatos" : "Availability and engagement formats"}>
+          <p class="hire__sub">{copy.subtitle}</p>
+          <ul class="hire__availability" aria-label={copy.availabilityLabel}>
             {#each copy.availability as item}
               <li>{item}</li>
             {/each}
@@ -129,7 +110,7 @@
             {/each}
           </ul>
           <span class="hire__cta">
-            {copy.cta} <span class="hire__arrow" aria-hidden="true">→</span>
+            {copy.viewScope} <span class="hire__arrow" aria-hidden="true">→</span>
           </span>
         </a>
       {/each}

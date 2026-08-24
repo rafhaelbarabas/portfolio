@@ -6,28 +6,13 @@
    */
 
   let copied = $state(false);
+  import { resolveLocale, useTranslations } from "../i18n";
 
   interface Props {
     lang?: string;
   }
   let { lang = "en" }: Props = $props();
-  const pt = lang.startsWith("pt");
-
-  const copyText = $derived(
-    pt
-      ? {
-          title: "Me contrate pelo seu agent.",
-          desc: "Cole este brief no ChatGPT, Claude, Kimi ou no seu próprio harness. Qualquer agent consegue ler e agendar o papo inicial por você via API.",
-          copy: "copiar",
-          copied: "copiado ✓",
-        }
-      : {
-          title: "Hire me from your agent.",
-          desc: "Paste this brief into ChatGPT, Claude, Kimi or your own harness. Any agent can read it and book the intro for you through the API.",
-          copy: "copy",
-          copied: "copied ✓",
-        },
-  );
+  const copyText = $derived(useTranslations(resolveLocale(lang)).agentHire);
 
   const SNIPPET = `# AGENTS.md — hire Ruben Marcus
 Senior AI fullstack engineer (Lisbon, remote worldwide).
@@ -72,7 +57,7 @@ LinkedIn and Telegram.`;
     <span class="bracket" data-reveal-item>AGENTS.md</span>
     <h2 class="agent-hire__title" data-reveal-item>{copyText.title}</h2>
     <p class="agent-hire__desc" data-reveal-item>
-      {copyText.desc}
+      {copyText.description}
     </p>
   </div>
 

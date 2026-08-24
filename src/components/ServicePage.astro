@@ -3,12 +3,14 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import Section from "./Section.astro";
 import Divider from "./Divider.astro";
 import type { ServiceOffer } from "../lib/data/services";
+import { resolveLocale, useTranslations } from "../i18n";
 
 interface Props { service: ServiceOffer; lang?: "en" | "pt" }
 const { service, lang = "en" } = Astro.props;
-const pt = lang === "pt";
-const base = pt ? "/pt" : "";
-const l = pt ? "pt" : "en";
+const locale = resolveLocale(lang);
+const t = useTranslations(locale);
+const base = locale === "pt" ? "/pt" : "";
+const l = locale;
 const pageTitle = `${service.name[l]} — Ruben Marcus`;
 const description = service.summary[l];
 const canonical = new URL(`${base}/services/${service.slug}`, Astro.site).href;
@@ -25,25 +27,25 @@ const serviceLd = {
 };
 ---
 
-<BaseLayout title={pageTitle} description={description} lang={pt ? "pt-BR" : "en"}>
+<BaseLayout title={pageTitle} description={description} lang={locale === "pt" ? "pt-BR" : "en"}>
   <script type="application/ld+json" set:html={JSON.stringify(serviceLd)} slot="head" />
   <article class="service-page">
     <Section id="intro" pageHeader>
       <header class="service-hero" data-reveal>
-        <p class="bracket" data-reveal-item>{pt ? "Serviço / escopo fechado" : "Service / fixed scope"}</p>
+        <p class="bracket" data-reveal-item>{t.service.overline}</p>
         <h1 data-reveal-item>{service.name[l]}</h1>
         <p class="service-hero__summary" data-reveal-item>{service.summary[l]}</p>
         <p class="service-hero__fit" data-reveal-item>{service.fit[l]}</p>
         <div class="service-hero__actions" data-reveal-item>
           <a class="btn btn-primary" href={`${base}/contact?subject=${service.slug}`} data-track="service_inquiry" data-track-location={`service:${service.slug}`}>
-            {pt ? "Discutir este projeto →" : "Discuss this project →"}
+            {t.service.discuss}
           </a>
           <span>{service.duration[l]}</span>
         </div>
       </header>
     </Section>
 
-    <Divider index="01" label={pt ? "O que você recebe" : "What you receive"} />
+    <Divider index="01" label={t.service.deliverables} />
     <Section id="deliverables" tight>
       <ol class="deliverables" data-reveal>
         {service.deliverables[l].map((item, index) => (
@@ -52,7 +54,7 @@ const serviceLd = {
       </ol>
     </Section>
 
-    <Divider index="02" label={pt ? "Evidência relevante" : "Relevant evidence"} />
+    <Divider index="02" label={t.service.evidence} />
     <Section id="proof" tight>
       <div class="proof-grid" data-reveal>
         {service.proof[l].map((item) => (
@@ -60,8 +62,8 @@ const serviceLd = {
         ))}
       </div>
       <div class="service-close" data-reveal>
-        <p>{pt ? "Se o problema é real mas o escopo ainda não está claro, eu posso começar pelo diagnóstico." : "If the problem is real but the scope is still fuzzy, I can start with the diagnosis."}</p>
-        <a class="link-inline" href={`${base}/portfolio`} data-track="service_proof" data-track-location={`service:${service.slug}`}>{pt ? "Ver trabalho selecionado →" : "See selected work →"}</a>
+        <p>{t.service.closing}</p>
+        <a class="link-inline" href={`${base}/portfolio`} data-track="service_proof" data-track-location={`service:${service.slug}`}>{t.service.selectedWork}</a>
       </div>
     </Section>
   </article>

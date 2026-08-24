@@ -4,6 +4,7 @@
   import VoxelIcon from "../lib/assets/VoxelIcon.svelte";
   import DitherCover from "./DitherCover.svelte";
   import type { VoxelIconName } from "../lib/assets/registry";
+  import { resolveLocale, useTranslations } from "../i18n";
 
   // Voxel icon per tool — the asset lib's Tier A marks (hover rotates them).
   const TOOL_ICONS: Record<string, VoxelIconName> = {
@@ -76,8 +77,8 @@
     lang?: string;
   }
   let { lang = "en" }: Props = $props();
-  const pt = lang.startsWith("pt");
-  const base = pt ? "/pt" : "";
+  const locale = resolveLocale(lang);
+  const base = locale === "pt" ? "/pt" : "";
 
   /** pt-BR card copy keyed by slug — EN stays the data default. */
   const CARDS_PT: Record<string, { tagline: string; features: string[] }> = {
@@ -107,14 +108,11 @@
     },
   };
 
-  const taglineOf = (c: Card) => (pt ? (CARDS_PT[c.slug]?.tagline ?? c.tagline) : c.tagline);
-  const featuresOf = (c: Card) => (pt ? (CARDS_PT[c.slug]?.features ?? c.features) : c.features);
-
-  const copy = $derived(
-    pt
-      ? { bracket: "Open source", title: "Open Source", more: "Todas as AI tools →" }
-      : { bracket: "Open source", title: "Open Source", more: "All AI tools →" },
-  );
+  const localizedCards = { en: {} as Record<string, { tagline: string; features: string[] }>, pt: CARDS_PT };
+  const cardOverrides = localizedCards[locale];
+  const taglineOf = (c: Card) => cardOverrides[c.slug]?.tagline ?? c.tagline;
+  const featuresOf = (c: Card) => cardOverrides[c.slug]?.features ?? c.features;
+  const copy = useTranslations(locale).home.openSource;
 
   // Particle-art covers (scripts/gen-project-covers.mjs) — same language
   // as the blog thumbs: image at rest, dither dots on hover.

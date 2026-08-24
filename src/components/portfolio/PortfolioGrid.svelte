@@ -19,6 +19,7 @@
   import DitherCover from "../DitherCover.svelte";
   import VoxelIcon from "../../lib/assets/VoxelIcon.svelte";
   import type { VoxelIconName } from "../../lib/assets/registry";
+  import { resolveLocale, useTranslations } from "../../i18n";
 
   interface ProjectItem {
     slug: string;
@@ -43,42 +44,7 @@
   }
 
   let { projects, groupLabels, groupOrder, lang = "en" }: Props = $props();
-  const pt = lang.startsWith("pt");
-
-  /** pt-BR UI chrome — project descriptions stay in the shared EN dataset. */
-  const copy = $derived(
-    pt
-      ? {
-          all: "Todos",
-          filterEra: "Filtrar por era",
-          filterCompany: "Filtrar por empresa",
-          filterTech: "Filtrar por tecnologia",
-          countOf: "de",
-          projectsWord: "projetos",
-          clearFilters: "limpar filtros",
-          noMatches: "sem resultados",
-          noMatchesDesc: "Nenhum projeto bate com essa combinação de filtros.",
-          resetFilters: "Limpar filtros",
-          visit: "visitar",
-          caseStudy: "estudo de caso",
-          highlighted: "Projeto em destaque",
-        }
-      : {
-          all: "All",
-          filterEra: "Filter by era",
-          filterCompany: "Filter by company",
-          filterTech: "Filter by technology",
-          countOf: "of",
-          projectsWord: "projects",
-          clearFilters: "clear filters",
-          noMatches: "no matches",
-          noMatchesDesc: "No projects match this filter combination.",
-          resetFilters: "Reset filters",
-          visit: "visit",
-          caseStudy: "case study",
-          highlighted: "Highlighted project",
-        },
-  );
+  const copy = $derived(useTranslations(resolveLocale(lang)).portfolio);
 
   /** Stack label (lowercased) → voxel icon glyph. Everything else is a text chip. */
   const ICON_MAP: Record<string, VoxelIconName> = {

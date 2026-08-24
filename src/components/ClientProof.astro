@@ -3,8 +3,10 @@ interface Props {
   lang?: "en" | "pt";
 }
 
+import { resolveLocale, useTranslations } from "../i18n";
+
 const { lang = "en" } = Astro.props;
-const pt = lang === "pt";
+const t = useTranslations(resolveLocale(lang));
 const clients = [
   { name: "Bitte Protocol", logo: "/art/logos/bitte.png" },
   { name: "Grover", logo: "/art/logos/grover.png" },
@@ -17,7 +19,7 @@ const clients = [
 
 <section class="client-proof" aria-labelledby="client-proof-title" data-reveal>
   <h2 id="client-proof-title">
-    {pt ? "Produtos e equipes para os quais já entreguei." : "Selected products and teams I've shipped for."}
+    {t.home.clientProof.title}
   </h2>
 
   <ul class="client-proof__list">

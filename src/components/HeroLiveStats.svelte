@@ -2,37 +2,24 @@
   import { onMount } from "svelte";
   import SvgIcon from "../lib/assets/SvgIcon.svelte";
   import type { GithubCommitStats } from "../lib/github-stats";
+  import { resolveLocale, useTranslations } from "../i18n";
 
   interface Props {
     lang?: string;
   }
 
   let { lang = "en" }: Props = $props();
-  const pt = $derived(lang.startsWith("pt"));
+  const locale = $derived(resolveLocale(lang));
   let stats = $state<GithubCommitStats | null>(null);
   let unavailable = $state(false);
 
-  const copy = $derived(pt ? {
-    label: "Atividade pública no GitHub",
-    total: "total",
-    month: "este mês",
-    today: "hoje",
-    latest: "Último commit público",
-    unavailable: "GitHub temporariamente indisponível",
-  } : {
-    label: "Public GitHub activity",
-    total: "total",
-    month: "this month",
-    today: "today",
-    latest: "Latest public commit",
-    unavailable: "GitHub temporarily unavailable",
-  });
+  const copy = $derived(useTranslations(locale).githubStats);
 
   const formatNumber = (value: number | null | undefined) =>
-    typeof value === "number" ? value.toLocaleString(pt ? "pt-BR" : "en-US") : "—";
+    typeof value === "number" ? value.toLocaleString(locale === "pt" ? "pt-BR" : "en-US") : "—";
 
   const formatDate = (value: string) =>
-    new Intl.DateTimeFormat(pt ? "pt-BR" : "en-US", {
+    new Intl.DateTimeFormat(locale === "pt" ? "pt-BR" : "en-US", {
       timeZone: "Europe/Lisbon",
       day: "2-digit",
       month: "short",

@@ -1,6 +1,7 @@
 ---
 import Section from "./Section.astro";
 import SectionHeader from "./SectionHeader.astro";
+import { resolveLocale, useTranslations } from "../i18n";
 
 interface Item {
   question: string;
@@ -13,17 +14,7 @@ interface Props {
 }
 
 const { items, lang = "en" } = Astro.props;
-const copy = lang === "pt"
-  ? {
-      overline: "Perguntas frequentes",
-      title: "O que agents e equipes costumam perguntar.",
-      description: "Respostas diretas sobre serviços, disponibilidade e colaboração.",
-    }
-  : {
-      overline: "Frequently asked questions",
-      title: "What agents and teams usually ask.",
-      description: "Direct answers about services, availability, and collaboration.",
-    };
+const copy = useTranslations(resolveLocale(lang)).home.faq;
 ---
 
 <Section id="faq" tight>

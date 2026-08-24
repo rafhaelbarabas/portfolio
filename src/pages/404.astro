@@ -1,16 +1,16 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import MazeSolverDemo from "../components/lab/MazeSolverDemo.svelte";
+import { resolveLocale, useTranslations } from "../i18n";
 
 const pathname = Astro.url.pathname;
 const isPt = pathname === "/pt" || pathname.startsWith("/pt/");
+const t = useTranslations(resolveLocale(isPt ? "pt" : "en"));
 ---
 
 <BaseLayout
-  title={isPt ? "404 — Página não encontrada" : "404 — Page not found"}
-  description={isPt
-    ? "Essa rota não existe. O lab resolve o labirinto; o link abaixo resolve o seu."
-    : "This route doesn't exist. The lab solves the maze; the link below solves yours."}
+  title={t.errors.notFound.title}
+  description={t.errors.notFound.description}
 >
   <section class="nf" data-reveal>
     <div class="nf__frame">
@@ -18,15 +18,13 @@ const isPt = pathname === "/pt" || pathname.startsWith("/pt/");
       <div class="nf__overlay">
         <h1 class="nf__code">404</h1>
         <p class="nf__msg">
-          {isPt
-            ? "Rota perdida no labirinto. A saída já foi traçada:"
-            : "Route lost in the maze. The way out is already traced:"}
+          {t.errors.notFound.message}
         </p>
-        <nav class="nf__links" aria-label="404">
-          <a href={isPt ? "/pt" : "/"}>{isPt ? "início" : "home"}</a>
+        <nav class="nf__links" aria-label={t.errors.notFound.navigation}>
+          <a href={isPt ? "/pt" : "/"}>{t.errors.notFound.home}</a>
           <a href={isPt ? "/pt/blog" : "/blog"}>blog</a>
           <a href={isPt ? "/pt/lab" : "/lab"}>lab</a>
-          <a href={isPt ? "/pt/contact" : "/contact"}>{isPt ? "contato" : "contact"}</a>
+          <a href={isPt ? "/pt/contact" : "/contact"}>{t.errors.notFound.contact}</a>
         </nav>
       </div>
     </div>

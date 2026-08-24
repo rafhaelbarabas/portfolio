@@ -10,36 +10,16 @@
   interface Props {
     lang?: string;
   }
+  import { resolveLocale, useTranslations } from "../i18n";
   let { lang = "en" }: Props = $props();
-  const pt = $derived(lang.startsWith("pt"));
-
-  const ITEMS_EN = [
-    "AVAILABLE FOR FULL-TIME ROLES",
-    "OPEN TO FREELANCE CONTRACTS",
-    "AI FULLSTACK ENGINEER · AGENTIC AI",
-    "AGENT-READY · HUMANS WELCOME",
-    "AI AGENTS · LLM TOOLING · EVALS",
-    "NEXT.JS · TYPESCRIPT · REACT",
-    "BASED IN LISBON · REMOTE WORLDWIDE",
-  ];
-
-  const ITEMS_PT = [
-    "DISPONÍVEL PARA VAGAS FULL-TIME",
-    "ABERTO A CONTRATOS FREELANCE",
-    "AI FULLSTACK ENGINEER · AGENTIC AI",
-    "AGENT-READY · HUMANS WELCOME",
-    "AI AGENTS · LLM TOOLING · EVALS",
-    "NEXT.JS · TYPESCRIPT · REACT",
-    "EM LISBOA · REMOTO PARA O MUNDO",
-  ];
-
-  const items = $derived(pt ? ITEMS_PT : ITEMS_EN);
+  const t = $derived(useTranslations(resolveLocale(lang)));
+  const items = $derived(t.availability.items);
 </script>
 
 <!-- svelte-ignore a11y_no_noninteractive_tabindex (focus intentionally pauses potentially fatiguing motion) -->
 <div
   class="marquee-band"
-  aria-label={pt ? "Disponibilidade profissional. Passe o mouse ou foque para pausar." : "Professional availability. Hover or focus to pause."}
+  aria-label={t.availability.label}
   tabindex="0"
 >
   <div class="marquee-band__track">

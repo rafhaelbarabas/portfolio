@@ -18,19 +18,6 @@ export const navItems: NavItem[] = [
   { label: "MCP",       href: "/connect",   index: "08" },
 ];
 
-/** pt-BR labels keyed by EN href — Header swaps them in on /pt routes. */
-export const navLabelsPt: Record<string, string> = {
-  "/portfolio": "Portfólio",
-  "/ai": "AI",
-  "/skills": "Skills",
-  "/lab": "Lab",
-  "/blog": "Blog",
-  "/about": "Sobre",
-  "/contact": "Contato",
-  "/agents": "Agentes",
-  "/connect": "MCP",
-};
-
 export const socialLinks = [
   { label: "GitHub",   href: "https://github.com/rubenmarcus" },
   { label: "X",        href: "https://x.com/rubenmarcus_dev" },

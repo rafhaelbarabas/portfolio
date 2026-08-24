@@ -13,10 +13,11 @@
    */
 
   import { onMount } from "svelte";
-  import { STATS, STATS_FOOTNOTE, NPM_PACKAGES, type Stat } from "../lib/data/stats";
+  import { STATS, NPM_PACKAGES, type Stat } from "../lib/data/stats";
   import { fetchGithubStars, fetchNpmDownloads } from "../lib/stats-live";
   import VoxelIcon from "../lib/assets/VoxelIcon.svelte";
   import type { VoxelIconName } from "../lib/assets/registry";
+  import { resolveLocale, useTranslations } from "../i18n";
 
   /** Small voxel accent per stat cell, keyed by stat id. */
   const STAT_ICONS: Record<string, VoxelIconName> = {
@@ -37,28 +38,9 @@
     lang?: string;
   }
   let { initialStars = null, initialNpm = null, lang = "en" }: Props = $props();
-  const pt = lang.startsWith("pt");
-
-  /** pt-BR stat labels keyed by stat id — EN stays the data default. */
-  const LABELS_PT: Record<string, string> = {
-    "bitte-messages": "mensagens de agents processadas",
-    "bitte-users": "usuários únicos em AI agents",
-    "agents-built": "agents de IA que eu construí",
-    "aeo-scans": "scans de AEO rodados",
-    "aeo-sites": "sites únicos escaneados",
-    "career-loc": "linhas de código, estimativa de carreira",
-    "github-stars": "GitHub stars",
-    "npm-downloads": "npm downloads, total",
-  };
-  const FOOTNOTE_PT =
-    "33K+ seguidores no LinkedIn · 3M+ de pessoas alcançadas por posts no X";
-
-  const copy = $derived(
-    pt
-      ? { bracket: "02 / Prova em números", title: "Entregue, medido.", foot: FOOTNOTE_PT }
-      : { bracket: "02 / Proof in numbers", title: "Shipped, measured.", foot: STATS_FOOTNOTE },
-  );
-  const labelOf = (s: Stat) => (pt ? (LABELS_PT[s.id] ?? s.label) : s.label);
+  const locale = resolveLocale(lang);
+  const copy = useTranslations(locale).home.stats;
+  const labelOf = (s: Stat) => copy.labels[s.id as keyof typeof copy.labels] ?? s.label;
 
   const reduced =
     typeof window !== "undefined" &&
@@ -175,7 +157,7 @@
       {/each}
     </div>
 
-    <p class="stats__foot">{copy.foot}</p>
+    <p class="stats__foot">{copy.footnote}</p>
   </div>
 </section>
 

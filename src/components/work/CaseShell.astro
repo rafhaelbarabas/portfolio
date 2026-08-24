@@ -7,6 +7,7 @@
  */
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import Section from "../../components/Section.astro";
+import { resolveLocale, useTranslations } from "../../i18n";
 
 interface MetaItem {
   label: string;
@@ -28,10 +29,12 @@ interface Props {
 const { title, description, index, overline, heading, meta, prev, next, lang = "en" } =
   Astro.props;
 
-const isPt = lang.startsWith("pt");
+const locale = resolveLocale(lang);
+const t = useTranslations(locale);
+const isPt = locale === "pt";
 const archiveHref = isPt ? "/pt/portfolio" : "/portfolio";
-const archiveLabel = isPt ? "← arquivo completo" : "← full archive";
-const navAriaLabel = isPt ? "Navegação do estudo de caso" : "Case study navigation";
+const archiveLabel = t.caseStudy.archive;
+const navAriaLabel = t.caseStudy.navigation;
 ---
 
 <BaseLayout title={title} description={description} lang={lang}>

@@ -10,12 +10,13 @@
    * collapses only if the stats API is unavailable.
    */
   import { onMount } from "svelte";
+  import { resolveLocale, useTranslations } from "../i18n";
 
   interface Props {
     lang?: string;
   }
   let { lang = "en" }: Props = $props();
-  const pt = lang.startsWith("pt");
+  const locale = resolveLocale(lang);
 
   type Stats = {
     mcp_events_total?: number;
@@ -30,29 +31,9 @@
   let stats = $state<Stats | null>(null);
   let failed = $state(false);
 
-  const labels = pt
-    ? {
-        mcp: "chamadas MCP",
-        week: "últimos 7 dias",
-        agents: "agents distintos",
-        curl: "resumes via curl",
-        views: "views no blog",
-        likes: "likes no blog",
-        tools: "tools mais chamadas",
-        live: "ao vivo — direto do banco",
-      }
-    : {
-        mcp: "MCP calls",
-        week: "last 7 days",
-        agents: "distinct agents",
-        curl: "resumes served to curl",
-        views: "blog views",
-        likes: "blog likes",
-        tools: "most-called tools",
-        live: "live — straight from the store",
-      };
+  const labels = useTranslations(locale).telemetry;
 
-  const fmt = (n: number | undefined) => (typeof n === "number" ? n.toLocaleString("en-US") : "—");
+  const fmt = (n: number | undefined) => (typeof n === "number" ? n.toLocaleString(locale === "pt" ? "pt-BR" : "en-US") : "—");
 
   const topTools = $derived(
     Object.entries(stats?.mcp_tool_calls ?? {})

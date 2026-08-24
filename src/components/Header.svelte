@@ -1,6 +1,7 @@
 <script lang="ts">
   import { onMount } from "svelte";
-  import { navItems, navLabelsPt } from "../lib/navigation";
+  import { navItems } from "../lib/navigation";
+  import { useTranslations } from "../i18n";
   import SvgIcon from "../lib/assets/SvgIcon.svelte";
 
   interface Props {
@@ -16,11 +17,12 @@
   // Language routing — PT pages live under /pt. The Header derives everything
   // from currentPath so no extra prop is needed.
   const isPt = $derived(currentPath === "/pt" || currentPath.startsWith("/pt/"));
+  const t = $derived(useTranslations(isPt ? "pt" : "en"));
   const items = $derived(
     navItems.map((item) => ({
       ...item,
       href: isPt ? `/pt${item.href === "/" ? "" : item.href}` : item.href,
-      label: isPt ? (navLabelsPt[item.href] ?? item.label) : item.label,
+      label: t.navigation.labels[item.href as keyof typeof t.navigation.labels] ?? item.label,
     })),
   );
   // Language toggle target — /x ↔ /pt/x. Blog posts mirror one-to-one, so
@@ -73,11 +75,11 @@
 
 <header class="header" class:header--scrolled={scrolled}>
   <div class="header__inner">
-    <a href={homeHref} class="header__brand" aria-label="rubenmarcus.dev — home">
+    <a href={homeHref} class="header__brand" aria-label={t.navigation.home}>
       <span class="header__name">rubenmarcus.dev</span>
     </a>
 
-    <nav class="header__nav" aria-label="Primary">
+    <nav class="header__nav" aria-label={t.navigation.primary}>
       {#each items as item}
         <a
           href={item.href}
@@ -90,7 +92,7 @@
     </nav>
 
     <div class="header__right">
-      <div class="header__lang" aria-label="Language / Idioma">
+      <div class="header__lang" aria-label={t.navigation.language}>
         <a
           href={enPath}
           class="header__langLink"
@@ -108,7 +110,7 @@
         >PT</a>
       </div>
 
-      <div class="header__socials" aria-label="Social links">
+      <div class="header__socials" aria-label={t.navigation.socialLinks}>
         <a href="https://github.com/rubenmarcus" target="_blank" rel="noopener" aria-label="GitHub" class="header__socialIcon">
           <SvgIcon name="github" size={18} />
         </a>
@@ -125,7 +127,7 @@
 
       <button
         class="header__burger"
-        aria-label={menuOpen ? "Close menu" : "Open menu"}
+        aria-label={menuOpen ? t.navigation.closeMenu : t.navigation.openMenu}
         aria-expanded={menuOpen}
         onclick={() => (menuOpen = !menuOpen)}
       >
@@ -141,7 +143,7 @@
      containing block for fixed descendants, which would trap this overlay
      inside the header's 70px box instead of the viewport. -->
 {#if menuOpen}
-  <div class="header__overlay" role="dialog" aria-modal="true" aria-label="Site navigation">
+  <div class="header__overlay" role="dialog" aria-modal="true" aria-label={t.navigation.siteNavigation}>
     <nav class="header__overlay-nav">
       {#each items as item, i}
         <a

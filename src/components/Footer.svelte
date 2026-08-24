@@ -1,5 +1,6 @@
 <script lang="ts">
-  import { navItems, navLabelsPt, siteMeta } from "../lib/navigation";
+  import { navItems, siteMeta } from "../lib/navigation";
+  import { resolveLocale, useTranslations } from "../i18n";
   import HeroLiveStats from "./HeroLiveStats.svelte";
   import SvgIcon from "../lib/assets/SvgIcon.svelte";
   import AsciiIcon from "../lib/assets/AsciiIcon.svelte";
@@ -10,17 +11,18 @@
     lang?: string;
   }
   let { lang = "en" }: Props = $props();
-  const pt = $derived(lang.startsWith("pt"));
+  const locale = $derived(resolveLocale(lang));
+  const pt = $derived(locale === "pt");
+  const t = $derived(useTranslations(locale));
 
-  // pt-BR inline strings — EN default stays on siteMeta.
-  const role = $derived(pt ? "Engenheiro AI Fullstack" : siteMeta.role);
-  const base = $derived(pt ? "Lisboa · Mundial" : siteMeta.base);
-  const pagesLabel = $derived(pt ? "Páginas" : "Pages");
-  const socialsLabel = "Socials";
-  const madeWithAi = $derived(pt ? "Este site foi feito usando IA" : "This website was made using AI");
+  const role = $derived(t.footer.role);
+  const base = $derived(t.footer.base);
+  const pagesLabel = $derived(t.footer.pages);
+  const socialsLabel = $derived(t.footer.socials);
+  const madeWithAi = $derived(t.footer.madeWithAi);
 
   const pages = $derived(navItems.map((item) => ({
-    label: pt ? (navLabelsPt[item.href] ?? item.label) : item.label,
+    label: t.navigation.labels[item.href as keyof typeof t.navigation.labels] ?? item.label,
     href: (pt ? "/pt" : "") + (item.href === "/" ? "" : item.href) || "/",
   })));
 
@@ -70,8 +72,8 @@
       </ul>
     </nav>
 
-    <nav class="footer__col footer__col--links" aria-label="Products">
-      <div class="bracket">Products</div>
+    <nav class="footer__col footer__col--links" aria-label={t.footer.products}>
+      <div class="bracket">{t.footer.products}</div>
       <ul class="footer__projects">
         {#each products as project}
           <li>
@@ -110,7 +112,7 @@
     </span>
     <span class="overline footer__ai">
       <span>{madeWithAi}</span>
-      <span class="footer__aiModels" aria-label="Claude, GPT / Codex and Kimi">
+      <span class="footer__aiModels" aria-label={t.footer.aiModels}>
         {#each aiModels as model}
           <span class="footer__aiModel" title={model.label}>
             <SvgIcon name={model.icon} size={18} stroke={1.1} label={model.label} />

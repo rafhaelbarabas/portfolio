@@ -1,5 +1,6 @@
 <script lang="ts">
   import { CAREER_YEARS } from "../lib/site-facts";
+  import { resolveLocale, useTranslations } from "../i18n";
   import RotatingVerb from "./RotatingVerb.svelte";
   import HeroScan from "./HeroScan.svelte";
   import HeroTerminal from "./HeroTerminal.svelte";
@@ -9,51 +10,14 @@
     lang?: string;
   }
   let { lang = "en" }: Props = $props();
-  const pt = $derived(lang.startsWith("pt"));
+  const locale = $derived(resolveLocale(lang));
+  const pt = $derived(locale === "pt");
+  const t = $derived(useTranslations(locale));
   // Internal links keep the visitor inside the PT tree.
-  const base = $derived(pt ? "/pt" : "");
+  const base = $derived(locale === "pt" ? "/pt" : "");
 
-  const VERBS_EN = [
-    "autonomous AI agents",
-    "multi-agent systems",
-    "AI dev tools",
-    "LLM pipelines",
-    "products end-to-end",
-    "open-source libraries",
-  ];
-
-  const VERBS_PT = [
-    "agentes de IA autônomos",
-    "sistemas multi-agent",
-    "AI dev tools",
-    "pipelines de LLM",
-    "produtos end-to-end",
-    "bibliotecas open-source",
-  ];
-
-  const verbs = $derived(pt ? VERBS_PT : VERBS_EN);
-
-  const copy = $derived(
-    pt
-      ? {
-          hello: "Olá, eu sou",
-          title: "Engenheiro AI Fullstack para produtos web e sistemas de IA",
-          rotatingLead: "Eu construo",
-          sub: `AI Fullstack Engineer. Produtos AI-native, experiências web premium e sistemas prontos para produção. ${CAREER_YEARS} anos de Next.js, TypeScript, sistemas de IA e developer tooling.`,
-          ctaPrimary: "Agendar um projeto",
-          ctaSecondary: "Melhore o AEO da sua empresa",
-          ctaAgent: "conecte via MCP",
-        }
-      : {
-          hello: "Hello, I'm",
-          title: "AI Fullstack Engineer for web products and agent systems",
-          rotatingLead: "I build",
-          sub: `AI Fullstack Engineer. AI-native products, premium web experiences, and production-ready systems. ${CAREER_YEARS} years across Next.js, TypeScript, AI systems and developer tooling.`,
-          ctaPrimary: "Book a project",
-          ctaSecondary: "Fix the AEO of your company",
-          ctaAgent: "connect via MCP",
-        },
-  );
+  const copy = $derived(t.home.hero);
+  const verbs = $derived(copy.verbs);
 </script>
 
 <section class="hero" aria-label="Intro">
@@ -86,17 +50,17 @@
     </p>
 
     <p class="hero__sub">
-      {copy.sub}
+      {copy.subtitle(CAREER_YEARS)}
     </p>
 
     <div class="hero__ctas">
-      <a href="{base}/contact" class="btn btn-primary" data-track="contact_view" data-track-location="hero">{copy.ctaPrimary}</a>
-      <a href="{base}/services/aeo" class="btn btn-secondary" data-track="service_view" data-track-location="hero">{copy.ctaSecondary}</a>
+      <a href="{base}/contact" class="btn btn-primary" data-track="contact_view" data-track-location="hero">{copy.primaryCta}</a>
+      <a href="{base}/services/aeo" class="btn btn-secondary" data-track="service_view" data-track-location="hero">{copy.secondaryCta}</a>
       <a href="{base}/connect" class="hero__agentCta" data-track="agent_connect" data-track-location="hero">
         <span class="hero__agentDot" aria-hidden="true"></span>
         <strong>AGENT-READY</strong>
         <span aria-hidden="true">·</span>
-        <span>{copy.ctaAgent}</span>
+        <span>{copy.agentCta}</span>
         <span aria-hidden="true">↗</span>
       </a>
     </div>

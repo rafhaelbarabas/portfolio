@@ -6,21 +6,18 @@ import Section from "./Section.astro";
 import SectionHeader from "./SectionHeader.astro";
 import WireCard from "./WireCard.astro";
 import { agentSkills } from "../lib/data/agent-skills";
+import { resolveLocale, useTranslations } from "../i18n";
 
 const { lang = "en" } = Astro.props;
-const pt = lang.startsWith("pt");
+const locale = resolveLocale(lang);
+const t = useTranslations(locale);
+const l = locale;
 const groups = ["products", "ecdsa-fail", "cs-brasil", "portfolio", "general"] as const;
-const groupNames = pt
-  ? { products: "Produtos e plataformas", "ecdsa-fail": "ECDSA.fail Command Center", "cs-brasil": "CS Brasil", portfolio: "Este portfólio", general: "Métodos reutilizáveis" }
-  : { products: "Products and platforms", "ecdsa-fail": "ECDSA.fail Command Center", "cs-brasil": "CS Brasil", portfolio: "This portfolio", general: "Reusable methods" };
-const statusNames = pt
-  ? { public: "pública", documented: "documentada", internal: "interna" }
-  : { public: "public", documented: "documented", internal: "internal" };
-const base = pt ? "/pt" : "";
+const groupNames = { products: t.skills.groups.products, "ecdsa-fail": t.skills.groups.ecdsaFail, "cs-brasil": t.skills.groups.csBrasil, portfolio: t.skills.groups.portfolio, general: t.skills.groups.general };
+const statusNames = t.skills.statuses;
+const base = locale === "pt" ? "/pt" : "";
 const filters = ["all", ...groups] as const;
-const filterNames = pt
-  ? { all: "Todas", products: "Produtos", "ecdsa-fail": "Pesquisa ECDSA", "cs-brasil": "CS Brasil", portfolio: "Portfólio", general: "Reutilizáveis" }
-  : { all: "All", products: "Products", "ecdsa-fail": "ECDSA research", "cs-brasil": "CS Brasil", portfolio: "Portfolio", general: "Reusable" };
+const filterNames = { all: t.skills.filter.all, products: t.skills.filter.products, "ecdsa-fail": t.skills.filter.ecdsaFail, "cs-brasil": t.skills.filter.csBrasil, portfolio: t.skills.filter.portfolio, general: t.skills.filter.general };
 const filterCount = (filter: typeof filters[number]) => filter === "all"
   ? agentSkills.length
   : agentSkills.filter((skill) => skill.scope === filter).length;
@@ -57,11 +54,9 @@ const csAuthoredTotal = agentSkills.filter((skill) => skill.scope === "cs-brasil
 ---
 
 <BaseLayout
-  lang={pt ? "pt-br" : "en"}
-  title={pt ? "Skills de agentes — Ruben Marcus" : "Agent Skills — Ruben Marcus"}
-  description={pt
-    ? "Skills e métodos operacionais criados por Ruben Marcus para produtos de IA, pesquisa autônoma, AEO, frontend verificável, debugging, jogos e sistemas de agentes."
-    : "Agent skills and operating methods created by Ruben Marcus for AI products, autonomous research, AEO, verifiable frontend, debugging, games, and agent systems."}
+  lang={locale === "pt" ? "pt-br" : "en"}
+  title={t.skills.title}
+  description={t.skills.description}
 >
   <DitherBg client:load opacity={0.45} />
   <Section id="skills" pageHeader tight>
@@ -69,10 +64,8 @@ const csAuthoredTotal = agentSkills.filter((skill) => skill.scope === "cs-brasil
       level={1}
       index="02"
       overline="Agent Skills"
-      title={pt ? "Método versionado, não prompt solto." : "Versioned method, not loose prompts."}
-      description={pt
-        ? "Eu transformo decisões recorrentes em contratos que agents conseguem executar, verificar e melhorar. Algumas skills são públicas; outras expõem o método sem publicar ativos internos."
-        : "I turn recurring decisions into contracts agents can execute, verify, and improve. Some skills are public; others expose the method without publishing internal assets."}
+      title={t.skills.intro.title}
+      description={t.skills.intro.description}
     />
 
     <a
@@ -84,12 +77,10 @@ const csAuthoredTotal = agentSkills.filter((skill) => skill.scope === "cs-brasil
     >
       <div class="agent-ready-proof__copy">
         <span class="agent-ready-proof__motto"><i aria-hidden="true"></i> AGENT-READY · HUMANS WELCOME</span>
-        <h2>{pt ? "Este portfólio também é uma interface para agents." : "This portfolio is also an interface for agents."}</h2>
-        <p>{pt
-          ? "Conecte pelo MCP para um agent avaliar evidências, consultar serviços e disponibilidade ou enviar um briefing — sem precisar interpretar a interface visual."
-          : "Connect over MCP so an agent can evaluate evidence, inspect services and availability, or submit a brief — without having to interpret the visual interface."}</p>
+        <h2>{t.skills.proof.title}</h2>
+        <p>{t.skills.proof.description}</p>
       </div>
-      <div class="agent-ready-proof__protocols" aria-label={pt ? "Recursos agent-ready" : "Agent-ready capabilities"}>
+      <div class="agent-ready-proof__protocols" aria-label={t.skills.proof.capabilities}>
         <span>MCP</span>
         <span>Agent Skills</span>
         <span>OpenAPI</span>
@@ -100,29 +91,27 @@ const csAuthoredTotal = agentSkills.filter((skill) => skill.scope === "cs-brasil
     <div class="skills-overview" data-reveal>
       <div class="skills-stat" data-reveal-item>
         <strong>{agentSkills.length}</strong>
-        <span>{pt ? "métodos autorais catalogados" : "authored methods catalogued"}</span>
+        <span>{t.skills.stats.methods}</span>
       </div>
       <div class="skills-stat" data-reveal-item>
         <strong>{csAuthoredTotal}</strong>
-        <span>{pt ? "skills autorais do CS Brasil" : "authored CS Brasil skills"}</span>
+        <span>{t.skills.stats.csBrasil}</span>
       </div>
       <div class="skills-stat" data-reveal-item>
         <strong>45</strong>
-        <span><code>/game</code> · {pt ? "6 autorais + 39 upstream" : "6 authored + 39 upstream"}</span>
+        <span><code>/game</code> · {t.skills.stats.game}</span>
       </div>
       <div class="skills-stat" data-reveal-item>
         <strong>45</strong>
-        <span><code>/game2</code> · {pt ? "6 específicas + 39 upstream" : "6 repository-specific + 39 upstream"}</span>
+        <span><code>/game2</code> · {t.skills.stats.game2}</span>
       </div>
     </div>
     <p class="skills-inventory-note">
-      {pt
-        ? "48 skills únicas encontradas nas duas bases. O catálogo abaixo destaca apenas métodos autorais ou operacionais que posso sustentar com evidência; dependências de terceiros não são apresentadas como criação minha."
-        : "48 unique skills found across both codebases. The catalogue below highlights only authored or evidence-backed operating methods; third-party dependencies are not presented as my work."}
+      {t.skills.stats.inventory}
     </p>
 
     <div class="skills-browser" data-skill-root>
-      <div class="skill-filters" role="group" aria-label={pt ? "Filtrar skills" : "Filter skills"}>
+      <div class="skill-filters" role="group" aria-label={t.skills.filter.label}>
         {filters.map((filter) => (
           <button
             type="button"
@@ -135,8 +124,8 @@ const csAuthoredTotal = agentSkills.filter((skill) => skill.scope === "cs-brasil
           </button>
         ))}
       </div>
-      <p class="skill-filter-status" data-skill-status aria-live="polite">
-        {pt ? `Mostrando ${agentSkills.length} skills` : `Showing ${agentSkills.length} skills`}
+      <p class="skill-filter-status" data-skill-status data-status-template={t.skills.filter.showing(Number.NaN)} aria-live="polite">
+        {t.skills.filter.showing(agentSkills.length)}
       </p>
 
       <ul class="skill-list" data-reveal>
@@ -150,27 +139,27 @@ const csAuthoredTotal = agentSkills.filter((skill) => skill.scope === "cs-brasil
                     client:visible
                     src={skill.thumbnail}
                     seed={skill.name}
-                    alt={`${pt ? "Thumbnail da skill" : "Skill thumbnail"}: ${skill.name}`}
+                    alt={`${t.skills.fields.thumbnail}: ${skill.name}`}
                     class="skill-cover"
                     invert
                   />
                   <article class="skill-body">
                     <header class="skill-card__head">
                       <span class="skill-card__category">
-                        {pt ? classification.pt : classification.en} · {groupNames[skill.scope]}
+                        {classification[l]} · {groupNames[skill.scope]}
                       </span>
                       <span class={`skill-card__status skill-card__status--${skill.status}`}>{statusNames[skill.status]}</span>
                     </header>
                     <h2>{skill.name}</h2>
-                    <p class="skill-card__summary">{pt ? skill.summary.pt : skill.summary.en}</p>
+                    <p class="skill-card__summary">{skill.summary[l]}</p>
                     <dl>
-                      <div><dt>{pt ? "Contrato" : "Contract"}</dt><dd>{pt ? skill.contract.pt : skill.contract.en}</dd></div>
-                      <div><dt>{pt ? "Evidência" : "Evidence"}</dt><dd>{pt ? skill.evidence.pt : skill.evidence.en}</dd></div>
+                      <div><dt>{t.skills.fields.contract}</dt><dd>{skill.contract[l]}</dd></div>
+                      <div><dt>{t.skills.fields.evidence}</dt><dd>{skill.evidence[l]}</dd></div>
                     </dl>
                     {(skill.article || skill.discoveryUrl) && (
                       <footer>
-                        {skill.article && <a href={pt ? skill.article.pt : skill.article.en}>{pt ? "Ver a prova →" : "See the proof →"}</a>}
-                        {skill.discoveryUrl && <a href={skill.discoveryUrl}>{pt ? "Abrir SKILL.md →" : "Open SKILL.md →"}</a>}
+                        {skill.article && <a href={skill.article[l]}>{t.skills.fields.proof}</a>}
+                        {skill.discoveryUrl && <a href={skill.discoveryUrl}>{t.skills.fields.source}</a>}
                       </footer>
                     )}
                   </article>
@@ -183,8 +172,8 @@ const csAuthoredTotal = agentSkills.filter((skill) => skill.scope === "cs-brasil
     </div>
 
     <div class="skills-cta">
-      <p>{pt ? "Quer esse nível de método no seu produto ou time?" : "Want this level of operating method in your product or team?"}</p>
-      <a class="btn btn-primary" href={`${base}/contact?subject=ai-product-systems`} data-track="contact_view" data-track-location="skills_bottom">{pt ? "Iniciar um projeto" : "Start a project"}</a>
+      <p>{t.skills.fields.cta}</p>
+      <a class="btn btn-primary" href={`${base}/contact?subject=ai-product-systems`} data-track="contact_view" data-track-location="skills_bottom">{t.skills.fields.startProject}</a>
     </div>
   </Section>
 </BaseLayout>
@@ -336,7 +325,6 @@ const csAuthoredTotal = agentSkills.filter((skill) => skill.scope === "cs-brasil
     const buttons = Array.from(root.querySelectorAll<HTMLButtonElement>("[data-skill-filter]"));
     const items = Array.from(root.querySelectorAll<HTMLElement>("[data-skill-item]"));
     const status = root.querySelector<HTMLElement>("[data-skill-status]");
-    const pt = document.documentElement.lang.toLowerCase().startsWith("pt");
 
     root.addEventListener("click", (event) => {
       const button = (event.target as Element).closest<HTMLButtonElement>("[data-skill-filter]");
@@ -349,7 +337,7 @@ const csAuthoredTotal = agentSkills.filter((skill) => skill.scope === "cs-brasil
         if (show) visible += 1;
       }
       for (const candidate of buttons) candidate.setAttribute("aria-pressed", String(candidate === button));
-      if (status) status.textContent = pt ? `Mostrando ${visible} skills` : `Showing ${visible} skills`;
+      if (status) status.textContent = status.dataset.statusTemplate?.replace("NaN", String(visible)) ?? "";
     });
   };
 
